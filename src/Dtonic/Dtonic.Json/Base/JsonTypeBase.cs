@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Dtonic.Json.Base;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public abstract class JsonTypeBase<T> : IJsonType
+public abstract record JsonTypeBase<T> : IJsonType
 {
     protected readonly T? _value;
 

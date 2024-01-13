@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace Dtonic.Json;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public class JsonString : JsonTypeBase<string?>
+public sealed record JsonString : JsonTypeBase<string?>
 {
     private JsonString() { }
 

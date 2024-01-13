@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace Dtonic.Json;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public sealed class JsonObject<T> : JsonTypeBase<T> where T : class
+public sealed record JsonObject<T> : JsonTypeBase<T> where T : class
 {
     private JsonObject() { }
 
