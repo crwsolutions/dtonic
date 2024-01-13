@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dtonic.Json.Example.Web.Dto;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System.Net;
+using System.Net.Mime;
 
 namespace Dtonic.Json.Example.Web.Controllers;
 [Route("api/[controller]")]
@@ -16,6 +18,7 @@ public class PersonController : ControllerBase
     //}
 
     [HttpGet(Name = "GetPerson2")]
+    [ProducesResponseType<PersonDto>(StatusCodes.Status200OK)]
     public ActionResult Get()
     {
         var homeAddress = new AddressDto
@@ -39,6 +42,6 @@ public class PersonController : ControllerBase
             homeAddress = new JsonObject<AddressDto>(homeAddress),
             invoiceAddress = new JsonObject<AddressDto>(invoiceAddress),
         };
-        return Content(person.ToJsonString());
+        return Content(person.ToJsonString(), MediaTypeNames.Application.Json);
     }
 }

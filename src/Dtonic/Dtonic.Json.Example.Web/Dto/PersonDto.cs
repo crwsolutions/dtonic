@@ -1,6 +1,7 @@
 ﻿using Dtonic.Json.Base;
 using System.Text;
 using Dtonic.Json.Extensions;
+using Dtonic.Json.Example.Web.Dto;
 
 namespace Dtonic.Json;
 public class PersonDto : IJsonSerializable
@@ -17,22 +18,40 @@ public class PersonDto : IJsonSerializable
 
     public JsonArray<int> favoriteNumbers { get; init; } = JsonArray<int>.Unspecified;
 
+    [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IJsonType> Elements => [name, age, isGoldMember, homeAddress, invoiceAddress, favoriteNumbers];
 
     public string ToJsonString()
     {
+        var items = new List<string>();
+        if (name.IsSet)
+        {
+            items.Add(name.ToJsonString());
+        }
+        if (age.IsSet)
+        {
+            items.Add(age.ToJsonString());
+        }
+        if (isGoldMember.IsSet)
+        {
+            items.Add(isGoldMember.ToJsonString());
+        }
+        if (favoriteNumbers.IsSet)
+        {
+            items.Add(favoriteNumbers.ToJsonString());
+        }
+        if (homeAddress.IsSet)
+        {
+            items.Add(homeAddress.ToJsonString());
+        }
+        if (invoiceAddress.IsSet)
+        {
+            items.Add(invoiceAddress.ToJsonString());
+        }
         var bob = new StringBuilder();
-        bob.Append('{');
-        bob.Append(name.ToJsonString());
-        bob.Append(',');
-        bob.Append(age.ToJsonString());
-        bob.Append(',');
-        bob.Append(isGoldMember.ToJsonString());
-        bob.Append(',');
-        bob.Append(homeAddress.ToJsonString());
-        bob.Append(',');
-        bob.Append(invoiceAddress.ToJsonString());
-        bob.Append('}');
+        bob.Append('{')
+        .Append(string.Join(", ", items))
+        .Append('}');
 
         return bob.ToString();
     }

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dtonic.Json.Base;
 
@@ -22,9 +23,8 @@ public abstract class JsonTypeBase<T> : IJsonType
 
     public bool IsSet { set; get; } = false;
 
+    [MemberNotNullWhen(false, nameof(Value))]
     public bool IsNull => _value == null;
-
-    object? IJsonType.ValueAsObject => _value;
 
     private string GetDebuggerDisplay()
     {

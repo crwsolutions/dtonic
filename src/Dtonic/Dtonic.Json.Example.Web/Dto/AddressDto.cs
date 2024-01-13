@@ -1,8 +1,8 @@
 ﻿using Dtonic.Json.Base;
-using System.Text;
 using Dtonic.Json.Extensions;
+using System.Text;
 
-namespace Dtonic.Json;
+namespace Dtonic.Json.Example.Web.Dto;
 
 public class AddressDto : IJsonSerializable
 {
@@ -11,11 +11,21 @@ public class AddressDto : IJsonSerializable
 
     public string ToJsonString()
     {
+        var items = new List<string>();
+        if (street.IsSet)
+        {
+            items.Add(street.ToJsonString());
+        }
+
+        if (city.IsSet)
+        {
+            items.Add(city.ToJsonString());
+        }
+
         var bob = new StringBuilder();
-        bob.Append("{");
-        bob.Append(street.ToJsonString());
-        bob.Append(city.ToJsonString());
-        bob.Append("}");
+        _ = bob.Append('{')
+        .Append(string.Join(", ", items))
+        .Append('}');
 
         return bob.ToString();
     }
