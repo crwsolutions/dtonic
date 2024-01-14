@@ -1,20 +1,21 @@
 ﻿using Dtonic.Json.Base;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Dtonic.Json.Extensions;
 public static class JsonSerializationExtensions
 {
-    public static string ToJsonString(this JsonNumber jsonNumber, [CallerArgumentExpression(nameof(jsonNumber))] string memberName = "") => !jsonNumber.IsSet ? "" : jsonNumber.IsNull ? $"{memberName}:null" : $"{memberName}:{jsonNumber.Value}";
+    public static string ToJsonString(this JsonNumber jsonNumber, [CallerArgumentExpression(nameof(jsonNumber))] string memberName = "") => !jsonNumber.IsSet ? "" : jsonNumber.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":{jsonNumber.Value}";
 
     public static string ToJsonString(this JsonBoolean jsonBoolean, [CallerArgumentExpression(nameof(jsonBoolean))] string memberName = "")
     {
         return !jsonBoolean.IsSet
             ? ""
-            : jsonBoolean.IsNull ? $"{memberName}:null" : $"{memberName}:{jsonBoolean.Value.ToString()!.ToLowerInvariant()}";
+            : jsonBoolean.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":{jsonBoolean.Value.ToString()!.ToLowerInvariant()}";
     }
 
-    public static string ToJsonString(this JsonString jsonString, [CallerArgumentExpression(nameof(jsonString))] string memberName = "") => !jsonString.IsSet ? "" : jsonString.IsNull ? $"{memberName}:null" : $"{memberName}:\"{jsonString.Value}\"";
+    public static string ToJsonString(this JsonString jsonString, [CallerArgumentExpression(nameof(jsonString))] string memberName = "") => !jsonString.IsSet ? "" : jsonString.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":\"{jsonString.Value}\"";
 
     public static string ToJsonString<T>(this JsonArray<T> array, [CallerArgumentExpression(nameof(array))] string memberName = "")
     {
@@ -25,7 +26,7 @@ public static class JsonSerializationExtensions
 
         if (array.IsNull)
         {
-            return $"{memberName}:null";
+            return $"\"{memberName}\":null";
         }
         var first = true;
         var bob = new StringBuilder();
@@ -38,9 +39,27 @@ public static class JsonSerializationExtensions
             }
             else 
             {
-                bob.Append(", ");
+                bob.Append(",");
             }
-            if (IsSimple(item.GetType()))
+            if (item is string)
+            {
+                bob.Append('"');
+                bob.Append(item);
+                bob.Append('"');
+            }
+            else if (item is float f)
+            {
+                bob.Append(f.ToString(CultureInfo.InvariantCulture));
+            }
+            else if (item is double d)
+            {
+                bob.Append(d.ToString(CultureInfo.InvariantCulture));
+            }
+            else if (item is decimal m)
+            {
+                bob.Append(m.ToString(CultureInfo.InvariantCulture));
+            }
+            else if (IsSimple(item.GetType()))
             {
                 bob.Append(item);
             }
@@ -48,7 +67,7 @@ public static class JsonSerializationExtensions
             {
                 bob.Append(serializable.ToJsonString());
             }
-            else 
+            else
             {
                 throw new Exception("InvalidJsonType");
             }
@@ -56,15 +75,13 @@ public static class JsonSerializationExtensions
         
         bob.Append(']');
 
-        return $"{memberName}:{bob}";
+        return $"\"{memberName}\":{bob}";
     }
 
     private static bool IsSimple(Type type)
     {
         return type.IsPrimitive
-          || type.IsEnum
-          || type.Equals(typeof(string))
-          || type.Equals(typeof(decimal));
+          || type.IsEnum;
     }
 
     public static string ToJsonString<T>(this JsonObject<T> jsonObject, [CallerArgumentExpression(nameof(jsonObject))] string memberName = "") where T : class
@@ -75,9 +92,9 @@ public static class JsonSerializationExtensions
         }
 
         return jsonObject.IsNull
-            ? $"{memberName}:null"
+            ? $"\"{memberName}\":null"
             : jsonObject.Value is IJsonSerializable serializable
-            ? $"{memberName}:{serializable.ToJsonString()}"
+            ? $"\"{memberName}\":{serializable.ToJsonString()}"
             : throw new ArgumentException($"{memberName} does not implement {nameof(IJsonSerializable)}");
     }
 }

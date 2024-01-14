@@ -4,16 +4,15 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
 
 namespace Dtonic.Json;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public sealed record JsonArray<T> : JsonTypeBase<IEnumerable>
+public sealed record JsonArray<T> : JsonTypeBase<IEnumerable?>
 {
     private JsonArray() { }
 
-    public JsonArray(IEnumerable<T> value) : base(value)
+    public JsonArray(IEnumerable<T>? value) : base(value)
     {
     }
 

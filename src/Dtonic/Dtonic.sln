@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtonic.Json", "Dtonic.Json\Dtonic.Json.csproj", "{5B0F2D95-EE81-4BF7-A016-D9987D2DBC88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtonic.Json", "Dtonic.Json\Dtonic.Json.csproj", "{5B0F2D95-EE81-4BF7-A016-D9987D2DBC88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtonic.Json.Example.Web", "Dtonic.Json.Example.Web\Dtonic.Json.Example.Web.csproj", "{874433E6-2609-4575-9EB8-2898AD49CE0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtonic.Json.Example.Web", "Dtonic.Json.Example.Web\Dtonic.Json.Example.Web.csproj", "{874433E6-2609-4575-9EB8-2898AD49CE0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtonic.Json.Tests", "Dtonic.Json.Tests\Dtonic.Json.Tests.csproj", "{D757F9D8-CF2F-4BF6-B6C8-C7B1316CD9C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{874433E6-2609-4575-9EB8-2898AD49CE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{874433E6-2609-4575-9EB8-2898AD49CE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{874433E6-2609-4575-9EB8-2898AD49CE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D757F9D8-CF2F-4BF6-B6C8-C7B1316CD9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D757F9D8-CF2F-4BF6-B6C8-C7B1316CD9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D757F9D8-CF2F-4BF6-B6C8-C7B1316CD9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D757F9D8-CF2F-4BF6-B6C8-C7B1316CD9C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
