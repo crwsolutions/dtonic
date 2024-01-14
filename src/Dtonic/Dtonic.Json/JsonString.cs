@@ -18,4 +18,6 @@ public sealed record JsonString : JsonTypeBase<string?>
     {
         return GetDebuggerDisplay(nameof(JsonString));
     }
+
+    public static implicit operator JsonString(string value) => new(value);
 }

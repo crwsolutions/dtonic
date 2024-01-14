@@ -14,8 +14,10 @@ public sealed record JsonBoolean : JsonTypeBase<bool?>
 
     public static JsonBoolean Unspecified => new();
 
-    private string GetDebuggerDisplay()
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(JsonBoolean));
+
+    public static implicit operator JsonBoolean(bool value)
     {
-        return GetDebuggerDisplay(nameof(JsonBoolean));
+        return new(value);
     }
 }

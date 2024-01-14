@@ -1,8 +1,7 @@
 ﻿using Dtonic.Json.Example.Web.Dto;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using System.Net;
 using System.Net.Mime;
+using Dtonic.Json.Extensions;
 
 namespace Dtonic.Json.Example.Web.Controllers;
 [Route("api/[controller]")]
@@ -23,24 +22,24 @@ public class PersonController : ControllerBase
     {
         var homeAddress = new AddressDto
         {
-            city = new JsonString("Amsterdam"),
-            street = new JsonString("Rocketstreet")
+            city = "Amsterdam",
+            street = "Rocketstreet"
         };
 
         var invoiceAddress = new AddressDto
         {
-            city = new JsonString("Rotterdam"),
-            street = new JsonString("Invoicestreet")
+            city = "Rotterdam",
+            street = "Invoicestreet"
         };
 
         var person = new PersonDto
         {
-            name = new JsonString("Robert"),
-            age = new JsonNumber(11),
-            isGoldMember = new JsonBoolean(true),
-            favoriteNumbers = new JsonArray<int>([1, 2, 3]),
-            homeAddress = new JsonObject<AddressDto>(homeAddress),
-            invoiceAddress = new JsonObject<AddressDto>(invoiceAddress),
+            name = "Robert",
+            age = 11,
+            isGoldMember = true,
+            favoriteNumbers = new JsonArray<int>([1,2,3]),
+            homeAddress = homeAddress,
+            invoiceAddress = invoiceAddress,
         };
         return Content(person.ToJsonString(), MediaTypeNames.Application.Json);
     }

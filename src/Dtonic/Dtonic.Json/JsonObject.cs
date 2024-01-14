@@ -14,8 +14,10 @@ public sealed record JsonObject<T> : JsonTypeBase<T> where T : class
 
     public static JsonObject<T> Unspecified => new();
 
-    private string GetDebuggerDisplay()
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(JsonObject<T>));
+
+    public static implicit operator JsonObject<T>(T value)
     {
-        return GetDebuggerDisplay(nameof(JsonObject<T>));
+        return new(value);
     }
 }
