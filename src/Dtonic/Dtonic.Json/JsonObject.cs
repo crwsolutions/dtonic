@@ -8,7 +8,7 @@ public sealed record JsonObject<T> : JsonTypeBase<T> where T : class
 {
     private JsonObject() { }
 
-    public JsonObject(T value) : base(value)
+    public JsonObject(T? value) : base(value)
     {
     }
 

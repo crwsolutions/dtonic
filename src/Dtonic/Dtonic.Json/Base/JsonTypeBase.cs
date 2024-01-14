@@ -13,7 +13,7 @@ public abstract record JsonTypeBase<T> : IJsonType
         _value = default;
     }
 
-    public JsonTypeBase(T value)
+    public JsonTypeBase(T? value)
     {
         _value = value;
         IsSet = true;

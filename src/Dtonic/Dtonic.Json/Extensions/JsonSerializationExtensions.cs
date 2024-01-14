@@ -40,7 +40,7 @@ public static class JsonSerializationExtensions
             }
             else
             {
-                bob.Append(",");
+                bob.Append(',');
             }
             if (item is string)
             {

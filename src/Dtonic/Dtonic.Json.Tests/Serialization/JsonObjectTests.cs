@@ -55,7 +55,7 @@ public class JsonObjectTests
         var jsonObject = new JsonObject<object>(new object());
 
         //Act
-        var s = jsonObject.ToJsonString();
+        _ = jsonObject.ToJsonString();
 
         //Assert
         Assert.Fail();
