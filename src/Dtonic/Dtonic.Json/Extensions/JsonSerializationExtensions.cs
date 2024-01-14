@@ -1,4 +1,5 @@
 ﻿using Dtonic.Json.Base;
+using Dtonic.Json.Exceptions;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -31,13 +32,13 @@ public static class JsonSerializationExtensions
         var first = true;
         var bob = new StringBuilder();
         bob.Append('[');
-        foreach (var item in array.Value) 
+        foreach (var item in array.Value)
         {
             if (first)
-            { 
+            {
                 first = false;
             }
-            else 
+            else
             {
                 bob.Append(",");
             }
@@ -69,10 +70,10 @@ public static class JsonSerializationExtensions
             }
             else
             {
-                throw new Exception("InvalidJsonType");
+                throw DoesNotImplementIJsonSerializableException.Create(memberName, item.GetType());
             }
         }
-        
+
         bob.Append(']');
 
         return $"\"{memberName}\":{bob}";
@@ -95,6 +96,6 @@ public static class JsonSerializationExtensions
             ? $"\"{memberName}\":null"
             : jsonObject.Value is IJsonSerializable serializable
             ? $"\"{memberName}\":{serializable.ToJsonString()}"
-            : throw new ArgumentException($"{memberName} does not implement {nameof(IJsonSerializable)}");
+            : throw DoesNotImplementIJsonSerializableException.Create(memberName, jsonObject.Value.GetType());
     }
 }

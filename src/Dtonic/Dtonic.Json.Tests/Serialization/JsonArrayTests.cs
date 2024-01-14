@@ -1,4 +1,5 @@
 using Dtonic.Json;
+using Dtonic.Json.Exceptions;
 using Dtonic.Json.Extensions;
 
 namespace Serialization;
@@ -108,5 +109,19 @@ public class JsonArrayTests
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[\"a\",\"b\"]", s);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(DoesNotImplementIJsonSerializableException))]
+    public void Unsupported_type_should_throw_exception()
+    {
+        //Arrange
+        var jsonArray = new JsonArray<object>([new object()]);
+
+        //Act
+        var s = jsonArray.ToJsonString();
+
+        //Assert
+        Assert.Fail();
     }
 }
