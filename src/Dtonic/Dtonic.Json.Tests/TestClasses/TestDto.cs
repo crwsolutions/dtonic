@@ -6,6 +6,8 @@ namespace TestClasses;
 
 public class TestDto : IJsonSerializable
 {
+    public TestDto() { }
+
     public JsonString street { get; init; } = JsonString.Unspecified;
 
     public string Stringify()
@@ -22,5 +24,23 @@ public class TestDto : IJsonSerializable
         .Append('}');
 
         return bob.ToString();
+    }
+
+    public TestDto(System.Text.Json.Utf8JsonReader jsonReader)
+    {
+        while (jsonReader.Read())
+        {
+            if (jsonReader.TokenType == System.Text.Json.JsonTokenType.PropertyName)
+            {
+                switch (jsonReader.GetString())
+                {
+                    case nameof(street):
+                        street = jsonReader.ParseToJsonString();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
