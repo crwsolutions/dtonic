@@ -9,17 +9,17 @@ public class AddressDto : IJsonSerializable
     public JsonString street { get; init; } = JsonString.Unspecified;
     public JsonString city { get; init; } = JsonString.Unspecified;
 
-    public string ToJsonString()
+    public string Stringify()
     {
         var items = new List<string>();
         if (street.IsSet)
         {
-            items.Add(street.ToJsonString());
+            items.Add(street.Stringify());
         }
 
         if (city.IsSet)
         {
-            items.Add(city.ToJsonString());
+            items.Add(city.Stringify());
         }
 
         var bob = new StringBuilder();

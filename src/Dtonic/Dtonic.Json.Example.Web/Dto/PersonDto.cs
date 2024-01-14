@@ -21,32 +21,32 @@ public class PersonDto : IJsonSerializable
     [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IJsonType> Elements => [name, age, isGoldMember, homeAddress, invoiceAddress, favoriteNumbers];
 
-    public string ToJsonString()
+    public string Stringify()
     {
         var items = new List<string>();
         if (name.IsSet)
         {
-            items.Add(name.ToJsonString());
+            items.Add(name.Stringify());
         }
         if (age.IsSet)
         {
-            items.Add(age.ToJsonString());
+            items.Add(age.Stringify());
         }
         if (isGoldMember.IsSet)
         {
-            items.Add(isGoldMember.ToJsonString());
+            items.Add(isGoldMember.Stringify());
         }
         if (favoriteNumbers.IsSet)
         {
-            items.Add(favoriteNumbers.ToJsonString());
+            items.Add(favoriteNumbers.Stringify());
         }
         if (homeAddress.IsSet)
         {
-            items.Add(homeAddress.ToJsonString());
+            items.Add(homeAddress.Stringify());
         }
         if (invoiceAddress.IsSet)
         {
-            items.Add(invoiceAddress.ToJsonString());
+            items.Add(invoiceAddress.Stringify());
         }
         var bob = new StringBuilder();
         bob.Append('{')

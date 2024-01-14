@@ -41,6 +41,6 @@ public class PersonController : ControllerBase
             homeAddress = homeAddress,
             invoiceAddress = invoiceAddress,
         };
-        return Content(person.ToJsonString(), MediaTypeNames.Application.Json);
+        return Content(person.Stringify(), MediaTypeNames.Application.Json);
     }
 }

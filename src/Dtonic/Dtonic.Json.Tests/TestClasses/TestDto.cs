@@ -8,12 +8,12 @@ public class TestDto : IJsonSerializable
 {
     public JsonString street { get; init; } = JsonString.Unspecified;
 
-    public string ToJsonString()
+    public string Stringify()
     {
         var items = new List<string>();
         if (street.IsSet)
         {
-            items.Add(street.ToJsonString());
+            items.Add(street.Stringify());
         }
 
         var bob = new System.Text.StringBuilder();

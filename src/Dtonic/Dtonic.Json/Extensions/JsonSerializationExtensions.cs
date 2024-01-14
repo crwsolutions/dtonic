@@ -7,18 +7,18 @@ using System.Text;
 namespace Dtonic.Json.Extensions;
 public static class JsonSerializationExtensions
 {
-    public static string ToJsonString(this JsonNumber jsonNumber, [CallerArgumentExpression(nameof(jsonNumber))] string memberName = "") => !jsonNumber.IsSet ? "" : jsonNumber.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":{jsonNumber.Value!.Value.ToString(CultureInfo.InvariantCulture)}";
+    public static string Stringify(this JsonNumber jsonNumber, [CallerArgumentExpression(nameof(jsonNumber))] string memberName = "") => !jsonNumber.IsSet ? "" : jsonNumber.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":{jsonNumber.Value!.Value.ToString(CultureInfo.InvariantCulture)}";
 
-    public static string ToJsonString(this JsonBoolean jsonBoolean, [CallerArgumentExpression(nameof(jsonBoolean))] string memberName = "")
+    public static string Stringify(this JsonBoolean jsonBoolean, [CallerArgumentExpression(nameof(jsonBoolean))] string memberName = "")
     {
         return !jsonBoolean.IsSet
             ? ""
             : jsonBoolean.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":{jsonBoolean.Value.ToString()!.ToLowerInvariant()}";
     }
 
-    public static string ToJsonString(this JsonString jsonString, [CallerArgumentExpression(nameof(jsonString))] string memberName = "") => !jsonString.IsSet ? "" : jsonString.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":\"{jsonString.Value}\"";
+    public static string Stringify(this JsonString jsonString, [CallerArgumentExpression(nameof(jsonString))] string memberName = "") => !jsonString.IsSet ? "" : jsonString.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":\"{jsonString.Value}\"";
 
-    public static string ToJsonString<T>(this JsonArray<T> array, [CallerArgumentExpression(nameof(array))] string memberName = "")
+    public static string Stringify<T>(this JsonArray<T> array, [CallerArgumentExpression(nameof(array))] string memberName = "")
     {
         if (!array.IsSet)
         {
@@ -66,7 +66,7 @@ public static class JsonSerializationExtensions
             }
             else if (item is IJsonSerializable serializable)
             {
-                bob.Append(serializable.ToJsonString());
+                bob.Append(serializable.Stringify());
             }
             else
             {
@@ -85,7 +85,7 @@ public static class JsonSerializationExtensions
           || type.IsEnum;
     }
 
-    public static string ToJsonString<T>(this JsonObject<T> jsonObject, [CallerArgumentExpression(nameof(jsonObject))] string memberName = "") where T : class
+    public static string Stringify<T>(this JsonObject<T> jsonObject, [CallerArgumentExpression(nameof(jsonObject))] string memberName = "") where T : class
     {
         if (!jsonObject.IsSet)
         {
@@ -95,7 +95,7 @@ public static class JsonSerializationExtensions
         return jsonObject.IsNull
             ? $"\"{memberName}\":null"
             : jsonObject.Value is IJsonSerializable serializable
-            ? $"\"{memberName}\":{serializable.ToJsonString()}"
+            ? $"\"{memberName}\":{serializable.Stringify()}"
             : throw DoesNotImplementIJsonSerializableException.Create(memberName, jsonObject.Value.GetType());
     }
 }

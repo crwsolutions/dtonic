@@ -15,7 +15,7 @@ public class JsonObjectTests
         var jsonObject = JsonObject<object>.Unspecified;
 
         //Act
-        var s = jsonObject.ToJsonString();
+        var s = jsonObject.Stringify();
 
         //Assert
         Assert.AreEqual(string.Empty, s);
@@ -28,7 +28,7 @@ public class JsonObjectTests
         var jsonObject = new JsonObject<object>(null);
 
         //Act
-        var s = jsonObject.ToJsonString();
+        var s = jsonObject.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonObject\":null", s);
@@ -41,7 +41,7 @@ public class JsonObjectTests
         var jsonObject = new JsonObject<TestDto>(new TestDto { street = "teststreet" });
 
         //Act
-        var s = jsonObject.ToJsonString();
+        var s = jsonObject.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonObject\":{\"street\":\"teststreet\"}", s);
@@ -55,7 +55,7 @@ public class JsonObjectTests
         var jsonObject = new JsonObject<object>(new object());
 
         //Act
-        _ = jsonObject.ToJsonString();
+        _ = jsonObject.Stringify();
 
         //Assert
         Assert.Fail();

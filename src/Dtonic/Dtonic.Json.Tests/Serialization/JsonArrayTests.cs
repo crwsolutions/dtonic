@@ -14,7 +14,7 @@ public class JsonArrayTests
         var jsonArray = JsonArray<int>.Unspecified;
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.AreEqual(string.Empty, s);
@@ -27,7 +27,7 @@ public class JsonArrayTests
         var jsonArray = new JsonArray<object>(null);
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":null", s);
@@ -40,7 +40,7 @@ public class JsonArrayTests
         var jsonArray = new JsonArray<object>(Array.Empty<object>());
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[]", s);
@@ -53,7 +53,7 @@ public class JsonArrayTests
         var jsonArray = new JsonArray<int>([1, 2]);
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[1,2]", s);
@@ -66,7 +66,7 @@ public class JsonArrayTests
         var jsonArray = new JsonArray<decimal>([1.1m, 2.2m]);
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[1.1,2.2]", s);
@@ -79,7 +79,7 @@ public class JsonArrayTests
         var jsonArray = new JsonArray<float>([1.1f, 2.2f]);
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[1.1,2.2]", s);
@@ -92,7 +92,7 @@ public class JsonArrayTests
         var jsonArray = new JsonArray<double>([1.1, 2.2]);
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[1.1,2.2]", s);
@@ -105,7 +105,7 @@ public class JsonArrayTests
         var jsonArray = new JsonArray<string>(["a", "b"]);
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[\"a\",\"b\"]", s);
@@ -119,7 +119,7 @@ public class JsonArrayTests
         var jsonArray = new JsonArray<object>([new object()]);
 
         //Act
-        var s = jsonArray.ToJsonString();
+        var s = jsonArray.Stringify();
 
         //Assert
         Assert.Fail();

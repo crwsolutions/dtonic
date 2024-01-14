@@ -2,5 +2,5 @@
 
 public interface IJsonSerializable
 {
-    string ToJsonString();
+    string Stringify();
 }
