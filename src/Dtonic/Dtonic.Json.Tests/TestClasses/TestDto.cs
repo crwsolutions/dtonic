@@ -4,11 +4,13 @@ using Dtonic.Json.Extensions;
 
 namespace TestClasses;
 
-public class TestDto : IJsonSerializable
+public class TestDto : IJsonSerializable, IJsonDeserializable
 {
     public TestDto() { }
 
-    public JsonString street { get; init; } = JsonString.Unspecified;
+    public JsonString street { get; set; } = JsonString.Unspecified;
+    public JsonNumber number { get; set; } = JsonNumber.Unspecified;
+    public JsonBoolean isTrue { get; set; } = JsonBoolean.Unspecified;
 
     public string Stringify()
     {
@@ -26,7 +28,7 @@ public class TestDto : IJsonSerializable
         return bob.ToString();
     }
 
-    public TestDto(System.Text.Json.Utf8JsonReader jsonReader)
+    public void Parse(System.Text.Json.Utf8JsonReader jsonReader)
     {
         while (jsonReader.Read())
         {
@@ -36,6 +38,12 @@ public class TestDto : IJsonSerializable
                 {
                     case nameof(street):
                         street = jsonReader.ParseToJsonString();
+                        break;
+                    case nameof(number):
+                        number = jsonReader.ParseToJsonNumber();
+                        break;
+                    case nameof(isTrue):
+                        isTrue = jsonReader.ParseToJsonBoolean();
                         break;
                     default:
                         break;

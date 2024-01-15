@@ -1,10 +1,4 @@
-﻿using Dtonic.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using Dtonic.Json.Extensions;
 using TestClasses;
 
 namespace Deserialization;
@@ -18,17 +12,25 @@ public class JsonObjectTests
         var json = "{\"street\":\"teststreet\"}";
 
         //Act
-        var options = new JsonReaderOptions
-        {
-            AllowTrailingCommas = true,
-            CommentHandling = JsonCommentHandling.Skip
-        };
-        var jsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json), options);
-        var testDto = new TestDto(jsonReader);
+        var testDto = json.Parse<TestDto>();
 
         //Assert
         Assert.IsTrue(testDto.street.IsSet);
         Assert.IsFalse(testDto.street.IsNull);
         Assert.AreEqual("teststreet", testDto.street.Value);
+    }
+
+    [TestMethod]
+    public void Empty_json_object_should_give_unspecified_member()
+    {
+        //Arrange
+        var json = "{}";
+
+        //Act
+        var testDto = json.Parse<TestDto>();
+
+        //Assert
+        Assert.IsFalse(testDto.street.IsSet);
+        Assert.IsTrue(testDto.street.IsNull);
     }
 }
