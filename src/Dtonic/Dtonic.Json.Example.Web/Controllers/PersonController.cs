@@ -37,7 +37,7 @@ public class PersonController : ControllerBase
             name = "Robert",
             age = 11,
             isGoldMember = true,
-            favoriteNumbers = new JsonArray<int>([1,2,3]),
+            favoriteNumbers = (int[]) [ 1, 2, 3, 4 ],
             homeAddress = homeAddress,
             invoiceAddress = invoiceAddress,
         };
