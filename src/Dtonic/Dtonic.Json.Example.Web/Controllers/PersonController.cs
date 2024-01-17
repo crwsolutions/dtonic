@@ -32,6 +32,12 @@ public class PersonController : ControllerBase
             street = "Invoicestreet"
         };
 
+        var addressList = new Dictionary<string, AddressDto>()
+        {
+            { "home", homeAddress },
+            { "invoice", invoiceAddress }
+        };
+
         var person = new PersonDto
         {
             name = "Robert",
@@ -40,6 +46,7 @@ public class PersonController : ControllerBase
             favoriteNumbers = (int[]) [ 1, 2, 3, 4 ],
             homeAddress = homeAddress,
             invoiceAddress = invoiceAddress,
+            addressList = addressList
         };
         return Content(person.Stringify(), MediaTypeNames.Application.Json);
     }

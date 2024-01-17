@@ -18,6 +18,8 @@ public class PersonDto : IJsonSerializable
 
     public JsonArray<int> favoriteNumbers { get; init; } = JsonArray<int>.Unspecified;
 
+    public JsonDictionary<AddressDto> addressList { get; init; } = JsonDictionary<AddressDto>.Unspecified;
+
     [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IJsonType> Elements => [name, age, isGoldMember, homeAddress, invoiceAddress, favoriteNumbers];
 
@@ -47,6 +49,10 @@ public class PersonDto : IJsonSerializable
         if (invoiceAddress.IsSet)
         {
             items.Add(invoiceAddress.Stringify());
+        }
+        if (addressList.IsSet)
+        {
+            items.Add(addressList.Stringify());
         }
         var bob = new StringBuilder();
         bob.Append('{')

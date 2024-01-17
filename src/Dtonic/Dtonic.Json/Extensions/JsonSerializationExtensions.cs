@@ -42,36 +42,7 @@ public static class JsonSerializationExtensions
             {
                 bob.Append(',');
             }
-            if (item is string)
-            {
-                bob.Append('"');
-                bob.Append(item);
-                bob.Append('"');
-            }
-            else if (item is float f)
-            {
-                bob.Append(f.ToString(CultureInfo.InvariantCulture));
-            }
-            else if (item is double d)
-            {
-                bob.Append(d.ToString(CultureInfo.InvariantCulture));
-            }
-            else if (item is decimal m)
-            {
-                bob.Append(m.ToString(CultureInfo.InvariantCulture));
-            }
-            else if (IsSimple(item.GetType()))
-            {
-                bob.Append(item);
-            }
-            else if (item is IJsonSerializable serializable)
-            {
-                bob.Append(serializable.Stringify());
-            }
-            else
-            {
-                throw DoesNotImplementIJsonSerializableException.Create(memberName, item.GetType());
-            }
+            bob.AppendSupportedType(item, memberName);
         }
 
         bob.Append(']');
@@ -79,12 +50,42 @@ public static class JsonSerializationExtensions
         return $"\"{memberName}\":{bob}";
     }
 
-    private static bool IsSimple(Type type)
+    public static string Stringify<T>(this JsonDictionary<T> dictionary, [CallerArgumentExpression(nameof(dictionary))] string memberName = "")
     {
-        return type.IsPrimitive
-          || type.IsEnum;
-    }
+        if (!dictionary.IsSet)
+        {
+            return "";
+        }
 
+        if (dictionary.IsNull)
+        {
+            return $"\"{memberName}\":null";
+        }
+        var first = true;
+        var bob = new StringBuilder();
+        bob.Append('[');
+        foreach (var item in dictionary.Value)
+        {
+            if (first)
+            {
+                first = false;
+            }
+            else
+            {
+                bob.Append(',');
+            }
+            bob.Append("{\"");
+            bob.Append(item.Key);
+            bob.Append("\":");
+            bob.AppendSupportedType(item.Value, memberName);
+            bob.Append('}');
+        }
+
+        bob.Append(']');
+
+        return $"\"{memberName}\":{bob}";
+    }
+    
     public static string Stringify<T>(this JsonObject<T> jsonObject, [CallerArgumentExpression(nameof(jsonObject))] string memberName = "") where T : class
     {
         if (!jsonObject.IsSet)
@@ -97,5 +98,49 @@ public static class JsonSerializationExtensions
             : jsonObject.Value is IJsonSerializable serializable
             ? $"\"{memberName}\":{serializable.Stringify()}"
             : throw DoesNotImplementIJsonSerializableException.Create(memberName, jsonObject.Value.GetType());
+    }
+
+    private static void AppendSupportedType<T>(this StringBuilder bob, T value, string memberName)
+    {
+        if (value == null)
+        {
+            bob.Append("null");
+        }
+        else if (value is string)
+        {
+            bob.Append('"');
+            bob.Append(value);
+            bob.Append('"');
+        }
+        else if (value is float f)
+        {
+            bob.Append(f.ToString(CultureInfo.InvariantCulture));
+        }
+        else if (value is double d)
+        {
+            bob.Append(d.ToString(CultureInfo.InvariantCulture));
+        }
+        else if (value is decimal m)
+        {
+            bob.Append(m.ToString(CultureInfo.InvariantCulture));
+        }
+        else if (IsSimple(value.GetType()))
+        {
+            bob.Append(value);
+        }
+        else if (value is IJsonSerializable serializable)
+        {
+            bob.Append(serializable.Stringify());
+        }
+        else
+        {
+            throw DoesNotImplementIJsonSerializableException.Create(memberName, value.GetType());
+        }
+    }
+    
+    private static bool IsSimple(Type type)
+    {
+        return type.IsPrimitive
+          || type.IsEnum;
     }
 }
