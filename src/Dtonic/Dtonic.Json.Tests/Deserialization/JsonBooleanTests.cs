@@ -16,7 +16,7 @@ public class JsonBooleanTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto.isTrue.IsSet);
+        Assert.IsFalse(testDto!.isTrue.IsSet);
         Assert.IsTrue(testDto.isTrue.IsNull);
     }
 
@@ -30,7 +30,7 @@ public class JsonBooleanTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto.isTrue.IsSet);
+        Assert.IsTrue(testDto!.isTrue.IsSet);
         Assert.IsTrue(testDto.isTrue.IsNull);
     }
 
@@ -44,7 +44,7 @@ public class JsonBooleanTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto.isTrue.IsSet);
+        Assert.IsTrue(testDto!.isTrue.IsSet);
         Assert.IsFalse(testDto.isTrue.IsNull);
         Assert.IsTrue(testDto.isTrue.Value);
     }
@@ -59,7 +59,7 @@ public class JsonBooleanTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto.isTrue.IsSet);
+        Assert.IsTrue(testDto!.isTrue.IsSet);
         Assert.IsFalse(testDto.isTrue.IsNull);
         Assert.IsFalse(testDto.isTrue.Value);
     }

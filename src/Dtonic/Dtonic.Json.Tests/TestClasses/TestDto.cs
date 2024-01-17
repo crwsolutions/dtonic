@@ -11,6 +11,7 @@ public class TestDto : IJsonSerializable, IJsonDeserializable
     public JsonString street { get; set; } = JsonString.Unspecified;
     public JsonNumber number { get; set; } = JsonNumber.Unspecified;
     public JsonBoolean isTrue { get; set; } = JsonBoolean.Unspecified;
+    public JsonObject<TestDto> childTestDto { get; set; } = JsonObject<TestDto>.Unspecified;
 
     public string Stringify()
     {
@@ -44,6 +45,9 @@ public class TestDto : IJsonSerializable, IJsonDeserializable
                         break;
                     case nameof(isTrue):
                         isTrue = jsonReader.ParseToJsonBoolean();
+                        break;
+                    case nameof(childTestDto):
+                        childTestDto = jsonReader.ParseToJsonObject<TestDto>();
                         break;
                     default:
                         break;

@@ -16,7 +16,7 @@ public class JsonNumberTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto.number.IsSet);
+        Assert.IsFalse(testDto!.number.IsSet);
         Assert.IsTrue(testDto.number.IsNull);
     }
 
@@ -30,7 +30,7 @@ public class JsonNumberTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto.number.IsSet);
+        Assert.IsTrue(testDto!.number.IsSet);
         Assert.IsTrue(testDto.number.IsNull);
     }
 
@@ -44,7 +44,7 @@ public class JsonNumberTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto.number.IsSet);
+        Assert.IsTrue(testDto!.number.IsSet);
         Assert.IsFalse(testDto.number.IsNull);
         Assert.AreEqual(1.1m, testDto.number.Value);
     }

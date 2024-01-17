@@ -5,17 +5,49 @@ using System.Text.Json;
 namespace Dtonic.Json.Extensions;
 public static class JsonDeserializationExtensions
 {
-    public static T Parse<T>(this string s) where T : IJsonDeserializable, new()
+    public static T? Parse<T>(this string s) where T : IJsonDeserializable, new()
     {
-        var t = new T();
         var options = new JsonReaderOptions
         {
             AllowTrailingCommas = true,
             CommentHandling = JsonCommentHandling.Skip
         };
         var jsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(s), options);
-        t.Parse(jsonReader);
-        return t;
+        return jsonReader.ParseJsonDeserializable<T>();
+    }
+
+    public static T? ParseJsonDeserializable<T>(this Utf8JsonReader jsonReader) where T : IJsonDeserializable, new()
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            return default;
+        }
+        if (jsonReader.TokenType == JsonTokenType.StartObject)
+        {
+            var t = new T();
+            t.Parse(jsonReader);
+            return t;
+        }
+        throw new Exception("Unknown type");
+    }
+
+    public static JsonObject<T> ParseToJsonObject<T>(this Utf8JsonReader jsonReader) where T : class, IJsonDeserializable, new()
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            JsonObject<T> x = new(null);
+            return x;
+        }
+        if (jsonReader.TokenType == JsonTokenType.StartObject)
+        {
+            var t = new T();
+            t.Parse(jsonReader);
+            JsonObject<T> x = new(t);
+            return x;
+        }
+        throw new Exception("Unknown type");
     }
 
     public static JsonString ParseToJsonString(this Utf8JsonReader jsonReader)
