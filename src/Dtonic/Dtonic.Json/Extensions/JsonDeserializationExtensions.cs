@@ -32,6 +32,54 @@ public static class JsonDeserializationExtensions
         throw new Exception("Unknown type");
     }
 
+    public static JsonString ParseToJsonString(this ref Utf8JsonReader jsonReader)
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            return new JsonString(null);
+        }
+        if (jsonReader.TokenType == JsonTokenType.String)
+        {
+            var s = jsonReader.GetString();
+            return new JsonString(s);
+        }
+        throw new Exception("Unknown type");
+    }
+
+    public static JsonNumber ParseToJsonNumber(this ref Utf8JsonReader jsonReader)
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            return new JsonNumber(null);
+        }
+        if (jsonReader.TokenType == JsonTokenType.Number)
+        {
+            var s = jsonReader.GetDecimal();
+            return new JsonNumber(s);
+        }
+        throw new Exception("Unknown type");
+    }
+
+    public static JsonBoolean ParseToJsonBoolean(this ref Utf8JsonReader jsonReader)
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            return new JsonBoolean(null);
+        }
+        if (jsonReader.TokenType == JsonTokenType.True)
+        {
+            return new JsonBoolean(true);
+        }
+        if (jsonReader.TokenType == JsonTokenType.False)
+        {
+            return new JsonBoolean(false);
+        }
+        throw new Exception("Unknown type");
+    }
+    
     public static JsonObject<T> ParseToJsonObject<T>(this ref Utf8JsonReader jsonReader) where T : class, IDtonic, new()
     {
         jsonReader.Read();
@@ -200,52 +248,5 @@ public static class JsonDeserializationExtensions
         }
 
         return new(lst);
-    }
-    public static JsonString ParseToJsonString(this ref Utf8JsonReader jsonReader)
-    {
-        jsonReader.Read();
-        if (jsonReader.TokenType == JsonTokenType.Null)
-        {
-            return new JsonString(null);
-        }
-        if (jsonReader.TokenType == JsonTokenType.String)
-        {
-            var s = jsonReader.GetString();
-            return new JsonString(s);
-        }
-        throw new Exception("Unknown type");
-    }
-
-    public static JsonNumber ParseToJsonNumber(this ref Utf8JsonReader jsonReader)
-    {
-        jsonReader.Read();
-        if (jsonReader.TokenType == JsonTokenType.Null)
-        {
-            return new JsonNumber(null);
-        }
-        if (jsonReader.TokenType == JsonTokenType.Number)
-        {
-            var s = jsonReader.GetDecimal();
-            return new JsonNumber(s);
-        }
-        throw new Exception("Unknown type");
-    }
-
-    public static JsonBoolean ParseToJsonBoolean(this ref Utf8JsonReader jsonReader)
-    {
-        jsonReader.Read();
-        if (jsonReader.TokenType == JsonTokenType.Null)
-        {
-            return new JsonBoolean(null);
-        }
-        if (jsonReader.TokenType == JsonTokenType.True)
-        {
-            return new JsonBoolean(true);
-        }
-        if (jsonReader.TokenType == JsonTokenType.False)
-        {
-            return new JsonBoolean(false);
-        }
-        throw new Exception("Unknown type");
     }
 }

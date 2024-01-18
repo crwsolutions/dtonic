@@ -7,6 +7,8 @@ using System.Text;
 namespace Dtonic.Json.Extensions;
 public static class JsonSerializationExtensions
 {
+    public static string Stringify(this JsonString jsonString, [CallerArgumentExpression(nameof(jsonString))] string memberName = "") => !jsonString.IsSet ? "" : jsonString.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":\"{jsonString.Value}\"";
+    
     public static string Stringify(this JsonNumber jsonNumber, [CallerArgumentExpression(nameof(jsonNumber))] string memberName = "") => !jsonNumber.IsSet ? "" : jsonNumber.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":{jsonNumber.Value!.Value.ToString(CultureInfo.InvariantCulture)}";
 
     public static string Stringify(this JsonBoolean jsonBoolean, [CallerArgumentExpression(nameof(jsonBoolean))] string memberName = "")
@@ -15,8 +17,6 @@ public static class JsonSerializationExtensions
             ? ""
             : jsonBoolean.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":{jsonBoolean.Value.ToString()!.ToLowerInvariant()}";
     }
-
-    public static string Stringify(this JsonString jsonString, [CallerArgumentExpression(nameof(jsonString))] string memberName = "") => !jsonString.IsSet ? "" : jsonString.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":\"{jsonString.Value}\"";
 
     public static string Stringify<T>(this JsonArrayOfObjects<T> array, [CallerArgumentExpression(nameof(array))] string memberName = "") where T : class, IDtonic, new()
     {
@@ -204,7 +204,7 @@ public static class JsonSerializationExtensions
 
         return $"\"{memberName}\":{bob}";
     }
-    
+
     public static string Stringify<T>(this JsonObject<T> jsonObject, [CallerArgumentExpression(nameof(jsonObject))] string memberName = "") where T : class
     {
         if (!jsonObject.IsSet)
@@ -256,7 +256,7 @@ public static class JsonSerializationExtensions
             throw DoesNotImplementIJsonSerializableException.Create(memberName, value.GetType());
         }
     }
-    
+
     private static bool IsSimple(Type type)
     {
         return type.IsPrimitive
