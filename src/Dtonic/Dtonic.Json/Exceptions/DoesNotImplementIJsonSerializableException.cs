@@ -10,6 +10,6 @@ public sealed class DoesNotImplementIJsonSerializableException : Exception
 
     public static DoesNotImplementIJsonSerializableException Create(string className, Type type)
     {
-        return new DoesNotImplementIJsonSerializableException($"'{className}' with type '{type.Name}' does not implement {nameof(IJsonSerializable)}");
+        return new DoesNotImplementIJsonSerializableException($"'{className}' with type '{type.Name}' does not implement {nameof(IDtonic)}");
     }
 }

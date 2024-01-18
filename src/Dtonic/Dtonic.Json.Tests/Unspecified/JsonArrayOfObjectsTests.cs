@@ -1,15 +1,16 @@
 using Dtonic.Json;
+using TestClasses;
 
 namespace Unspecified;
 
 [TestClass]
-public class JsonArrayTests
+public class JsonArrayOfObjectsTests
 {
     [TestMethod]
     public void Unspecified_should_have_no_value()
     {
         //Arrange
-        var jsonArray = JsonArray<int>.Unspecified;
+        var jsonArray = JsonArrayOfObjects<TestDto>.Unspecified;
 
         //Act
 

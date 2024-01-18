@@ -4,7 +4,7 @@ using Dtonic.Json.Extensions;
 
 namespace TestClasses;
 
-public class TestDto : IJsonSerializable, IJsonDeserializable
+public class TestDto : IDtonic
 {
     public TestDto() { }
 
@@ -12,6 +12,10 @@ public class TestDto : IJsonSerializable, IJsonDeserializable
     public JsonNumber number { get; set; } = JsonNumber.Unspecified;
     public JsonBoolean isTrue { get; set; } = JsonBoolean.Unspecified;
     public JsonObject<TestDto> childTestDto { get; set; } = JsonObject<TestDto>.Unspecified;
+    public JsonArrayOfObjects<TestDto> array { get; set; } = JsonArrayOfObjects<TestDto>.Unspecified;
+    public JsonArrayOfNumbers arrayI { get; set; } = JsonArrayOfNumbers.Unspecified;
+    public JsonArrayOfStrings arrayS { get; set; } = JsonArrayOfStrings.Unspecified;
+    public JsonArrayOfBooleans arrayB { get; set; } = JsonArrayOfBooleans.Unspecified;
 
     public string Stringify()
     {
@@ -29,7 +33,7 @@ public class TestDto : IJsonSerializable, IJsonDeserializable
         return bob.ToString();
     }
 
-    public void Parse(System.Text.Json.Utf8JsonReader jsonReader)
+    public void Parse(ref System.Text.Json.Utf8JsonReader jsonReader)
     {
         while (jsonReader.Read())
         {
@@ -48,6 +52,18 @@ public class TestDto : IJsonSerializable, IJsonDeserializable
                         break;
                     case nameof(childTestDto):
                         childTestDto = jsonReader.ParseToJsonObject<TestDto>();
+                        break;
+                    case nameof(array):
+                        array = jsonReader.ParseToJsonArrayOfObjects<TestDto>();
+                        break;
+                    case nameof(arrayS):
+                        arrayS = jsonReader.ParseToJsonArrayOfStrings();
+                        break;
+                    case nameof(arrayI):
+                        arrayI = jsonReader.ParseToJsonArrayOfNumbers();
+                        break;
+                    case nameof(arrayB):
+                        arrayB = jsonReader.ParseToJsonArrayOfBooleans();
                         break;
                     default:
                         break;

@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen(c =>
     c.MapType<JsonString>(() => new OpenApiSchema { Type = "string" });
     c.MapType<JsonNumber>(() => new OpenApiSchema { Type = "number" });
     c.MapType<JsonBoolean>(() => new OpenApiSchema { Type = "boolean" });
-    c.MapType<JsonArray<int>>(() => new OpenApiSchema { Type = "array" });
+    c.MapType<JsonArrayOfObjects<PersonDto>>(() => new OpenApiSchema { Type = "array" });
     c.MapType<JsonObject<AddressDto>>(() => new OpenApiSchema { Type = "object" });
 });
 

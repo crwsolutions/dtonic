@@ -18,7 +18,7 @@ public static class JsonSerializationExtensions
 
     public static string Stringify(this JsonString jsonString, [CallerArgumentExpression(nameof(jsonString))] string memberName = "") => !jsonString.IsSet ? "" : jsonString.IsNull ? $"\"{memberName}\":null" : $"\"{memberName}\":\"{jsonString.Value}\"";
 
-    public static string Stringify<T>(this JsonArray<T> array, [CallerArgumentExpression(nameof(array))] string memberName = "")
+    public static string Stringify<T>(this JsonArrayOfObjects<T> array, [CallerArgumentExpression(nameof(array))] string memberName = "") where T : class, IDtonic, new()
     {
         if (!array.IsSet)
         {
@@ -43,6 +43,125 @@ public static class JsonSerializationExtensions
                 bob.Append(',');
             }
             bob.AppendSupportedType(item, memberName);
+        }
+
+        bob.Append(']');
+
+        return $"\"{memberName}\":{bob}";
+    }
+
+    public static string Stringify(this JsonArrayOfNumbers array, [CallerArgumentExpression(nameof(array))] string memberName = "")
+    {
+        if (!array.IsSet)
+        {
+            return "";
+        }
+
+        if (array.IsNull)
+        {
+            return $"\"{memberName}\":null";
+        }
+        var first = true;
+        var bob = new StringBuilder();
+        bob.Append('[');
+        foreach (var item in array.Value)
+        {
+            if (first)
+            {
+                first = false;
+            }
+            else
+            {
+                bob.Append(',');
+            }
+            if (item is null)
+            {
+                bob.Append("null");
+            }
+            else
+            {
+                bob.Append(item.Value.ToString(CultureInfo.InvariantCulture));
+            }
+        }
+
+        bob.Append(']');
+
+        return $"\"{memberName}\":{bob}";
+    }
+
+    public static string Stringify(this JsonArrayOfStrings array, [CallerArgumentExpression(nameof(array))] string memberName = "")
+    {
+        if (!array.IsSet)
+        {
+            return "";
+        }
+
+        if (array.IsNull)
+        {
+            return $"\"{memberName}\":null";
+        }
+        var first = true;
+        var bob = new StringBuilder();
+        bob.Append('[');
+        foreach (var item in array.Value)
+        {
+            if (first)
+            {
+                first = false;
+            }
+            else
+            {
+                bob.Append(',');
+            }
+            if (item is null)
+            {
+                bob.Append("null");
+            }
+            else
+            {
+                bob.Append('"');
+                bob.Append(item);
+                bob.Append('"');
+            }
+        }
+
+        bob.Append(']');
+
+        return $"\"{memberName}\":{bob}";
+    }
+
+    public static string Stringify(this JsonArrayOfBooleans array, [CallerArgumentExpression(nameof(array))] string memberName = "")
+    {
+        if (!array.IsSet)
+        {
+            return "";
+        }
+
+        if (array.IsNull)
+        {
+            return $"\"{memberName}\":null";
+        }
+        var first = true;
+        var bob = new StringBuilder();
+        bob.Append('[');
+        foreach (var item in array.Value)
+        {
+            if (first)
+            {
+                first = false;
+            }
+            else
+            {
+                bob.Append(',');
+            }
+            if (item is null)
+            {
+                bob.Append("null");
+            }
+            else
+            {
+                bob.Append(item.Value.ToString().ToLower());
+            }
         }
 
         bob.Append(']');
@@ -95,7 +214,7 @@ public static class JsonSerializationExtensions
 
         return jsonObject.IsNull
             ? $"\"{memberName}\":null"
-            : jsonObject.Value is IJsonSerializable serializable
+            : jsonObject.Value is IDtonic serializable
             ? $"\"{memberName}\":{serializable.Stringify()}"
             : throw DoesNotImplementIJsonSerializableException.Create(memberName, jsonObject.Value.GetType());
     }
@@ -128,7 +247,7 @@ public static class JsonSerializationExtensions
         {
             bob.Append(value);
         }
-        else if (value is IJsonSerializable serializable)
+        else if (value is IDtonic serializable)
         {
             bob.Append(serializable.Stringify());
         }

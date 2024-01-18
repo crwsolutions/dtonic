@@ -2,9 +2,10 @@
 using System.Text;
 using Dtonic.Json.Extensions;
 using Dtonic.Json.Example.Web.Dto;
+using System.Text.Json;
 
 namespace Dtonic.Json;
-public class PersonDto : IJsonSerializable
+public class PersonDto : IDtonic
 {
     public JsonString name { get; init; } = JsonString.Unspecified;
 
@@ -16,12 +17,14 @@ public class PersonDto : IJsonSerializable
 
     public JsonObject<AddressDto> invoiceAddress { get; init; } = JsonObject<AddressDto>.Unspecified;
 
-    public JsonArray<int> favoriteNumbers { get; init; } = JsonArray<int>.Unspecified;
+    public JsonArrayOfNumbers favoriteNumbers { get; init; } = JsonArrayOfNumbers.Unspecified;
 
     public JsonDictionary<AddressDto> addressList { get; init; } = JsonDictionary<AddressDto>.Unspecified;
 
     [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IJsonType> Elements => [name, age, isGoldMember, homeAddress, invoiceAddress, favoriteNumbers];
+
+    public void Parse(ref Utf8JsonReader jsonReader) => throw new NotImplementedException();
 
     public string Stringify()
     {
