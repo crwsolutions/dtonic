@@ -13,7 +13,7 @@ public class JsonBooleanTests
         var jsonBoolean = JsonBoolean.Unspecified;
 
         //Act
-        var s = jsonBoolean.Stringify();
+        var s = jsonBoolean.StringifyWithKey();
 
         //Assert
         Assert.AreEqual(string.Empty, s);
@@ -26,7 +26,7 @@ public class JsonBooleanTests
         var jsonBoolean = new JsonBoolean(null);
 
         //Act
-        var s = jsonBoolean.Stringify();
+        var s = jsonBoolean.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonBoolean\":null", s);
@@ -39,7 +39,7 @@ public class JsonBooleanTests
         var jsonBoolean = new JsonBoolean(true);
 
         //Act
-        var s = jsonBoolean.Stringify();
+        var s = jsonBoolean.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonBoolean\":true", s);
@@ -52,7 +52,7 @@ public class JsonBooleanTests
         var jsonBoolean = new JsonBoolean(false);
 
         //Act
-        var s = jsonBoolean.Stringify();
+        var s = jsonBoolean.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonBoolean\":false", s);

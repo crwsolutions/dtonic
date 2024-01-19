@@ -13,7 +13,7 @@ public class JsonNumberTests
         var jsonNumber = JsonNumber.Unspecified;
 
         //Act
-        var s = jsonNumber.Stringify();
+        var s = jsonNumber.StringifyWithKey();
 
         //Assert
         Assert.AreEqual(string.Empty, s);
@@ -26,7 +26,7 @@ public class JsonNumberTests
         var jsonNumber = new JsonNumber(null);
 
         //Act
-        var s = jsonNumber.Stringify();
+        var s = jsonNumber.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonNumber\":null", s);
@@ -39,7 +39,7 @@ public class JsonNumberTests
         var jsonNumber = new JsonNumber(0);
 
         //Act
-        var s = jsonNumber.Stringify();
+        var s = jsonNumber.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonNumber\":0", s);
@@ -52,7 +52,7 @@ public class JsonNumberTests
         var jsonNumber = new JsonNumber(1);
 
         //Act
-        var s = jsonNumber.Stringify();
+        var s = jsonNumber.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonNumber\":1", s);
@@ -65,7 +65,7 @@ public class JsonNumberTests
         var jsonNumber = new JsonNumber(-1);
 
         //Act
-        var s = jsonNumber.Stringify();
+        var s = jsonNumber.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonNumber\":-1", s);
@@ -78,7 +78,7 @@ public class JsonNumberTests
         var jsonNumber = new JsonNumber(1.12345m);
 
         //Act
-        var s = jsonNumber.Stringify();
+        var s = jsonNumber.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonNumber\":1.12345", s);

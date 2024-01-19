@@ -1,5 +1,7 @@
 ﻿using Dtonic.Json.Base;
 using System.Diagnostics;
+using System.Globalization;
+using System.Text.Json;
 
 namespace Dtonic.Json;
 
@@ -12,12 +14,28 @@ public sealed record JsonNumber : JsonTypeBase<decimal?>
     {
     }
 
-    private static readonly JsonNumber _unspecified = new();
-    public static JsonNumber Unspecified => _unspecified;
+    public static JsonNumber Unspecified => new();
 
     private string GetDebuggerDisplay()
     {
         return GetDebuggerDisplay(nameof(JsonNumber));
+    }
+
+    public override string Stringify() => IsNull ? "null" : Value.Value.ToString(CultureInfo.InvariantCulture);
+    public override void Parse(ref Utf8JsonReader jsonReader)
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            Value = null;
+            return;
+        }
+        if (jsonReader.TokenType == JsonTokenType.Number)
+        {
+            Value = jsonReader.GetDecimal();
+            return;
+        }
+        throw new Exception("Unknown type");
     }
 
     //numeric_type

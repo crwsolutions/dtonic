@@ -1,6 +1,6 @@
 ﻿namespace Dtonic.Json.Base;
 
-public interface IJsonType
+public interface IJsonType : IDtonic
 {
     bool IsSet { get; }
 

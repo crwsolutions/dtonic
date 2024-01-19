@@ -13,7 +13,7 @@ public class JsonArrayOfBooleansTests
         var jsonArray = new JsonArrayOfBooleans([]);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[]", s);
@@ -26,7 +26,7 @@ public class JsonArrayOfBooleansTests
         var jsonArray = new JsonArrayOfBooleans(null);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":null", s);
@@ -39,7 +39,7 @@ public class JsonArrayOfBooleansTests
         var jsonArray = new JsonArrayOfBooleans([true, false]);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[true,false]", s);
@@ -52,7 +52,7 @@ public class JsonArrayOfBooleansTests
         var jsonArray = new JsonArrayOfBooleans([false, null]);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[false,null]", s);

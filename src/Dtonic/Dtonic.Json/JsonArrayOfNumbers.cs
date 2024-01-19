@@ -1,5 +1,8 @@
 ﻿using Dtonic.Json.Base;
 using System.Diagnostics;
+using System.Globalization;
+using System.Text;
+using System.Text.Json;
 
 namespace Dtonic.Json;
 
@@ -15,6 +18,69 @@ public sealed record JsonArrayOfNumbers : JsonTypeBase<IEnumerable<decimal?>?>
     public static JsonArrayOfNumbers Unspecified => new();
 
     private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(JsonArrayOfNumbers));
+    
+    public override string Stringify()
+    {
+        if (IsNull)
+        {
+            return "null";
+        }
+        var first = true;
+        var bob = new StringBuilder();
+        bob.Append('[');
+        foreach (var item in Value)
+        {
+            if (first)
+            {
+                first = false;
+            }
+            else
+            {
+                bob.Append(',');
+            }
+            if (item is null)
+            {
+                bob.Append("null");
+            }
+            else
+            {
+                bob.Append(item.Value.ToString(CultureInfo.InvariantCulture));
+            }
+        }
+
+        bob.Append(']');
+        return bob.ToString();
+    }
+    public override void Parse(ref Utf8JsonReader jsonReader)
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            Value = null;
+            return;
+        }
+        var lst = new List<decimal?>();
+        if (jsonReader.TokenType == JsonTokenType.StartArray)
+        {
+            while (jsonReader.Read())
+            {
+                if (jsonReader.TokenType == JsonTokenType.EndArray)
+                {
+                    break;
+                }
+                if (jsonReader.TokenType == JsonTokenType.Null)
+                {
+                    lst.Add(null);
+                }
+                else if (jsonReader.TokenType == JsonTokenType.Number)
+                {
+                    lst.Add(jsonReader.GetDecimal());
+                }
+            }
+        }
+
+        Value = lst;
+    }
 
     //public static implicit operator JsonArrayOfNumbers(Collection<decimal> items) => new((IEnumerable<decimal>)items);
     public static implicit operator JsonArrayOfNumbers(Array items) => new((IEnumerable<decimal?>?)items);

@@ -12,10 +12,10 @@ public class JsonObjectTests
     public void Unspecified_should_return_empty_string()
     {
         //Arrange
-        var jsonObject = JsonObject<object>.Unspecified;
+        var jsonObject = JsonObject<TestDto>.Unspecified;
 
         //Act
-        var s = jsonObject.Stringify();
+        var s = jsonObject.StringifyWithKey();
 
         //Assert
         Assert.AreEqual(string.Empty, s);
@@ -25,10 +25,10 @@ public class JsonObjectTests
     public void Null_should_return_null_value()
     {
         //Arrange
-        var jsonObject = new JsonObject<object>(null);
+        var jsonObject = new JsonObject<TestDto>(null);
 
         //Act
-        var s = jsonObject.Stringify();
+        var s = jsonObject.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonObject\":null", s);
@@ -41,23 +41,9 @@ public class JsonObjectTests
         var jsonObject = new JsonObject<TestDto>(new TestDto { street = "teststreet" });
 
         //Act
-        var s = jsonObject.Stringify();
+        var s = jsonObject.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonObject\":{\"street\":\"teststreet\"}", s);
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(DoesNotImplementIJsonSerializableException))]
-    public void Unsupported_type_should_throw_exception()
-    {
-        //Arrange
-        var jsonObject = new JsonObject<object>(new object());
-
-        //Act
-        _ = jsonObject.Stringify();
-
-        //Assert
-        Assert.Fail();
     }
 }

@@ -20,10 +20,8 @@ public class TestDto : IDtonic
     public string Stringify()
     {
         var items = new List<string>();
-        if (street.IsSet)
-        {
-            items.Add(street.Stringify());
-        }
+        items.AddIfSpecified(street);
+
 
         var bob = new System.Text.StringBuilder();
         _ = bob.Append('{')
@@ -42,32 +40,37 @@ public class TestDto : IDtonic
                 switch (jsonReader.GetString())
                 {
                     case nameof(street):
-                        street = jsonReader.ParseToJsonString();
+                        street.Parse(ref jsonReader);
                         break;
                     case nameof(number):
-                        number = jsonReader.ParseToJsonNumber();
+                        number.Parse(ref jsonReader);
                         break;
                     case nameof(isTrue):
-                        isTrue = jsonReader.ParseToJsonBoolean();
+                        isTrue.Parse(ref jsonReader);
                         break;
                     case nameof(childTestDto):
-                        childTestDto = jsonReader.ParseToJsonObject<TestDto>();
+                        childTestDto.Parse(ref jsonReader);
                         break;
                     case nameof(array):
-                        array = jsonReader.ParseToJsonArrayOfObjects<TestDto>();
+                        array.Parse(ref jsonReader);
                         break;
                     case nameof(arrayS):
-                        arrayS = jsonReader.ParseToJsonArrayOfStrings();
+                        arrayS.Parse(ref jsonReader);
                         break;
                     case nameof(arrayI):
-                        arrayI = jsonReader.ParseToJsonArrayOfNumbers();
+                        arrayI.Parse(ref jsonReader);
                         break;
                     case nameof(arrayB):
-                        arrayB = jsonReader.ParseToJsonArrayOfBooleans();
+                        arrayB.Parse(ref jsonReader);
                         break;
                     default:
                         break;
                 }
+            }
+
+            if (jsonReader.TokenType == System.Text.Json.JsonTokenType.EndObject)
+            {
+                break;
             }
         }
     }

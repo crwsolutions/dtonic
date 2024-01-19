@@ -13,7 +13,7 @@ public class JsonStringTests
         var jsonString = JsonString.Unspecified;
 
         //Act
-        var s = jsonString.Stringify();
+        var s = jsonString.StringifyWithKey();
 
         //Assert
         Assert.AreEqual(string.Empty, s);
@@ -26,7 +26,7 @@ public class JsonStringTests
         var jsonString = new JsonString(null);
 
         //Act
-        var s = jsonString.Stringify();
+        var s = jsonString.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonString\":null", s);
@@ -39,7 +39,7 @@ public class JsonStringTests
         var jsonString = new JsonString("");
 
         //Act
-        var s = jsonString.Stringify();
+        var s = jsonString.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonString\":\"\"", s);
@@ -52,7 +52,7 @@ public class JsonStringTests
         var jsonString = new JsonString("  ");
 
         //Act
-        var s = jsonString.Stringify();
+        var s = jsonString.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonString\":\"  \"", s);
@@ -65,7 +65,7 @@ public class JsonStringTests
         var jsonString = new JsonString("  test  ");
 
         //Act
-        var s = jsonString.Stringify();
+        var s = jsonString.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonString\":\"  test  \"", s);

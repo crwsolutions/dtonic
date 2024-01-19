@@ -14,7 +14,7 @@ public class JsonArrayOfObjectsTests
         var jsonArray = JsonArrayOfObjects<TestDto>.Unspecified;
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual(string.Empty, s);
@@ -27,7 +27,7 @@ public class JsonArrayOfObjectsTests
         var jsonArray = new JsonArrayOfObjects<TestDto>(null);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":null", s);
@@ -40,7 +40,7 @@ public class JsonArrayOfObjectsTests
         var jsonArray = new JsonArrayOfObjects<TestDto>(Array.Empty<TestDto>());
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[]", s);

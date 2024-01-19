@@ -1,12 +1,13 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
 
 namespace Dtonic.Json.Base;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public abstract record JsonTypeBase<T> : IJsonType
 {
-    protected readonly T? _value;
+    protected T? _value;
 
     protected JsonTypeBase()
     {
@@ -19,7 +20,18 @@ public abstract record JsonTypeBase<T> : IJsonType
         IsSet = true;
     }
 
-    public T? Value => _value;
+    public T? Value
+    {
+        get
+        {
+            return _value;
+        }
+        protected set 
+        {
+            _value = value;
+            IsSet = true;
+        }
+    }
 
     public bool IsSet { set; get; } = false;
 
@@ -35,4 +47,7 @@ public abstract record JsonTypeBase<T> : IJsonType
     {
         return IsSet ? $"{className}: '{_value}'" : $"{className}: - not set -";
     }
+
+    public abstract string Stringify();
+    public abstract void Parse(ref Utf8JsonReader jsonReader);
 }

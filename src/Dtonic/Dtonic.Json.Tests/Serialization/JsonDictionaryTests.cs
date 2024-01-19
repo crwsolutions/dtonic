@@ -15,7 +15,7 @@ public class JsonDictionaryTests
         var jsonDictionary = JsonDictionary<object>.Unspecified;
 
         //Act
-        var s = jsonDictionary.Stringify();
+        var s = jsonDictionary.StringifyWithKey();
 
         //Assert
         Assert.AreEqual(string.Empty, s);
@@ -28,7 +28,7 @@ public class JsonDictionaryTests
         var jsonDictionary = new JsonDictionary<object>(null);
 
         //Act
-        var s = jsonDictionary.Stringify();
+        var s = jsonDictionary.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonDictionary\":null", s);
@@ -42,7 +42,7 @@ public class JsonDictionaryTests
         var jsonDictionary = new JsonDictionary<int>(dict);
 
         //Act
-        var s = jsonDictionary.Stringify();
+        var s = jsonDictionary.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonDictionary\":[{\"one\":1},{\"two\":2}]", s);
@@ -56,7 +56,7 @@ public class JsonDictionaryTests
         var jsonDictionary = new JsonDictionary<string?>(dict);
 
         //Act
-        var s = jsonDictionary.Stringify();
+        var s = jsonDictionary.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonDictionary\":[{\"one\":\"1\"},{\"two\":null}]", s);
@@ -71,7 +71,7 @@ public class JsonDictionaryTests
         var jsonDictionary = new JsonDictionary<object>(dict);
 
         //Act
-        _ = jsonDictionary.Stringify();
+        _ = jsonDictionary.StringifyWithKey();
 
         //Assert
         Assert.Fail();

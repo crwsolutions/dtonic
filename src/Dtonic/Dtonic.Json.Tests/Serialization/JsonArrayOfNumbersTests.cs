@@ -13,7 +13,7 @@ public class JsonArrayOfNumbersTests
         var jsonArray = new JsonArrayOfNumbers([]);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[]", s);
@@ -26,7 +26,7 @@ public class JsonArrayOfNumbersTests
         var jsonArray = new JsonArrayOfNumbers(null);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":null", s);
@@ -39,7 +39,7 @@ public class JsonArrayOfNumbersTests
         var jsonArray = new JsonArrayOfNumbers([1, 2]);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[1,2]", s);
@@ -52,7 +52,7 @@ public class JsonArrayOfNumbersTests
         var jsonArray = new JsonArrayOfNumbers([1.1m, 2.2m]);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[1.1,2.2]", s);
@@ -65,7 +65,7 @@ public class JsonArrayOfNumbersTests
         var jsonArray = new JsonArrayOfNumbers([1, null]);
 
         //Act
-        var s = jsonArray.Stringify();
+        var s = jsonArray.StringifyWithKey();
 
         //Assert
         Assert.AreEqual("\"jsonArray\":[1,null]", s);
