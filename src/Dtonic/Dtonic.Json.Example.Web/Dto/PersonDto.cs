@@ -1,7 +1,6 @@
 ﻿using Dtonic.Json.Base;
-using System.Text;
-using Dtonic.Json.Extensions;
 using Dtonic.Json.Example.Web.Dto;
+using Dtonic.Json.Utils;
 using System.Text.Json;
 
 namespace Dtonic.Json;
@@ -9,7 +8,7 @@ public class PersonDto : IDtonic
 {
     public JsonString name { get; init; } = JsonString.Unspecified;
 
-    public JsonNumber age { get; init;  } = JsonNumber.Unspecified;
+    public JsonNumber age { get; init; } = JsonNumber.Unspecified;
 
     public JsonBoolean isGoldMember { get; init; } = JsonBoolean.Unspecified;
 
@@ -28,40 +27,16 @@ public class PersonDto : IDtonic
 
     public string Stringify()
     {
-        var items = new List<string>();
-        if (name.IsSet)
+        return new StringifyObjectBuilder
         {
-            items.Add(name.Stringify());
+            name,
+            age,
+            isGoldMember,
+            favoriteNumbers,
+            homeAddress,
+            invoiceAddress,
+            addressList,
         }
-        if (age.IsSet)
-        {
-            items.Add(age.Stringify());
-        }
-        if (isGoldMember.IsSet)
-        {
-            items.Add(isGoldMember.Stringify());
-        }
-        if (favoriteNumbers.IsSet)
-        {
-            items.Add(favoriteNumbers.Stringify());
-        }
-        if (homeAddress.IsSet)
-        {
-            items.Add(homeAddress.Stringify());
-        }
-        if (invoiceAddress.IsSet)
-        {
-            items.Add(invoiceAddress.Stringify());
-        }
-        if (addressList.IsSet)
-        {
-            items.Add(addressList.Stringify());
-        }
-        var bob = new StringBuilder();
-        bob.Append('{')
-        .Append(string.Join(", ", items))
-        .Append('}');
-
-        return bob.ToString();
+        .ToString();
     }
 }

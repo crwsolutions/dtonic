@@ -1,6 +1,7 @@
 ﻿using Dtonic.Json;
 using Dtonic.Json.Base;
 using Dtonic.Json.Extensions;
+using Dtonic.Json.Utils;
 
 namespace TestClasses;
 
@@ -19,16 +20,18 @@ public class TestDto : IDtonic
 
     public string Stringify()
     {
-        var items = new List<string>();
-        items.AddIfSpecified(street);
-
-
-        var bob = new System.Text.StringBuilder();
-        _ = bob.Append('{')
-        .Append(string.Join(",", items))
-        .Append('}');
-
-        return bob.ToString();
+        return new StringifyObjectBuilder
+        {
+            street,
+            number,
+            isTrue,
+            childTestDto,
+            array,
+            arrayI,
+            arrayS,
+            arrayB
+        }
+        .ToString();
     }
 
     public void Parse(ref System.Text.Json.Utf8JsonReader jsonReader)

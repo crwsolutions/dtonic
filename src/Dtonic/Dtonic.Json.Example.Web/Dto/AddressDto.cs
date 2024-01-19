@@ -14,22 +14,10 @@ public class AddressDto : IDtonic
 
     public string Stringify()
     {
-        var items = new List<string>();
-        if (street.IsSet)
+        return new Utils.StringifyObjectBuilder
         {
-            items.Add(street.Stringify());
-        }
-
-        if (city.IsSet)
-        {
-            items.Add(city.Stringify());
-        }
-
-        var bob = new StringBuilder();
-        _ = bob.Append('{')
-        .Append(string.Join(", ", items))
-        .Append('}');
-
-        return bob.ToString();
+            street,
+            city
+        }.ToString();
     }
 }
