@@ -18,7 +18,7 @@ public class PersonDto : IDtonic
 
     public JsonArrayOfNumbers favoriteNumbers { get; init; } = JsonArrayOfNumbers.Unspecified;
 
-    public JsonDictionary<AddressDto> addressList { get; init; } = JsonDictionary<AddressDto>.Unspecified;
+    public JsonDictionaryOfObjects<AddressDto> addressList { get; init; } = JsonDictionaryOfObjects<AddressDto>.Unspecified;
 
     [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IJsonType> Elements => [name, age, isGoldMember, homeAddress, invoiceAddress, favoriteNumbers];

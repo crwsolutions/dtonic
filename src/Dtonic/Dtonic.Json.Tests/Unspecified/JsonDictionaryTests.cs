@@ -1,4 +1,5 @@
 ﻿using Dtonic.Json;
+using TestClasses;
 
 namespace Unspecified;
 
@@ -9,7 +10,7 @@ public class JsonDictionaryTests
     public void Unspecified_should_have_no_value()
     {
         //Arrange
-        var jsonDictionary = JsonDictionary<int>.Unspecified;
+        var jsonDictionary = JsonDictionaryOfObjects<TestDto>.Unspecified;
 
         //Act
 
