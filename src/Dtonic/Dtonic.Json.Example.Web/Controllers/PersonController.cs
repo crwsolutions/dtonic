@@ -43,7 +43,7 @@ public class PersonController : ControllerBase
             name = "Robert",
             age = 11,
             isGoldMember = true,
-            //favoriteNumbers = (decimal[]) [ 1, 2, 3, 4 ],
+            favoriteNumbers = (decimal[]) [ 1, 2, 3, 4 ],
             homeAddress = homeAddress,
             invoiceAddress = invoiceAddress,
             addressList = addressList
