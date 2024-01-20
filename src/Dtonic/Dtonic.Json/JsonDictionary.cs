@@ -1,6 +1,5 @@
 ﻿using Dtonic.Json.Base;
 using Dtonic.Json.Exceptions;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
