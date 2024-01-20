@@ -4,7 +4,7 @@ using TestClasses;
 namespace Unspecified;
 
 [TestClass]
-public class JsonDictionaryTests
+public class JsonDictionaryOfObjectsTests
 {
     [TestMethod]
     public void Unspecified_should_have_no_value()
