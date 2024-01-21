@@ -44,7 +44,7 @@ public sealed record JsonArrayOfObjects<T> : JsonTypeBase<IEnumerable<T>?> where
             {
                 bob.Append(dto.Stringify());
             }
-            else 
+            else
             {
                 throw DoesNotImplementIJsonSerializableException.Create("?", Value.GetType());
             }
@@ -89,7 +89,7 @@ public sealed record JsonArrayOfObjects<T> : JsonTypeBase<IEnumerable<T>?> where
     }
 
     public static implicit operator JsonArrayOfObjects<T>(Collection<T> items) => new((IEnumerable<T>)items);
-    public static implicit operator JsonArrayOfObjects<T>(Array items) => new ((IEnumerable<T>?)items);
+    public static implicit operator JsonArrayOfObjects<T>(Array items) => new((IEnumerable<T>?)items);
     public static implicit operator JsonArrayOfObjects<T>(ArrayList items) => new(items);
     public static implicit operator JsonArrayOfObjects<T>(List<T> items) => new((IEnumerable<T>?)items);
     public static implicit operator JsonArrayOfObjects<T>(Queue items) => new(items);

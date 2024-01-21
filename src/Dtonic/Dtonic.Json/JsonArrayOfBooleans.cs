@@ -17,7 +17,7 @@ public sealed record JsonArrayOfBooleans : JsonTypeBase<IEnumerable<bool?>?>
     public static JsonArrayOfBooleans Unspecified => new();
 
     private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(JsonArrayOfBooleans));
-    public override string Stringify() 
+    public override string Stringify()
     {
         if (IsNull)
         {

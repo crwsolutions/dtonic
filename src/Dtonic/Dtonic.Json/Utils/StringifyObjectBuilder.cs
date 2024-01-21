@@ -19,7 +19,7 @@ public sealed class StringifyObjectBuilder : IEnumerable
                 _isFirst = false;
             }
             else
-            { 
+            {
                 _bob.Append(',');
             }
             _bob.Append(dto.StringifyWithKey(memberName));

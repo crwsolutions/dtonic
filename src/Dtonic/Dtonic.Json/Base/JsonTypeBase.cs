@@ -26,7 +26,7 @@ public abstract record JsonTypeBase<T> : IJsonType
         {
             return _value;
         }
-        protected set 
+        protected set
         {
             _value = value;
             IsSet = true;

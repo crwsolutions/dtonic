@@ -1,7 +1,6 @@
 ﻿using Dtonic.Json.Example.Web.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
-using Dtonic.Json.Extensions;
 
 namespace Dtonic.Json.Example.Web.Controllers;
 [Route("api/[controller]")]
@@ -43,7 +42,7 @@ public class PersonController : ControllerBase
             name = "Robert",
             age = 11,
             isGoldMember = true,
-            favoriteNumbers = (decimal[]) [ 1, 2, 3, 4 ],
+            favoriteNumbers = (decimal[])[1, 2, 3, 4],
             homeAddress = homeAddress,
             invoiceAddress = invoiceAddress,
             addressList = addressList

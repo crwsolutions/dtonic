@@ -2,7 +2,6 @@
 using Dtonic.Json.Exceptions;
 using System.Diagnostics;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 
 namespace Dtonic.Json;
 
@@ -18,7 +17,7 @@ public sealed record JsonObject<T> : JsonTypeBase<T?> where T : class, IDtonic, 
     public static JsonObject<T> Unspecified => new();
 
     private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(JsonObject<T>));
-    public override string Stringify() 
+    public override string Stringify()
     {
         if (IsNull)
         {
