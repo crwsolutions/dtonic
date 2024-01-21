@@ -1,8 +1,8 @@
-﻿using Dtonic.Json.Example.Web.Dto;
+﻿using Dtonic.Dto.Example.Web.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
-namespace Dtonic.Json.Example.Web.Controllers;
+namespace Dtonic.Dto.Example.Web.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 public class PersonController : ControllerBase
@@ -11,7 +11,7 @@ public class PersonController : ControllerBase
     //public PersonDto Get()
     //{
     //    var person = new PersonDto();
-    //    person.age = new JsonNumber(11);
+    //    person.age = new DtoNumber(11);
     //    return person;
     //}
 

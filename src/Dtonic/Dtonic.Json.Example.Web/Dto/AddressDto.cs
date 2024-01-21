@@ -1,12 +1,12 @@
-﻿using Dtonic.Json.Base;
+﻿using Dtonic.Dto.Base;
 using System.Text.Json;
 
-namespace Dtonic.Json.Example.Web.Dto;
+namespace Dtonic.Dto.Example.Web.Dto;
 
 public class AddressDto : IDtonic
 {
-    public JsonString street { get; init; } = JsonString.Unspecified;
-    public JsonString city { get; init; } = JsonString.Unspecified;
+    public DtoString street { get; init; } = DtoString.Unspecified;
+    public DtoString city { get; init; } = DtoString.Unspecified;
 
     public void Parse(ref Utf8JsonReader jsonReader) => throw new NotImplementedException();
 

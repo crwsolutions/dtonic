@@ -1,27 +1,27 @@
-﻿using Dtonic.Json.Base;
-using Dtonic.Json.Example.Web.Dto;
-using Dtonic.Json.Utils;
+﻿using Dtonic.Dto.Base;
+using Dtonic.Dto.Example.Web.Dto;
+using Dtonic.Dto.Utils;
 using System.Text.Json;
 
-namespace Dtonic.Json;
+namespace Dtonic.Dto;
 public class PersonDto : IDtonic
 {
-    public JsonString name { get; init; } = JsonString.Unspecified;
+    public DtoString name { get; init; } = DtoString.Unspecified;
 
-    public JsonNumber age { get; init; } = JsonNumber.Unspecified;
+    public DtoNumber age { get; init; } = DtoNumber.Unspecified;
 
-    public JsonBoolean isGoldMember { get; init; } = JsonBoolean.Unspecified;
+    public DtoBoolean isGoldMember { get; init; } = DtoBoolean.Unspecified;
 
-    public JsonObject<AddressDto> homeAddress { get; init; } = JsonObject<AddressDto>.Unspecified;
+    public DtoObject<AddressDto> homeAddress { get; init; } = DtoObject<AddressDto>.Unspecified;
 
-    public JsonObject<AddressDto> invoiceAddress { get; init; } = JsonObject<AddressDto>.Unspecified;
+    public DtoObject<AddressDto> invoiceAddress { get; init; } = DtoObject<AddressDto>.Unspecified;
 
-    public JsonArrayOfNumbers favoriteNumbers { get; init; } = JsonArrayOfNumbers.Unspecified;
+    public DtoArrayOfNumbers favoriteNumbers { get; init; } = DtoArrayOfNumbers.Unspecified;
 
-    public JsonDictionaryOfObjects<AddressDto> addressList { get; init; } = JsonDictionaryOfObjects<AddressDto>.Unspecified;
+    public DtoDictionaryOfObjects<AddressDto> addressList { get; init; } = DtoDictionaryOfObjects<AddressDto>.Unspecified;
 
     [System.Text.Json.Serialization.JsonIgnore]
-    public IEnumerable<IJsonType> Elements => [name, age, isGoldMember, homeAddress, invoiceAddress, favoriteNumbers];
+    public IEnumerable<IDtoValue> Elements => [name, age, isGoldMember, homeAddress, invoiceAddress, favoriteNumbers];
 
     public void Parse(ref Utf8JsonReader jsonReader) => throw new NotImplementedException();
 

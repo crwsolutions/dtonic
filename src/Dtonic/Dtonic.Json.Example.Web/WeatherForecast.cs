@@ -1,4 +1,4 @@
-namespace Dtonic.Json.Example.Web;
+namespace Dtonic.Dto.Example.Web;
 
 public class WeatherForecast
 {

@@ -1,16 +1,16 @@
-﻿using Dtonic.Json.Base;
-using Dtonic.Json.Extensions;
+﻿using Dtonic.Dto.Base;
+using Dtonic.Dto.Extensions;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Dtonic.Json.Utils;
+namespace Dtonic.Dto.Utils;
 public sealed class StringifyObjectBuilder : IEnumerable
 {
     private readonly StringBuilder _bob = new();
     private bool _isFirst = true;
 
-    public void Add(IJsonType dto, [CallerArgumentExpression(nameof(dto))] string memberName = "")
+    public void Add(IDtoValue dto, [CallerArgumentExpression(nameof(dto))] string memberName = "")
     {
         if (dto.IsSpecified)
         {

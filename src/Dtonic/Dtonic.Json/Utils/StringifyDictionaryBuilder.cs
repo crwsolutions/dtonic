@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
 
-namespace Dtonic.Json.Utils;
+namespace Dtonic.Dto.Utils;
 public sealed class StringifyDictionaryBuilder : IEnumerable
 {
     private readonly StringBuilder _bob = new();

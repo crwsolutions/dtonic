@@ -1,5 +1,5 @@
-using Dtonic.Json;
-using Dtonic.Json.Example.Web.Dto;
+using Dtonic.Dto;
+using Dtonic.Dto.Example.Web.Dto;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,11 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.MapType<JsonString>(() => new OpenApiSchema { Type = "string" });
-    c.MapType<JsonNumber>(() => new OpenApiSchema { Type = "number" });
-    c.MapType<JsonBoolean>(() => new OpenApiSchema { Type = "boolean" });
-    c.MapType<JsonArrayOfObjects<PersonDto>>(() => new OpenApiSchema { Type = "array" });
-    c.MapType<JsonObject<AddressDto>>(() => new OpenApiSchema { Type = "object" });
+    c.MapType<DtoString>(() => new OpenApiSchema { Type = "string" });
+    c.MapType<DtoNumber>(() => new OpenApiSchema { Type = "number" });
+    c.MapType<DtoBoolean>(() => new OpenApiSchema { Type = "boolean" });
+    c.MapType<DtoArrayOfObjects<PersonDto>>(() => new OpenApiSchema { Type = "array" });
+    c.MapType<DtoObject<AddressDto>>(() => new OpenApiSchema { Type = "object" });
 });
 
 var app = builder.Build();

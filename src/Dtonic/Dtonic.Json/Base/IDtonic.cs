@@ -1,9 +1,9 @@
-﻿namespace Dtonic.Json.Base;
+﻿namespace Dtonic.Dto.Base;
 
 public interface IDtonic
 {
     /// <summary>
-    /// Convert object to json string
+    /// Convert object to dto string
     /// </summary>
     string Stringify();
 

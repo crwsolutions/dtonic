@@ -1,6 +1,6 @@
-﻿using Dtonic.Json;
-using Dtonic.Json.Base;
-using Dtonic.Json.Utils;
+﻿using Dtonic.Dto;
+using Dtonic.Dto.Base;
+using Dtonic.Dto.Utils;
 
 namespace TestClasses;
 
@@ -8,14 +8,14 @@ public class TestDto : IDtonic
 {
     public TestDto() { }
 
-    public JsonString street { get; set; } = JsonString.Unspecified;
-    public JsonNumber number { get; set; } = JsonNumber.Unspecified;
-    public JsonBoolean isTrue { get; set; } = JsonBoolean.Unspecified;
-    public JsonObject<TestDto> childTestDto { get; set; } = JsonObject<TestDto>.Unspecified;
-    public JsonArrayOfObjects<TestDto> array { get; set; } = JsonArrayOfObjects<TestDto>.Unspecified;
-    public JsonArrayOfNumbers arrayI { get; set; } = JsonArrayOfNumbers.Unspecified;
-    public JsonArrayOfStrings arrayS { get; set; } = JsonArrayOfStrings.Unspecified;
-    public JsonArrayOfBooleans arrayB { get; set; } = JsonArrayOfBooleans.Unspecified;
+    public DtoString street { get; set; } = DtoString.Unspecified;
+    public DtoNumber number { get; set; } = DtoNumber.Unspecified;
+    public DtoBoolean isTrue { get; set; } = DtoBoolean.Unspecified;
+    public DtoObject<TestDto> childTestDto { get; set; } = DtoObject<TestDto>.Unspecified;
+    public DtoArrayOfObjects<TestDto> array { get; set; } = DtoArrayOfObjects<TestDto>.Unspecified;
+    public DtoArrayOfNumbers arrayI { get; set; } = DtoArrayOfNumbers.Unspecified;
+    public DtoArrayOfStrings arrayS { get; set; } = DtoArrayOfStrings.Unspecified;
+    public DtoArrayOfBooleans arrayB { get; set; } = DtoArrayOfBooleans.Unspecified;
 
     public string Stringify()
     {
