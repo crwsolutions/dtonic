@@ -12,7 +12,7 @@ public sealed class StringifyObjectBuilder : IEnumerable
 
     public void Add(IJsonType dto, [CallerArgumentExpression(nameof(dto))] string memberName = "")
     {
-        if (dto.IsSet)
+        if (dto.IsSpecified)
         {
             if (_isFirst)
             {

@@ -16,6 +16,6 @@ public class JsonBooleanTests
         //Assert
         Assert.IsNull(jsonBoolean.Value);
         Assert.IsTrue(jsonBoolean.IsNull);
-        Assert.IsFalse(jsonBoolean.IsSet);
+        Assert.IsFalse(jsonBoolean.IsSpecified);
     }
 }

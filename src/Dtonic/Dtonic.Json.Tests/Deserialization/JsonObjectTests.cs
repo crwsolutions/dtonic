@@ -15,7 +15,7 @@ public class JsonObjectTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSet);
+        Assert.IsTrue(testDto!.street.IsSpecified);
         Assert.IsFalse(testDto.street.IsNull);
         Assert.AreEqual("teststreet", testDto.street.Value);
     }
@@ -30,7 +30,7 @@ public class JsonObjectTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.street.IsSet);
+        Assert.IsFalse(testDto!.street.IsSpecified);
         Assert.IsTrue(testDto.street.IsNull);
     }
 
@@ -57,9 +57,9 @@ public class JsonObjectTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.childTestDto.IsSet);
+        Assert.IsTrue(testDto!.childTestDto.IsSpecified);
         Assert.IsFalse(testDto.childTestDto.IsNull);
-        Assert.IsTrue(testDto.childTestDto.Value!.street.IsSet);
+        Assert.IsTrue(testDto.childTestDto.Value!.street.IsSpecified);
         Assert.IsFalse(testDto.childTestDto.Value.street.IsNull);
         Assert.AreEqual("teststreet", testDto.childTestDto.Value.street.Value);
     }
@@ -74,9 +74,9 @@ public class JsonObjectTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.childTestDto.IsSet);
+        Assert.IsTrue(testDto!.childTestDto.IsSpecified);
         Assert.IsFalse(testDto.childTestDto.IsNull);
-        Assert.IsFalse(testDto.childTestDto.Value!.street.IsSet);
+        Assert.IsFalse(testDto.childTestDto.Value!.street.IsSpecified);
         Assert.IsTrue(testDto.childTestDto.Value.street.IsNull);
     }
 
@@ -90,7 +90,7 @@ public class JsonObjectTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.childTestDto.IsSet);
+        Assert.IsTrue(testDto!.childTestDto.IsSpecified);
         Assert.IsTrue(testDto.childTestDto.IsNull);
     }
 }

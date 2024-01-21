@@ -6,7 +6,7 @@ public static class JsonSerializationExtensions
 {
     public static string StringifyWithKey(this IJsonType jsonType, [CallerArgumentExpression(nameof(jsonType))] string memberName = "")
     {
-        if (jsonType.IsSet == false)
+        if (jsonType.IsSpecified == false)
         {
             return string.Empty;
         }

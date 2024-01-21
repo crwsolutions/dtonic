@@ -2,7 +2,7 @@
 
 public interface IJsonType : IDtonic
 {
-    bool IsSet { get; }
+    bool IsSpecified { get; }
 
     bool IsNull { get; }
 }

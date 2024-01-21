@@ -17,6 +17,6 @@ public class JsonDictionaryOfObjectsTests
         //Assert
         Assert.IsNull(jsonDictionary.Value);
         Assert.IsTrue(jsonDictionary.IsNull);
-        Assert.IsFalse(jsonDictionary.IsSet);
+        Assert.IsFalse(jsonDictionary.IsSpecified);
     }
 }

@@ -16,6 +16,6 @@ public class JsonNumberTests
         //Assert
         Assert.IsNull(jsonNumber.Value);
         Assert.IsTrue(jsonNumber.IsNull);
-        Assert.IsFalse(jsonNumber.IsSet);
+        Assert.IsFalse(jsonNumber.IsSpecified);
     }
 }

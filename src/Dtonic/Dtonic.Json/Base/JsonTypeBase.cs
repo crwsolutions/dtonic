@@ -17,7 +17,7 @@ public abstract record JsonTypeBase<T> : IJsonType
     public JsonTypeBase(T? value)
     {
         _value = value;
-        IsSet = true;
+        IsSpecified = true;
     }
 
     public T? Value
@@ -29,12 +29,31 @@ public abstract record JsonTypeBase<T> : IJsonType
         protected set
         {
             _value = value;
-            IsSet = true;
+            IsSpecified = true;
         }
     }
 
-    public bool IsSet { set; get; } = false;
+    /// <summary>
+    /// Indication whether the <see cref="Value">Value</see> is specified. Not an indication whether the value is null. See <see cref="IsNull">IsNull</see> for that.
+    /// </summary>
+    /// <remarks>
+    /// A value is considered specified if it is assigned. The following examples show such an assigment, json:
+    /// <code>
+    ///  {"prop": null} //or
+    ///  {"prop": "somevalue"}
+    /// </code>
+    /// Or from code:
+    /// <code>
+    ///  x.prop = null;
+    ///  x.prop = "somevalue";
+    /// </code>
+    /// So only when you leave it alone, do not touch or reference it. It is considered unspecified.
+    /// </remarks>
+    public bool IsSpecified { set; get; } = false;
 
+    /// <summary>
+    /// Indication whether the <see cref="Value">Value</see> is null.
+    /// </summary>
     [MemberNotNullWhen(false, nameof(Value))]
     public bool IsNull => _value == null;
 
@@ -45,9 +64,10 @@ public abstract record JsonTypeBase<T> : IJsonType
 
     protected string GetDebuggerDisplay(string className)
     {
-        return IsSet ? $"{className}: '{_value}'" : $"{className}: - not set -";
+        return IsSpecified ? $"{className}: '{_value}'" : $"{className}: - not set -";
     }
 
     public abstract string Stringify();
+
     public abstract void Parse(ref Utf8JsonReader jsonReader);
 }

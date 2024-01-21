@@ -16,7 +16,7 @@ public class JsonArrayOfBooleansTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.arrayB.IsSet);
+        Assert.IsFalse(testDto!.arrayB.IsSpecified);
         Assert.IsTrue(testDto.arrayB.IsNull);
     }
 
@@ -30,7 +30,7 @@ public class JsonArrayOfBooleansTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayB.IsSet);
+        Assert.IsTrue(testDto!.arrayB.IsSpecified);
         Assert.IsTrue(testDto.arrayB.IsNull);
     }
 
@@ -44,7 +44,7 @@ public class JsonArrayOfBooleansTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayB.IsSet);
+        Assert.IsTrue(testDto!.arrayB.IsSpecified);
         Assert.IsFalse(testDto.arrayB.IsNull);
         Assert.AreEqual(0, testDto.arrayB.Value!.Count());
     }
@@ -60,7 +60,7 @@ public class JsonArrayOfBooleansTests
         var a = testDto!.arrayB.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayB.IsSet);
+        Assert.IsTrue(testDto!.arrayB.IsSpecified);
         Assert.IsFalse(testDto.arrayB.IsNull);
         Assert.IsTrue(a[0]);
         Assert.IsFalse(a[1]);
@@ -79,7 +79,7 @@ public class JsonArrayOfBooleansTests
         var a = testDto!.arrayB.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayB.IsSet);
+        Assert.IsTrue(testDto!.arrayB.IsSpecified);
         Assert.IsFalse(testDto.arrayB.IsNull);
         Assert.IsTrue(a[0]);
         Assert.IsFalse(a[1]);

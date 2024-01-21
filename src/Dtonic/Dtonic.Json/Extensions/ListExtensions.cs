@@ -6,7 +6,7 @@ public static class ListExtensions
 {
     public static void AddIfSpecified(this List<string> list, IJsonType dto, [CallerArgumentExpression(nameof(dto))] string memberName = "")
     {
-        if (dto.IsSet)
+        if (dto.IsSpecified)
         {
             list.Add(dto.StringifyWithKey(memberName));
         }

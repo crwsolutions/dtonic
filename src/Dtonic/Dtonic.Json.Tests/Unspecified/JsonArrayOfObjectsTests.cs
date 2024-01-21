@@ -17,6 +17,6 @@ public class JsonArrayOfObjectsTests
         //Assert
         Assert.IsNull(jsonArray.Value);
         Assert.IsTrue(jsonArray.IsNull);
-        Assert.IsFalse(jsonArray.IsSet);
+        Assert.IsFalse(jsonArray.IsSpecified);
     }
 }

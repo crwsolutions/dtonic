@@ -16,7 +16,7 @@ public class JsonStringTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.street.IsSet);
+        Assert.IsFalse(testDto!.street.IsSpecified);
         Assert.IsTrue(testDto.street.IsNull);
     }
 
@@ -30,7 +30,7 @@ public class JsonStringTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSet);
+        Assert.IsTrue(testDto!.street.IsSpecified);
         Assert.IsTrue(testDto.street.IsNull);
     }
 
@@ -44,7 +44,7 @@ public class JsonStringTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSet);
+        Assert.IsTrue(testDto!.street.IsSpecified);
         Assert.IsFalse(testDto.street.IsNull);
         Assert.AreEqual(" wallstreet ", testDto.street.Value);
     }
@@ -59,7 +59,7 @@ public class JsonStringTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSet);
+        Assert.IsTrue(testDto!.street.IsSpecified);
         Assert.IsFalse(testDto.street.IsNull);
         Assert.AreEqual(string.Empty, testDto.street.Value);
     }

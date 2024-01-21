@@ -16,7 +16,7 @@ public class JsonArrayOfNumbersTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.arrayI.IsSet);
+        Assert.IsFalse(testDto!.arrayI.IsSpecified);
         Assert.IsTrue(testDto.arrayI.IsNull);
     }
 
@@ -30,7 +30,7 @@ public class JsonArrayOfNumbersTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayI.IsSet);
+        Assert.IsTrue(testDto!.arrayI.IsSpecified);
         Assert.IsTrue(testDto.arrayI.IsNull);
     }
 
@@ -44,7 +44,7 @@ public class JsonArrayOfNumbersTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayI.IsSet);
+        Assert.IsTrue(testDto!.arrayI.IsSpecified);
         Assert.IsFalse(testDto.arrayI.IsNull);
         Assert.AreEqual(0, testDto.arrayI.Value!.Count());
     }
@@ -60,7 +60,7 @@ public class JsonArrayOfNumbersTests
         var a = testDto!.arrayI.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayI.IsSet);
+        Assert.IsTrue(testDto!.arrayI.IsSpecified);
         Assert.IsFalse(testDto.arrayI.IsNull);
         Assert.AreEqual(1, a[0]);
         Assert.AreEqual(2, a[1]);
@@ -79,7 +79,7 @@ public class JsonArrayOfNumbersTests
         var a = testDto!.arrayI.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayI.IsSet);
+        Assert.IsTrue(testDto!.arrayI.IsSpecified);
         Assert.IsFalse(testDto.arrayI.IsNull);
         Assert.AreEqual(1, a[0]);
         Assert.IsNull(a[1]);

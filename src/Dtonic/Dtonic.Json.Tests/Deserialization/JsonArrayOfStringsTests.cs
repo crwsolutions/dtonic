@@ -16,7 +16,7 @@ public class JsonArrayOfStringsTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.arrayS.IsSet);
+        Assert.IsFalse(testDto!.arrayS.IsSpecified);
         Assert.IsTrue(testDto.arrayS.IsNull);
     }
 
@@ -30,7 +30,7 @@ public class JsonArrayOfStringsTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayS.IsSet);
+        Assert.IsTrue(testDto!.arrayS.IsSpecified);
         Assert.IsTrue(testDto.arrayS.IsNull);
     }
 
@@ -44,7 +44,7 @@ public class JsonArrayOfStringsTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayS.IsSet);
+        Assert.IsTrue(testDto!.arrayS.IsSpecified);
         Assert.IsFalse(testDto.arrayS.IsNull);
         Assert.AreEqual(0, testDto.arrayS.Value!.Count());
     }
@@ -60,7 +60,7 @@ public class JsonArrayOfStringsTests
         var a = testDto!.arrayS.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayS.IsSet);
+        Assert.IsTrue(testDto!.arrayS.IsSpecified);
         Assert.IsFalse(testDto.arrayS.IsNull);
         Assert.AreEqual("a", a[0]);
         Assert.AreEqual("b", a[1]);
@@ -78,7 +78,7 @@ public class JsonArrayOfStringsTests
         var a = testDto!.arrayS.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayS.IsSet);
+        Assert.IsTrue(testDto!.arrayS.IsSpecified);
         Assert.IsFalse(testDto.arrayS.IsNull);
         Assert.AreEqual("a", a[0]);
         Assert.IsNull(a[1]);
@@ -95,7 +95,7 @@ public class JsonArrayOfStringsTests
         var testDto = json.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSet);
+        Assert.IsTrue(testDto!.street.IsSpecified);
         Assert.IsFalse(testDto.street.IsNull);
         Assert.AreEqual(string.Empty, testDto.street.Value);
     }
