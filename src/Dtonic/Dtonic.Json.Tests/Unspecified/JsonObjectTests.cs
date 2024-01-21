@@ -1,4 +1,5 @@
 ﻿using Dtonic.Json;
+using Dtonic.Json.Exceptions;
 using TestClasses;
 
 namespace Unspecified;
@@ -15,8 +16,20 @@ public class JsonObjectTests
         //Act
 
         //Assert
-        Assert.IsNull(jsonObject.Value);
-        Assert.IsTrue(jsonObject.IsNull);
         Assert.IsFalse(jsonObject.IsSpecified);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ValueIsNotSpecifiedException))]
+    public void Checking_the_value_of_an_unspecified_should_throw_exception()
+    {
+        //Arrange
+        var jsonObject = JsonObject<TestDto>.Unspecified;
+
+        //Act
+        var x = jsonObject.Value;
+
+        //Assert
+        Assert.Fail();
     }
 }

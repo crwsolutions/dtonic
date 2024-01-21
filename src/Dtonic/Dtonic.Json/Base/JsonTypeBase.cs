@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Dtonic.Json.Exceptions;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
@@ -24,10 +25,14 @@ public abstract record JsonTypeBase<T> : IJsonType
     {
         get
         {
-            return _value;
+            return IsSpecified ? _value : throw new ValueIsNotSpecifiedException();
         }
         protected set
         {
+            if (IsSpecified)
+            {
+                throw new ValueIsAlreadySpecifiedException();
+            }
             _value = value;
             IsSpecified = true;
         }
