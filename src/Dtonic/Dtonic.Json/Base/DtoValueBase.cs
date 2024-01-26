@@ -72,6 +72,19 @@ public abstract record DtoValueBase<T> : IDtoValue
         return IsSpecified ? $"{className}: '{_value}'" : $"{className}: - not set -";
     }
 
+    public void Deconstruct(out bool isSpecified, out bool isNull, out T? value)
+    {
+        isSpecified = IsSpecified;
+        isNull = IsNull;
+        value = _value;
+    }
+
+    public void Deconstruct(out bool isSpecified, out T? value)
+    {
+        isSpecified = IsSpecified;
+        value = _value;
+    }
+
     public abstract string Stringify();
 
     public abstract void Parse(ref Utf8JsonReader jsonReader);
