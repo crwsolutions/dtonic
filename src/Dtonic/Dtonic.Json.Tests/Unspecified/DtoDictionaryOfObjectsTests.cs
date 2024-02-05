@@ -11,7 +11,7 @@ public class DtoDictionaryOfObjectsTests
     public void Unspecified_should_have_no_value()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryOfObjects<TestDto>.Unspecified;
+        var dtoDictionary = DtoDictionaryWithObjects<TestDto>.Unspecified;
 
         //Act
 
@@ -24,7 +24,7 @@ public class DtoDictionaryOfObjectsTests
     public void Checking_the_value_of_an_unspecified_should_throw_exception()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryOfObjects<TestDto>.Unspecified;
+        var dtoDictionary = DtoDictionaryWithObjects<TestDto>.Unspecified;
 
         //Act
         var x = dtoDictionary.Value;

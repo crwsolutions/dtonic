@@ -16,7 +16,7 @@ public class ExampleDto : IDtonic
     public DtoArrayOfStrings anArrayOfStrings { get; init; } = DtoArrayOfStrings.Unspecified;
     public DtoArrayOfObjects<ChildDto> anArrayOfObjects { get; init; } = DtoArrayOfObjects<ChildDto>.Unspecified;
 
-    public DtoDictionaryOfObjects<ChildDto> aDictionaryOfObjects { get; init; } = DtoDictionaryOfObjects<ChildDto>.Unspecified;
+    public DtoDictionaryWithObjects<ChildDto> aDictionaryOfObjects { get; init; } = DtoDictionaryWithObjects<ChildDto>.Unspecified;
 
     [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IDtoValue> Elements => [aString, aNumber, aBoolean, aChild, anArrayOfNumbers];

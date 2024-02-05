@@ -8,17 +8,17 @@ using System.Text.Json;
 namespace Dtonic.Dto;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public sealed record DtoDictionaryOfObjects<T> : DtoValueBase<IDictionary<string, T?>> where T : class, IDtonic, new()
+public sealed record DtoDictionaryWithObjects<T> : DtoValueBase<IDictionary<string, T?>> where T : class, IDtonic, new()
 {
-    private DtoDictionaryOfObjects() { }
+    private DtoDictionaryWithObjects() { }
 
-    public DtoDictionaryOfObjects(IDictionary<string, T?>? value) : base(value)
+    public DtoDictionaryWithObjects(IDictionary<string, T?>? value) : base(value)
     {
     }
 
-    public static DtoDictionaryOfObjects<T> Unspecified => new();
+    public static DtoDictionaryWithObjects<T> Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryOfObjects<T>));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithObjects<T>));
 
     public override string Stringify()
     {
@@ -75,5 +75,5 @@ public sealed record DtoDictionaryOfObjects<T> : DtoValueBase<IDictionary<string
     }
     public override void Parse(ref Utf8JsonReader jsonReader) => throw new NotImplementedException();
 
-    public static implicit operator DtoDictionaryOfObjects<T>(Dictionary<string, T>? items) => new((IDictionary<string, T?>?)items);
+    public static implicit operator DtoDictionaryWithObjects<T>(Dictionary<string, T>? items) => new((IDictionary<string, T?>?)items);
 }

@@ -11,7 +11,7 @@ public class DtoDictionaryOfObjectsTests
     public void Unspecified_should_return_empty_string()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryOfObjects<TestDto>.Unspecified;
+        var dtoDictionary = DtoDictionaryWithObjects<TestDto>.Unspecified;
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -24,7 +24,7 @@ public class DtoDictionaryOfObjectsTests
     public void Null_should_return_null_value()
     {
         //Arrange
-        var dtoDictionary = new DtoDictionaryOfObjects<TestDto>(null);
+        var dtoDictionary = new DtoDictionaryWithObjects<TestDto>(null);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -38,7 +38,7 @@ public class DtoDictionaryOfObjectsTests
     {
         //Arrange
         var dict = new Dictionary<string, TestDto?>() { { "one", new TestDto() }, { "two", new TestDto() } };
-        var dtoDictionary = new DtoDictionaryOfObjects<TestDto>(dict);
+        var dtoDictionary = new DtoDictionaryWithObjects<TestDto>(dict);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -52,7 +52,7 @@ public class DtoDictionaryOfObjectsTests
     {
         //Arrange
         var dict = new Dictionary<string, TestDto?>() { { "one", new TestDto() }, { "two", null } };
-        var dtoDictionary = new DtoDictionaryOfObjects<TestDto>(dict);
+        var dtoDictionary = new DtoDictionaryWithObjects<TestDto>(dict);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
