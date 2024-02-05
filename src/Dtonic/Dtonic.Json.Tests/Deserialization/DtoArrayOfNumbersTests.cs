@@ -50,7 +50,7 @@ public class DtoArrayOfNumbersTests
     }
 
     [TestMethod]
-    public void Filled_number_aray_should_give_back_that_array_value()
+    public void Filled_number_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfNumbers\":[1,2,3]}";
@@ -69,7 +69,7 @@ public class DtoArrayOfNumbersTests
     }
 
     [TestMethod]
-    public void Null_element_number_aray_should_give_back_that_array_value()
+    public void Null_element_number_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfNumbers\":[1,null,3]}";

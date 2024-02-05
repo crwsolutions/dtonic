@@ -50,7 +50,7 @@ public class DtoArrayOfBooleansTests
     }
 
     [TestMethod]
-    public void Filled_boolean_aray_should_give_back_that_array_value()
+    public void Filled_boolean_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfBooleans\":[true, false, true]}";
@@ -69,7 +69,7 @@ public class DtoArrayOfBooleansTests
     }
 
     [TestMethod]
-    public void Null_element_boolean_aray_should_give_back_that_array_value()
+    public void Null_element_boolean_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfBooleans\":[true, false, null]}";

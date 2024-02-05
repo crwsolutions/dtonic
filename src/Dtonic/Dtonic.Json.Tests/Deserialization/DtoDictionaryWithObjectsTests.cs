@@ -11,116 +11,83 @@ public class DtoDictionaryWithObjectsTests
     public void Null_value_should_give_null()
     {
         //Arrange
-        var dto = "{\"anArrayOfObjects\":null}";
+        var dto = "{\"aDictionaryWithObjects\":null}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.anArrayOfObjects.IsSpecified);
-        Assert.IsTrue(testDto.anArrayOfObjects.IsNull);
+        Assert.IsTrue(testDto!.aDictionaryWithObjects.IsSpecified);
+        Assert.IsTrue(testDto.aDictionaryWithObjects.IsNull);
     }
 
     [TestMethod]
     public void Empty_array_should_give_the_zero_number_of_items()
     {
         //Arrange
-        var dto = "{\"anArrayOfObjects\":[]}";
+        var dto = "{\"aDictionaryWithObjects\":{}}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.anArrayOfObjects.IsSpecified);
-        Assert.IsFalse(testDto.anArrayOfObjects.IsNull);
-        Assert.AreEqual(0, testDto.anArrayOfObjects.Value!.Count());
+        Assert.IsTrue(testDto!.aDictionaryWithObjects.IsSpecified);
+        Assert.IsFalse(testDto.aDictionaryWithObjects.IsNull);
+        Assert.AreEqual(0, testDto.aDictionaryWithObjects.Value!.Count());
     }
 
     [TestMethod]
-    public void Filled_object_aray_should_give_back_that_array_value()
+    public void Filled_object_dictionary_with_null_value()
     {
         //Arrange
-        var dto = "{\"anArrayOfObjects\":[{\"aString\":\" wallstreet \"}]}";
+        var dto = "{\"aDictionaryWithObjects\":[{\"a\":null}]}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
-        var a = testDto!.anArrayOfObjects.Value!.ToArray();
+        var a = testDto!.aDictionaryWithObjects.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.anArrayOfObjects.IsSpecified);
-        Assert.IsFalse(testDto.anArrayOfObjects.IsNull);
-        Assert.AreEqual(" wallstreet ", a[0].aString.Value);
+        Assert.IsTrue(testDto!.aDictionaryWithObjects.IsSpecified);
+        Assert.IsFalse(testDto.aDictionaryWithObjects.IsNull);
+        Assert.IsNull(a[0].Value);
         Assert.AreEqual(1, a.Length);
     }
 
     [TestMethod]
-    public void Filled_string_aray_should_give_back_that_array_value()
+    public void Filled_object_dictionary_with_empty_value()
     {
         //Arrange
-        var dto = "{\"anArrayOfStrings\":[\"a\",\"b\"]}";
+        var dto = "{\"aDictionaryWithObjects\":[{\"a\":{}}]}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
-        var a = testDto!.anArrayOfStrings.Value!.ToArray();
+        var a = testDto!.aDictionaryWithObjects.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.anArrayOfStrings.IsSpecified);
-        Assert.IsFalse(testDto.anArrayOfStrings.IsNull);
-        Assert.AreEqual("a", a[0]);
-        Assert.AreEqual("b", a[1]);
+        Assert.IsTrue(testDto!.aDictionaryWithObjects.IsSpecified);
+        Assert.IsFalse(testDto.aDictionaryWithObjects.IsNull);
+        Assert.IsNotNull(a[0].Value);
+        Assert.AreEqual(1, a.Length);
+    }
+
+    [TestMethod]
+    public void Filled_string_array_should_give_back_that_array_value()
+    {
+        //Arrange
+        var dto = "{\"aDictionaryWithObjects\":[{\"a\":null},{\"b\":{\"aString\":\"bob\"}}]}";
+
+        //Act
+        var testDto = dto.Parse<TestDto>();
+        var a = testDto!.aDictionaryWithObjects.Value!.ToArray();
+
+        //Assert
+        Assert.IsTrue(testDto!.aDictionaryWithObjects.IsSpecified);
+        Assert.IsFalse(testDto.aDictionaryWithObjects.IsNull);
+        Assert.AreEqual("a", a[0].Key);
+        Assert.AreEqual("b", a[1].Key);
+        Assert.IsNull(a[0].Value);
+        Assert.IsNotNull(a[1].Value);
+        Assert.AreEqual("bob", a[1].Value!.aString.Value);
         Assert.AreEqual(2, a.Length);
-    }
-
-    [TestMethod]
-    public void Filled_number_aray_should_give_back_that_array_value()
-    {
-        //Arrange
-        var dto = "{\"anArrayOfNumbers\":[1,2,3]}";
-
-        //Act
-        var testDto = dto.Parse<TestDto>();
-        var a = testDto!.anArrayOfNumbers.Value!.ToArray();
-
-        //Assert
-        Assert.IsTrue(testDto!.anArrayOfNumbers.IsSpecified);
-        Assert.IsFalse(testDto.anArrayOfNumbers.IsNull);
-        Assert.AreEqual(1, a[0]);
-        Assert.AreEqual(2, a[1]);
-        Assert.AreEqual(3, a[2]);
-        Assert.AreEqual(3, a.Length);
-    }
-
-    [TestMethod]
-    public void Filled_boolean_aray_should_give_back_that_array_value()
-    {
-        //Arrange
-        var dto = "{\"anArrayOfBooleans\":[true, false, true]}";
-
-        //Act
-        var testDto = dto.Parse<TestDto>();
-        var a = testDto!.anArrayOfBooleans.Value!.ToArray();
-
-        //Assert
-        Assert.IsTrue(testDto!.anArrayOfBooleans.IsSpecified);
-        Assert.IsFalse(testDto.anArrayOfBooleans.IsNull);
-        Assert.IsTrue(a[0]);
-        Assert.IsFalse(a[1]);
-        Assert.IsTrue(a[2]);
-        Assert.AreEqual(3, a.Length);
-    }
-
-    [TestMethod]
-    public void Empty_value_should_give_the_empty_value()
-    {
-        //Arrange
-        var dto = "{\"aString\":\"\"}";
-
-        //Act
-        var testDto = dto.Parse<TestDto>();
-
-        //Assert
-        Assert.IsTrue(testDto!.aString.IsSpecified);
-        Assert.IsFalse(testDto.aString.IsNull);
-        Assert.AreEqual(string.Empty, testDto.aString.Value);
     }
 }

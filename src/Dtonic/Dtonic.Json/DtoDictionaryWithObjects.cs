@@ -1,14 +1,12 @@
 ﻿using Dtonic.Dto.Base;
-using Dtonic.Dto.Exceptions;
 using Dtonic.Dto.Utils;
 using System.Diagnostics;
-using System.Globalization;
 using System.Text.Json;
 
 namespace Dtonic.Dto;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public sealed record DtoDictionaryWithObjects<T> : DtoValueBase<IDictionary<string, T?>> where T : class, IDtonic, new()
+public sealed record DtoDictionaryWithObjects<T> : DtoValueBase<IDictionary<string, T?>> where T : IDtonic, new()
 {
     private DtoDictionaryWithObjects() { }
 
@@ -29,51 +27,47 @@ public sealed record DtoDictionaryWithObjects<T> : DtoValueBase<IDictionary<stri
         var bob = new StringifyDictionaryBuilder();
         foreach (var item in Value)
         {
-            bob.Add(item.Key, GetStringOfType(item.Value));
+            bob.Add(item.Key, item.Value == null ? "null" : item.Value.Stringify());
         }
         return bob.ToString();
     }
 
-    private static string GetStringOfType(object? value)
+    public override void Parse(ref Utf8JsonReader jsonReader)
     {
-        if (value == null)
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
         {
-            return "null";
+            Value = null;
+            return;
         }
-        if (value is string)
+        var dictionary = new Dictionary<string, T?>();
+        if (jsonReader.TokenType == JsonTokenType.StartArray)
         {
-            return $"\"{value}\"";
+            while (jsonReader.Read())
+            {
+                if (jsonReader.TokenType == JsonTokenType.EndArray)
+                {
+                    break;
+                }
+                if (jsonReader.TokenType == JsonTokenType.PropertyName)
+                {
+                    var key = jsonReader.GetString()!;
+                    jsonReader.Read();
+                    if (jsonReader.TokenType == JsonTokenType.Null)
+                    {
+                        dictionary.Add(key, default);
+                    }
+                    else if (jsonReader.TokenType == JsonTokenType.StartObject)
+                    {
+                        var t = new T();
+                        t.Parse(ref jsonReader);
+                        dictionary.Add(key, t);
+                    }
+                }
+            }
         }
-        if (value is float f)
-        {
-            return f.ToString(CultureInfo.InvariantCulture);
-        }
-        if (value is double d)
-        {
-            return d.ToString(CultureInfo.InvariantCulture);
-        }
-        if (value is decimal m)
-        {
-            return m.ToString(CultureInfo.InvariantCulture);
-        }
-        if (IsSimple(value.GetType()))
-        {
-            return value.ToString()!;
-        }
-        if (value is IDtonic serializable)
-        {
-            return serializable.Stringify();
-        }
-
-        throw DtoDoesNotImplementIDtoSerializableException.Create("?", value.GetType());
+        Value = dictionary;
     }
-
-    private static bool IsSimple(Type type)
-    {
-        return type.IsPrimitive
-          || type.IsEnum;
-    }
-    public override void Parse(ref Utf8JsonReader jsonReader) => throw new NotImplementedException();
 
     public static implicit operator DtoDictionaryWithObjects<T>(Dictionary<string, T>? items) => new((IDictionary<string, T?>?)items);
 }

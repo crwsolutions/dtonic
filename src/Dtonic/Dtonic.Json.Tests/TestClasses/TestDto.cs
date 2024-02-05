@@ -12,10 +12,16 @@ public class TestDto : IDtonic
     public DtoNumber aNumber { get; set; } = DtoNumber.Unspecified;
     public DtoBoolean aBoolean { get; set; } = DtoBoolean.Unspecified;
     public DtoObject<TestDto> anObject { get; set; } = DtoObject<TestDto>.Unspecified;
+
     public DtoArrayOfStrings anArrayOfStrings { get; set; } = DtoArrayOfStrings.Unspecified;
     public DtoArrayOfNumbers anArrayOfNumbers { get; set; } = DtoArrayOfNumbers.Unspecified;
     public DtoArrayOfBooleans anArrayOfBooleans { get; set; } = DtoArrayOfBooleans.Unspecified;
     public DtoArrayOfObjects<TestDto> anArrayOfObjects { get; set; } = DtoArrayOfObjects<TestDto>.Unspecified;
+
+    public DtoDictionaryWithStrings aDictionaryWithStrings { get; set; } = DtoDictionaryWithStrings.Unspecified;
+    public DtoDictionaryWithNumbers aDictionaryWithNumbers { get; set; } = DtoDictionaryWithNumbers.Unspecified;
+    public DtoDictionaryWithBooleans aDictionaryWithBooleans { get; set; } = DtoDictionaryWithBooleans.Unspecified;
+    public DtoDictionaryWithObjects<TestDto> aDictionaryWithObjects { get; set; } = DtoDictionaryWithObjects<TestDto>.Unspecified;
 
     public string Stringify()
     {
@@ -25,10 +31,15 @@ public class TestDto : IDtonic
             aNumber,
             aBoolean,
             anObject,
-            anArrayOfObjects,
-            anArrayOfNumbers,
             anArrayOfStrings,
-            anArrayOfBooleans
+            anArrayOfNumbers,
+            anArrayOfBooleans,
+            anArrayOfObjects,
+            aDictionaryWithStrings,
+            aDictionaryWithNumbers,
+            aDictionaryWithBooleans,
+            aDictionaryWithObjects,
+
         }
         .ToString();
     }
@@ -64,6 +75,18 @@ public class TestDto : IDtonic
                         break;
                     case nameof(anArrayOfBooleans):
                         anArrayOfBooleans.Parse(ref jsonReader);
+                        break;
+                    case nameof(aDictionaryWithObjects):
+                        aDictionaryWithObjects.Parse(ref jsonReader);
+                        break;
+                    case nameof(aDictionaryWithStrings):
+                        aDictionaryWithStrings.Parse(ref jsonReader);
+                        break;
+                    case nameof(aDictionaryWithNumbers):
+                        aDictionaryWithNumbers.Parse(ref jsonReader);
+                        break;
+                    case nameof(aDictionaryWithBooleans):
+                        aDictionaryWithBooleans.Parse(ref jsonReader);
                         break;
                     default:
                         break;

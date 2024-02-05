@@ -50,7 +50,7 @@ public class DtoArrayOfStringsTests
     }
 
     [TestMethod]
-    public void Filled_string_aray_should_give_back_that_array_value()
+    public void Filled_string_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfStrings\":[\"a\",\"b\"]}";
@@ -68,7 +68,7 @@ public class DtoArrayOfStringsTests
     }
 
     [TestMethod]
-    public void Null_element_string_aray_should_give_back_that_array_value()
+    public void Null_element_string_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfStrings\":[\"a\",null]}";

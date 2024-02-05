@@ -50,7 +50,7 @@ public class DtoArrayOfObjectsTests
     }
 
     [TestMethod]
-    public void Filled_object_aray_should_give_back_that_array_value()
+    public void Filled_object_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfObjects\":[{\"aString\":\" wallstreet \"}]}";
@@ -67,7 +67,7 @@ public class DtoArrayOfObjectsTests
     }
 
     [TestMethod]
-    public void Filled_string_aray_should_give_back_that_array_value()
+    public void Filled_string_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfStrings\":[\"a\",\"b\"]}";
@@ -85,7 +85,7 @@ public class DtoArrayOfObjectsTests
     }
 
     [TestMethod]
-    public void Filled_number_aray_should_give_back_that_array_value()
+    public void Filled_number_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfNumbers\":[1,2,3]}";
@@ -104,7 +104,7 @@ public class DtoArrayOfObjectsTests
     }
 
     [TestMethod]
-    public void Filled_boolean_aray_should_give_back_that_array_value()
+    public void Filled_boolean_array_should_give_back_that_array_value()
     {
         //Arrange
         var dto = "{\"anArrayOfBooleans\":[true, false, true]}";
