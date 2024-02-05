@@ -16,52 +16,52 @@ public class DtoArrayOfStringsTests
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.arrayS.IsSpecified);
-        Assert.IsTrue(testDto.arrayS.IsNull);
+        Assert.IsFalse(testDto!.anArrayOfStrings.IsSpecified);
+        Assert.IsTrue(testDto.anArrayOfStrings.IsNull);
     }
 
     [TestMethod]
     public void Null_value_should_give_null()
     {
         //Arrange
-        var dto = "{\"arrayS\":null}";
+        var dto = "{\"anArrayOfStrings\":null}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayS.IsSpecified);
-        Assert.IsTrue(testDto.arrayS.IsNull);
+        Assert.IsTrue(testDto!.anArrayOfStrings.IsSpecified);
+        Assert.IsTrue(testDto.anArrayOfStrings.IsNull);
     }
 
     [TestMethod]
     public void Empty_array_should_give_the_zero_number_of_items()
     {
         //Arrange
-        var dto = "{\"arrayS\":[]}";
+        var dto = "{\"anArrayOfStrings\":[]}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayS.IsSpecified);
-        Assert.IsFalse(testDto.arrayS.IsNull);
-        Assert.AreEqual(0, testDto.arrayS.Value!.Count());
+        Assert.IsTrue(testDto!.anArrayOfStrings.IsSpecified);
+        Assert.IsFalse(testDto.anArrayOfStrings.IsNull);
+        Assert.AreEqual(0, testDto.anArrayOfStrings.Value!.Count());
     }
 
     [TestMethod]
     public void Filled_string_aray_should_give_back_that_array_value()
     {
         //Arrange
-        var dto = "{\"arrayS\":[\"a\",\"b\"]}";
+        var dto = "{\"anArrayOfStrings\":[\"a\",\"b\"]}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
-        var a = testDto!.arrayS.Value!.ToArray();
+        var a = testDto!.anArrayOfStrings.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayS.IsSpecified);
-        Assert.IsFalse(testDto.arrayS.IsNull);
+        Assert.IsTrue(testDto!.anArrayOfStrings.IsSpecified);
+        Assert.IsFalse(testDto.anArrayOfStrings.IsNull);
         Assert.AreEqual("a", a[0]);
         Assert.AreEqual("b", a[1]);
         Assert.AreEqual(2, a.Length);
@@ -71,15 +71,15 @@ public class DtoArrayOfStringsTests
     public void Null_element_string_aray_should_give_back_that_array_value()
     {
         //Arrange
-        var dto = "{\"arrayS\":[\"a\",null]}";
+        var dto = "{\"anArrayOfStrings\":[\"a\",null]}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
-        var a = testDto!.arrayS.Value!.ToArray();
+        var a = testDto!.anArrayOfStrings.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.arrayS.IsSpecified);
-        Assert.IsFalse(testDto.arrayS.IsNull);
+        Assert.IsTrue(testDto!.anArrayOfStrings.IsSpecified);
+        Assert.IsFalse(testDto.anArrayOfStrings.IsNull);
         Assert.AreEqual("a", a[0]);
         Assert.IsNull(a[1]);
         Assert.AreEqual(2, a.Length);
@@ -89,14 +89,14 @@ public class DtoArrayOfStringsTests
     public void Empty_value_should_give_the_empty_value()
     {
         //Arrange
-        var dto = "{\"street\":\"\"}";
+        var dto = "{\"aString\":\"\"}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSpecified);
-        Assert.IsFalse(testDto.street.IsNull);
-        Assert.AreEqual(string.Empty, testDto.street.Value);
+        Assert.IsTrue(testDto!.aString.IsSpecified);
+        Assert.IsFalse(testDto.aString.IsNull);
+        Assert.AreEqual(string.Empty, testDto.aString.Value);
     }
 }

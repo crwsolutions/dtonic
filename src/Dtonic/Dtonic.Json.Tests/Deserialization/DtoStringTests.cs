@@ -16,51 +16,51 @@ public class DtoStringTests
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.street.IsSpecified);
-        Assert.IsTrue(testDto.street.IsNull);
+        Assert.IsFalse(testDto!.aString.IsSpecified);
+        Assert.IsTrue(testDto.aString.IsNull);
     }
 
     [TestMethod]
     public void Null_value_should_give_null()
     {
         //Arrange
-        var dto = "{\"street\":null}";
+        var dto = "{\"aString\":null}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSpecified);
-        Assert.IsTrue(testDto.street.IsNull);
+        Assert.IsTrue(testDto!.aString.IsSpecified);
+        Assert.IsTrue(testDto.aString.IsNull);
     }
 
     [TestMethod]
     public void Specified_value_should_give_the_specified_value()
     {
         //Arrange
-        var dto = "{\"street\":\" wallstreet \"}";
+        var dto = "{\"aString\":\" wallstreet \"}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSpecified);
-        Assert.IsFalse(testDto.street.IsNull);
-        Assert.AreEqual(" wallstreet ", testDto.street.Value);
+        Assert.IsTrue(testDto!.aString.IsSpecified);
+        Assert.IsFalse(testDto.aString.IsNull);
+        Assert.AreEqual(" wallstreet ", testDto.aString.Value);
     }
 
     [TestMethod]
     public void Empty_value_should_give_the_empty_value()
     {
         //Arrange
-        var dto = "{\"street\":\"\"}";
+        var dto = "{\"aString\":\"\"}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.street.IsSpecified);
-        Assert.IsFalse(testDto.street.IsNull);
-        Assert.AreEqual(string.Empty, testDto.street.Value);
+        Assert.IsTrue(testDto!.aString.IsSpecified);
+        Assert.IsFalse(testDto.aString.IsNull);
+        Assert.AreEqual(string.Empty, testDto.aString.Value);
     }
 }

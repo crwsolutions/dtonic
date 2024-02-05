@@ -37,12 +37,12 @@ public class DtoObjectTests
     public void DtoObject_should_return_object()
     {
         //Arrange
-        var dtoObject = new DtoObject<TestDto>(new TestDto { street = "teststreet" });
+        var dtoObject = new DtoObject<TestDto>(new TestDto { aString = "teststreet" });
 
         //Act
         var s = dtoObject.StringifyWithKey();
 
         //Assert
-        Assert.AreEqual("\"dtoObject\":{\"street\":\"teststreet\"}", s);
+        Assert.AreEqual("\"dtoObject\":{\"aString\":\"teststreet\"}", s);
     }
 }

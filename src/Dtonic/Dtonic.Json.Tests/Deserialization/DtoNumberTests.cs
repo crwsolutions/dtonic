@@ -16,36 +16,36 @@ public class DtoNumberTests
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.number.IsSpecified);
-        Assert.IsTrue(testDto.number.IsNull);
+        Assert.IsFalse(testDto!.aNumber.IsSpecified);
+        Assert.IsTrue(testDto.aNumber.IsNull);
     }
 
     [TestMethod]
     public void Null_value_should_give_null()
     {
         //Arrange
-        var dto = "{\"number\":null}";
+        var dto = "{\"aNumber\":null}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.number.IsSpecified);
-        Assert.IsTrue(testDto.number.IsNull);
+        Assert.IsTrue(testDto!.aNumber.IsSpecified);
+        Assert.IsTrue(testDto.aNumber.IsNull);
     }
 
     [TestMethod]
     public void Specified_value_should_give_the_specified_value()
     {
         //Arrange
-        var dto = "{\"number\":1.1}";
+        var dto = "{\"aNumber\":1.1}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.number.IsSpecified);
-        Assert.IsFalse(testDto.number.IsNull);
-        Assert.AreEqual(1.1m, testDto.number.Value);
+        Assert.IsTrue(testDto!.aNumber.IsSpecified);
+        Assert.IsFalse(testDto.aNumber.IsNull);
+        Assert.AreEqual(1.1m, testDto.aNumber.Value);
     }
 }

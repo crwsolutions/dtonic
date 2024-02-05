@@ -8,27 +8,27 @@ public class TestDto : IDtonic
 {
     public TestDto() { }
 
-    public DtoString street { get; set; } = DtoString.Unspecified;
-    public DtoNumber number { get; set; } = DtoNumber.Unspecified;
-    public DtoBoolean isTrue { get; set; } = DtoBoolean.Unspecified;
-    public DtoObject<TestDto> childTestDto { get; set; } = DtoObject<TestDto>.Unspecified;
-    public DtoArrayOfStrings arrayS { get; set; } = DtoArrayOfStrings.Unspecified;
-    public DtoArrayOfNumbers arrayI { get; set; } = DtoArrayOfNumbers.Unspecified;
-    public DtoArrayOfBooleans arrayB { get; set; } = DtoArrayOfBooleans.Unspecified;
-    public DtoArrayOfObjects<TestDto> array { get; set; } = DtoArrayOfObjects<TestDto>.Unspecified;
+    public DtoString aString { get; set; } = DtoString.Unspecified;
+    public DtoNumber aNumber { get; set; } = DtoNumber.Unspecified;
+    public DtoBoolean aBoolean { get; set; } = DtoBoolean.Unspecified;
+    public DtoObject<TestDto> anObject { get; set; } = DtoObject<TestDto>.Unspecified;
+    public DtoArrayOfStrings anArrayOfStrings { get; set; } = DtoArrayOfStrings.Unspecified;
+    public DtoArrayOfNumbers anArrayOfNumbers { get; set; } = DtoArrayOfNumbers.Unspecified;
+    public DtoArrayOfBooleans anArrayOfBooleans { get; set; } = DtoArrayOfBooleans.Unspecified;
+    public DtoArrayOfObjects<TestDto> anArrayOfObjects { get; set; } = DtoArrayOfObjects<TestDto>.Unspecified;
 
     public string Stringify()
     {
         return new StringifyObjectBuilder
         {
-            street,
-            number,
-            isTrue,
-            childTestDto,
-            array,
-            arrayI,
-            arrayS,
-            arrayB
+            aString,
+            aNumber,
+            aBoolean,
+            anObject,
+            anArrayOfObjects,
+            anArrayOfNumbers,
+            anArrayOfStrings,
+            anArrayOfBooleans
         }
         .ToString();
     }
@@ -41,29 +41,29 @@ public class TestDto : IDtonic
             {
                 switch (jsonReader.GetString())
                 {
-                    case nameof(street):
-                        street.Parse(ref jsonReader);
+                    case nameof(aString):
+                        aString.Parse(ref jsonReader);
                         break;
-                    case nameof(number):
-                        number.Parse(ref jsonReader);
+                    case nameof(aNumber):
+                        aNumber.Parse(ref jsonReader);
                         break;
-                    case nameof(isTrue):
-                        isTrue.Parse(ref jsonReader);
+                    case nameof(aBoolean):
+                        aBoolean.Parse(ref jsonReader);
                         break;
-                    case nameof(childTestDto):
-                        childTestDto.Parse(ref jsonReader);
+                    case nameof(anObject):
+                        anObject.Parse(ref jsonReader);
                         break;
-                    case nameof(array):
-                        array.Parse(ref jsonReader);
+                    case nameof(anArrayOfObjects):
+                        anArrayOfObjects.Parse(ref jsonReader);
                         break;
-                    case nameof(arrayS):
-                        arrayS.Parse(ref jsonReader);
+                    case nameof(anArrayOfStrings):
+                        anArrayOfStrings.Parse(ref jsonReader);
                         break;
-                    case nameof(arrayI):
-                        arrayI.Parse(ref jsonReader);
+                    case nameof(anArrayOfNumbers):
+                        anArrayOfNumbers.Parse(ref jsonReader);
                         break;
-                    case nameof(arrayB):
-                        arrayB.Parse(ref jsonReader);
+                    case nameof(anArrayOfBooleans):
+                        anArrayOfBooleans.Parse(ref jsonReader);
                         break;
                     default:
                         break;
