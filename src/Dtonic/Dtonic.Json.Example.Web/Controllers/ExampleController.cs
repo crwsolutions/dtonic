@@ -29,6 +29,11 @@ public class ExampleController : ControllerBase
             { "invoice", child2 }
         };
 
+        var aDictionaryOfNumbers = new Dictionary<string, decimal?>()
+        {
+            { "a", 1 },
+            { "b", 22.20m }
+        };
         var person = new ExampleDto
         {
             aString = "Robert",
@@ -38,7 +43,8 @@ public class ExampleController : ControllerBase
             anArrayOfNumbers = (decimal[])[1, 2, 3, 4],
             anArrayOfStrings = (string[])["a", "b", "c"],
             anArrayOfBooleans = (bool[])[true, false, true, false],
-            aDictionaryOfObjects = aDictionaryOfObjects
+            aDictionaryOfObjects = aDictionaryOfObjects,
+            aDictionaryOfNumbers = aDictionaryOfNumbers
         };
         return Content(person.Stringify(), MediaTypeNames.Application.Json);
     }
