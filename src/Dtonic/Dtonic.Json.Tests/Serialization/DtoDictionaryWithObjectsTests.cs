@@ -5,7 +5,7 @@ using TestClasses;
 namespace Serialization;
 
 [TestClass]
-public class DtoDictionaryOfObjectsTests
+public class DtoDictionaryWithObjectsTests
 {
     [TestMethod]
     public void Unspecified_should_return_empty_string()

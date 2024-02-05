@@ -1,5 +1,4 @@
 ﻿using Dtonic.Dto.Base;
-using Dtonic.Dto.Exceptions;
 using Dtonic.Dto.Utils;
 using System.Diagnostics;
 using System.Globalization;

@@ -12,10 +12,10 @@ public class TestDto : IDtonic
     public DtoNumber number { get; set; } = DtoNumber.Unspecified;
     public DtoBoolean isTrue { get; set; } = DtoBoolean.Unspecified;
     public DtoObject<TestDto> childTestDto { get; set; } = DtoObject<TestDto>.Unspecified;
-    public DtoArrayOfObjects<TestDto> array { get; set; } = DtoArrayOfObjects<TestDto>.Unspecified;
-    public DtoArrayOfNumbers arrayI { get; set; } = DtoArrayOfNumbers.Unspecified;
     public DtoArrayOfStrings arrayS { get; set; } = DtoArrayOfStrings.Unspecified;
+    public DtoArrayOfNumbers arrayI { get; set; } = DtoArrayOfNumbers.Unspecified;
     public DtoArrayOfBooleans arrayB { get; set; } = DtoArrayOfBooleans.Unspecified;
+    public DtoArrayOfObjects<TestDto> array { get; set; } = DtoArrayOfObjects<TestDto>.Unspecified;
 
     public string Stringify()
     {

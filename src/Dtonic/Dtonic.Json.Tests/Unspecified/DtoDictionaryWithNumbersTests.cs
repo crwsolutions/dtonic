@@ -1,17 +1,16 @@
 ﻿using Dtonic.Dto;
 using Dtonic.Dto.Exceptions;
-using TestClasses;
 
 namespace Unspecified;
 
 [TestClass]
-public class DtoDictionaryOfObjectsTests
+public class DtoDictionaryWithNumbersTests
 {
     [TestMethod]
     public void Unspecified_should_have_no_value()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithObjects<TestDto>.Unspecified;
+        var dtoDictionary = DtoDictionaryWithNumbers.Unspecified;
 
         //Act
 
@@ -24,7 +23,7 @@ public class DtoDictionaryOfObjectsTests
     public void Checking_the_value_of_an_unspecified_should_throw_exception()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithObjects<TestDto>.Unspecified;
+        var dtoDictionary = DtoDictionaryWithNumbers.Unspecified;
 
         //Act
         var x = dtoDictionary.Value;
