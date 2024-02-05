@@ -34,8 +34,10 @@ public class ExampleController : ControllerBase
             aString = "Robert",
             aNumber = 11,
             aBoolean = true,
-            anArrayOfNumbers = (decimal[])[1, 2, 3, 4],
             aChild = child1,
+            anArrayOfNumbers = (decimal[])[1, 2, 3, 4],
+            anArrayOfStrings = (string[])["a", "b", "c"],
+            anArrayOfBooleans = (bool[])[true, false, true, false],
             aDictionaryOfObjects = aDictionaryOfObjects
         };
         return Content(person.Stringify(), MediaTypeNames.Application.Json);

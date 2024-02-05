@@ -83,7 +83,7 @@ public sealed record DtoArrayOfStrings : DtoValueBase<IEnumerable<string?>?>
     }
 
     //public static implicit operator DtoArrayOfStrings(Collection<string> items) => new((IEnumerable<string>)items);
-    //public static implicit operator DtoArrayOfStrings(Array items) => new((IEnumerable<string>?)items);
+    public static implicit operator DtoArrayOfStrings(Array items) => new((IEnumerable<string>?)items);
     //public static implicit operator DtoArrayOfStrings(ArrayList items) => new(items);
     //public static implicit operator DtoArrayOfStrings(List<string> items) => new((IEnumerable<string>?)items);
     //public static implicit operator DtoArrayOfStrings(Queue items) => new(items);

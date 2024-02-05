@@ -86,7 +86,7 @@ public sealed record DtoArrayOfBooleans : DtoValueBase<IEnumerable<bool?>?>
     }
 
     //public static implicit operator DtoArrayOfBooleans(Collection<bool> items) => new((IEnumerable<bool>)items);
-    //public static implicit operator DtoArrayOfBooleans(Array items) => new((IEnumerable<bool>?)items);
+    public static implicit operator DtoArrayOfBooleans(bool[] items) => new(Array.ConvertAll(items, item => (bool?)item).AsEnumerable());
     //public static implicit operator DtoArrayOfBooleans(ArrayList items) => new(items);
     //public static implicit operator DtoArrayOfBooleans(List<bool> items) => new((IEnumerable<bool>?)items);
     //public static implicit operator DtoArrayOfBooleans(Queue items) => new(items);
