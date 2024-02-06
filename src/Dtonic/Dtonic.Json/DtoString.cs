@@ -20,7 +20,7 @@ public sealed record DtoString : DtoValueBase<string?>
         return GetDebuggerDisplay(nameof(DtoString));
     }
 
-    public override string Stringify() => IsNull ? "null" : $"\"{Value}\"";
+    public override string Stringify() => IsNull ? NULL : $"\"{Value}\"";
     public override void Parse(ref Utf8JsonReader jsonReader)
     {
         jsonReader.Read();

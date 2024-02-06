@@ -23,12 +23,12 @@ public sealed record DtoDictionaryWithBooleans : DtoValueBase<IDictionary<string
     {
         if (IsNull)
         {
-            return "null";
+            return NULL;
         }
         var bob = new StringifyDictionaryBuilder();
         foreach (var item in Value)
         {
-            bob.Add(item.Key, item.Value == null ? "null" : item.Value.Value.ToString(CultureInfo.InvariantCulture).ToLower());
+            bob.Add(item.Key, item.Value is null ? NULL : item.Value.Value.ToString(CultureInfo.InvariantCulture).ToLower());
         }
         return bob.ToString();
     }

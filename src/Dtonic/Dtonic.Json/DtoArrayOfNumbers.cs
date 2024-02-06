@@ -23,13 +23,13 @@ public sealed record DtoArrayOfNumbers : DtoValueBase<IEnumerable<decimal?>?>
     {
         if (IsNull)
         {
-            return "null";
+            return NULL;
         }
 
         var bob = new StringifyArrayBuilder();
         foreach (var item in Value)
         {
-            bob.Add(item is null ? "null" : item.Value.ToString(CultureInfo.InvariantCulture));
+            bob.Add(item is null ? NULL : item.Value.ToString(CultureInfo.InvariantCulture));
         }
 
         return bob.ToString();

@@ -21,7 +21,7 @@ public sealed record DtoObject<T> : DtoValueBase<T?> where T : class, IDtonic, n
     {
         if (IsNull)
         {
-            return "null";
+            return NULL;
         }
 
         if (Value is IDtonic dto)

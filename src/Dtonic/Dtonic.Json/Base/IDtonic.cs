@@ -3,7 +3,7 @@
 public interface IDtonic
 {
     /// <summary>
-    /// Convert object to dto string
+    /// Convert object to json string
     /// </summary>
     string Stringify();
 

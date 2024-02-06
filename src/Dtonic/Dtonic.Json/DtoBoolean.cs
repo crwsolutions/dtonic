@@ -17,7 +17,7 @@ public sealed record DtoBoolean : DtoValueBase<bool?>
 
     private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoBoolean));
 
-    public override string Stringify() => IsNull ? "null" : Value.ToString()!.ToLowerInvariant();
+    public override string Stringify() => IsNull ? NULL : Value.ToString()!.ToLowerInvariant();
 
     public override void Parse(ref Utf8JsonReader jsonReader)
     {

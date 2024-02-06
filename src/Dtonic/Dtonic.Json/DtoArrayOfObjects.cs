@@ -26,13 +26,13 @@ public sealed record DtoArrayOfObjects<T> : DtoValueBase<IEnumerable<T?>?> where
     {
         if (IsNull)
         {
-            return "null";
+            return NULL;
         }
 
         var bob = new StringifyArrayBuilder();
         foreach (var item in Value)
         {
-            bob.Add(item == null ? "null" : item.Stringify());
+            bob.Add(item is null ? NULL : item.Stringify());
         }
 
         return bob.ToString();

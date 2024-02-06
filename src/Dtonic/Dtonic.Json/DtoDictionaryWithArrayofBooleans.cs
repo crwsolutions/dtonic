@@ -22,7 +22,7 @@ public sealed record DtoDictionaryWithArrayofBooleans : DtoValueBase<IDictionary
     {
         if (IsNull)
         {
-            return "null";
+            return NULL;
         }
 
         var bob = new StringifyDictionaryBuilder();
@@ -30,14 +30,14 @@ public sealed record DtoDictionaryWithArrayofBooleans : DtoValueBase<IDictionary
         {
             if (item.Value is null)
             {
-                bob.Add(item.Key, "null");
+                bob.Add(item.Key, NULL);
             }
             else
             {
                 var arrayBob = new StringifyArrayBuilder();
                 foreach (var arrayItem in item.Value)
                 {
-                    arrayBob.Add(arrayItem is null ? "null" : arrayItem.ToString()!.ToLower());
+                    arrayBob.Add(arrayItem is null ? NULL : arrayItem.ToString()!.ToLower());
                 }
                 bob.Add(item.Key, arrayBob.ToString());
             }

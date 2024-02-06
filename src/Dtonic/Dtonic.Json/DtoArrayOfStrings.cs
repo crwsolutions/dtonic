@@ -21,13 +21,13 @@ public sealed record DtoArrayOfStrings : DtoValueBase<IEnumerable<string?>?>
     {
         if (IsNull)
         {
-            return "null";
+            return NULL;
         }
 
         var bob = new StringifyArrayBuilder();
         foreach (var item in Value)
         {
-            bob.Add(item is null ? "null" : $"\"{item}\"");
+            bob.Add(item is null ? NULL : $"\"{item}\"");
         }
 
         return bob.ToString();

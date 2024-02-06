@@ -8,6 +8,8 @@ namespace Dtonic.Dto.Base;
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public abstract record DtoValueBase<T> : IDtoValue
 {
+    protected const string NULL = "null";
+
     protected T? _value;
 
     protected DtoValueBase()
@@ -60,7 +62,7 @@ public abstract record DtoValueBase<T> : IDtoValue
     /// Indication whether the <see cref="Value">Value</see> is null.
     /// </summary>
     [MemberNotNullWhen(false, nameof(Value))]
-    public bool IsNull => _value == null;
+    public bool IsNull => _value is null;
 
     private string GetDebuggerDisplay()
     {

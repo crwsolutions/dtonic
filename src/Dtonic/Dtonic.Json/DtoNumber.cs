@@ -21,7 +21,7 @@ public sealed record DtoNumber : DtoValueBase<decimal?>
         return GetDebuggerDisplay(nameof(DtoNumber));
     }
 
-    public override string Stringify() => IsNull ? "null" : Value.Value.ToString(CultureInfo.InvariantCulture);
+    public override string Stringify() => IsNull ? NULL : Value.Value.ToString(CultureInfo.InvariantCulture);
     public override void Parse(ref Utf8JsonReader jsonReader)
     {
         jsonReader.Read();
