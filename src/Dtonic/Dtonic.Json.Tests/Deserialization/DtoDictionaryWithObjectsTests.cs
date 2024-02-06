@@ -8,6 +8,20 @@ public class DtoDictionaryWithObjectsTests
 {
 
     [TestMethod]
+    public void Unspecified_value_should_give_isset_is_false()
+    {
+        //Arrange
+        var dto = "{}";
+
+        //Act
+        var testDto = dto.Parse<TestDto>();
+
+        //Assert
+        Assert.IsFalse(testDto!.aDictionaryWithObjects.IsSpecified);
+        Assert.IsTrue(testDto.aDictionaryWithObjects.IsNull);
+    }
+
+    [TestMethod]
     public void Null_value_should_give_null()
     {
         //Arrange

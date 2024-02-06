@@ -10,7 +10,7 @@ using System.Text.Json;
 namespace Dtonic.Dto;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public sealed record DtoArrayOfObjects<T> : DtoValueBase<IEnumerable<T>?> where T : class, IDtonic, new()
+public sealed record DtoArrayOfObjects<T> : DtoValueBase<IEnumerable<T?>?> where T : class, IDtonic, new()
 {
     private DtoArrayOfObjects() { }
 
@@ -67,7 +67,7 @@ public sealed record DtoArrayOfObjects<T> : DtoValueBase<IEnumerable<T>?> where 
             Value = null;
             return;
         }
-        var lst = new List<T>();
+        var lst = new List<T?>();
         if (jsonReader.TokenType == JsonTokenType.StartArray)
         {
             while (jsonReader.Read())
@@ -76,7 +76,11 @@ public sealed record DtoArrayOfObjects<T> : DtoValueBase<IEnumerable<T>?> where 
                 {
                     break;
                 }
-                if (jsonReader.TokenType == JsonTokenType.StartObject)
+                if (jsonReader.TokenType == JsonTokenType.Null)
+                {
+                    lst.Add(default);
+                }
+                else if (jsonReader.TokenType == JsonTokenType.StartObject)
                 {
                     var t = new T();
                     if (t is IDtonic deserializable)
