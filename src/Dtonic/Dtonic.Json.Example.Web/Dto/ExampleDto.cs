@@ -21,10 +21,10 @@ public class ExampleDto : IDtonic
     public DtoDictionaryWithBooleans aDictionaryWithBooleans{ get; init; } = DtoDictionaryWithBooleans.Unspecified;
     public DtoDictionaryWithObjects<ChildDto> aDictionaryWithObjects { get; init; } = DtoDictionaryWithObjects<ChildDto>.Unspecified;
 
-    public DtoDictionaryWithArrayofBooleans aDictionaryWithArrayofBooleans { get; init; } = DtoDictionaryWithArrayofBooleans.Unspecified;
-    public DtoDictionaryWithArrayofStrings aDictionaryWithArrayofStrings { get; init; } = DtoDictionaryWithArrayofStrings.Unspecified;
-    public DtoDictionaryWithArrayofNumbers aDictionaryWithArrayofNumbers { get; init; } = DtoDictionaryWithArrayofNumbers.Unspecified;
-    public DtoDictionaryWithArrayofObjects<ChildDto> aDictionaryWithArrayofObjects { get; init; } = DtoDictionaryWithArrayofObjects<ChildDto>.Unspecified;
+    public DtoDictionaryWithArrayOfBooleans aDictionaryWithArrayOfBooleans { get; init; } = DtoDictionaryWithArrayOfBooleans.Unspecified;
+    public DtoDictionaryWithArrayOfStrings aDictionaryWithArrayOfStrings { get; init; } = DtoDictionaryWithArrayOfStrings.Unspecified;
+    public DtoDictionaryWithArrayOfNumbers aDictionaryWithArrayOfNumbers { get; init; } = DtoDictionaryWithArrayOfNumbers.Unspecified;
+    public DtoDictionaryWithArrayOfObjects<ChildDto> aDictionaryWithArrayOfObjects { get; init; } = DtoDictionaryWithArrayOfObjects<ChildDto>.Unspecified;
 
     [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IDtoValue> Elements => [aString, aNumber, aBoolean, aChild, anArrayOfNumbers];
@@ -50,10 +50,10 @@ public class ExampleDto : IDtonic
             aDictionaryWithBooleans,
             aDictionaryWithObjects,
 
-            aDictionaryWithArrayofBooleans,
-            aDictionaryWithArrayofNumbers,
-            aDictionaryWithArrayofStrings,
-            aDictionaryWithArrayofObjects,
+            aDictionaryWithArrayOfBooleans,
+            aDictionaryWithArrayOfNumbers,
+            aDictionaryWithArrayOfStrings,
+            aDictionaryWithArrayOfObjects,
         }
         .ToString();
     }

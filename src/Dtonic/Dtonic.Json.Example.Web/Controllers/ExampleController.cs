@@ -48,25 +48,25 @@ public class ExampleController : ControllerBase
             { "c", "World" }
         };
 
-        var aDictionaryWithArrayofBooleans = new Dictionary<string, IEnumerable<bool?>?>()
+        var aDictionaryWithArrayOfBooleans = new Dictionary<string, IEnumerable<bool?>?>()
         {
             { "a", [true, null, false] },
             { "b", [false, false, false, false, false] },
             { "c", [true, true] },
             { "d", null },
         };
-        var aDictionaryWithArrayofNumbers = new Dictionary<string, IEnumerable<decimal?>?>()
+        var aDictionaryWithArrayOfNumbers = new Dictionary<string, IEnumerable<decimal?>?>()
         {
             { "a", [1, null, 2] },
             { "c", [1, 3.5m] },
             { "d", null },
         };
-        var aDictionaryWithArrayofStrings = new Dictionary<string, IEnumerable<string?>?>()
+        var aDictionaryWithArrayOfStrings = new Dictionary<string, IEnumerable<string?>?>()
         {
             { "a", ["a", null, "b"] },
             { "d", null },
         };
-        var aDictionaryWithArrayofObjects = new Dictionary<string, IEnumerable<ChildDto?>?>()
+        var aDictionaryWithArrayOfObjects = new Dictionary<string, IEnumerable<ChildDto?>?>()
         {
             { "a", [new ChildDto { aNumber = 12 }, null, new ChildDto { aString = "Hello" }] },
             { "d", null },
@@ -86,10 +86,10 @@ public class ExampleController : ControllerBase
             aDictionaryWithNumbers = aDictionaryWithNumbers,
             aDictionaryWithBooleans = aDictionaryWithBooleans,
             aDictionaryWithObjects = aDictionaryWithObjects,
-            aDictionaryWithArrayofBooleans = aDictionaryWithArrayofBooleans,
-            aDictionaryWithArrayofNumbers = aDictionaryWithArrayofNumbers,
-            aDictionaryWithArrayofStrings = aDictionaryWithArrayofStrings,
-            aDictionaryWithArrayofObjects = aDictionaryWithArrayofObjects
+            aDictionaryWithArrayOfBooleans = aDictionaryWithArrayOfBooleans,
+            aDictionaryWithArrayOfNumbers = aDictionaryWithArrayOfNumbers,
+            aDictionaryWithArrayOfStrings = aDictionaryWithArrayOfStrings,
+            aDictionaryWithArrayOfObjects = aDictionaryWithArrayOfObjects
         };
         return Content(person.Stringify(), MediaTypeNames.Application.Json);
     }

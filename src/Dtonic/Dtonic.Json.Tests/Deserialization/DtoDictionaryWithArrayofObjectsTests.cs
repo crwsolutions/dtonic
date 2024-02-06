@@ -4,7 +4,7 @@ using TestClasses;
 namespace Deserialization;
 
 [TestClass]
-public class DtoDictionaryWithArrayofObjectsTests
+public class DtoDictionaryWithArrayOfObjectsTests
 {
 
     [TestMethod]
@@ -17,52 +17,52 @@ public class DtoDictionaryWithArrayofObjectsTests
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsFalse(testDto!.aDictionaryWithArrayofObjects.IsSpecified);
-        Assert.IsTrue(testDto.aDictionaryWithArrayofObjects.IsNull);
+        Assert.IsFalse(testDto!.aDictionaryWithArrayOfObjects.IsSpecified);
+        Assert.IsTrue(testDto.aDictionaryWithArrayOfObjects.IsNull);
     }
 
     [TestMethod]
     public void Null_value_should_give_null()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithArrayofObjects\":null}";
+        var dto = "{\"aDictionaryWithArrayOfObjects\":null}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.aDictionaryWithArrayofObjects.IsSpecified);
-        Assert.IsTrue(testDto.aDictionaryWithArrayofObjects.IsNull);
+        Assert.IsTrue(testDto!.aDictionaryWithArrayOfObjects.IsSpecified);
+        Assert.IsTrue(testDto.aDictionaryWithArrayOfObjects.IsNull);
     }
 
     [TestMethod]
     public void Empty_dictionary_should_give_the_zero_number_of_items()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithArrayofObjects\":{}}";
+        var dto = "{\"aDictionaryWithArrayOfObjects\":{}}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
 
         //Assert
-        Assert.IsTrue(testDto!.aDictionaryWithArrayofObjects.IsSpecified);
-        Assert.IsFalse(testDto.aDictionaryWithArrayofObjects.IsNull);
-        Assert.AreEqual(0, testDto.aDictionaryWithArrayofObjects.Value!.Count);
+        Assert.IsTrue(testDto!.aDictionaryWithArrayOfObjects.IsSpecified);
+        Assert.IsFalse(testDto.aDictionaryWithArrayOfObjects.IsNull);
+        Assert.AreEqual(0, testDto.aDictionaryWithArrayOfObjects.Value!.Count);
     }
 
     [TestMethod]
     public void Filled_object_dictionary_with_null_value()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithArrayofObjects\":[{\"a\":null}]}";
+        var dto = "{\"aDictionaryWithArrayOfObjects\":[{\"a\":null}]}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
-        var a = testDto!.aDictionaryWithArrayofObjects.Value!.ToArray();
+        var a = testDto!.aDictionaryWithArrayOfObjects.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.aDictionaryWithArrayofObjects.IsSpecified);
-        Assert.IsFalse(testDto.aDictionaryWithArrayofObjects.IsNull);
+        Assert.IsTrue(testDto!.aDictionaryWithArrayOfObjects.IsSpecified);
+        Assert.IsFalse(testDto.aDictionaryWithArrayOfObjects.IsNull);
         Assert.IsNull(a[0].Value);
         Assert.AreEqual(1, a.Length);
     }
@@ -71,15 +71,15 @@ public class DtoDictionaryWithArrayofObjectsTests
     public void Filled_object_dictionary_with_empty_value()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithArrayofObjects\":[{\"a\":[]}]}";
+        var dto = "{\"aDictionaryWithArrayOfObjects\":[{\"a\":[]}]}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
-        var a = testDto!.aDictionaryWithArrayofObjects.Value!.ToArray();
+        var a = testDto!.aDictionaryWithArrayOfObjects.Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.aDictionaryWithArrayofObjects.IsSpecified);
-        Assert.IsFalse(testDto.aDictionaryWithArrayofObjects.IsNull);
+        Assert.IsTrue(testDto!.aDictionaryWithArrayOfObjects.IsSpecified);
+        Assert.IsFalse(testDto.aDictionaryWithArrayOfObjects.IsNull);
         Assert.AreEqual(1, a.Length);
         Assert.AreEqual(0, a[0].Value!.Count());
     }
@@ -88,16 +88,16 @@ public class DtoDictionaryWithArrayofObjectsTests
     public void Filled_dictionary_should_give_back_that_dictionary_value()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithArrayofObjects\":[{\"a\":null},{\"b\":[{\"aBoolean\":false},{\"aBoolean\":true},{\"aBoolean\":false},null]}]}";
+        var dto = "{\"aDictionaryWithArrayOfObjects\":[{\"a\":null},{\"b\":[{\"aBoolean\":false},{\"aBoolean\":true},{\"aBoolean\":false},null]}]}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
-        var a = testDto!.aDictionaryWithArrayofObjects.Value!.ToArray();
+        var a = testDto!.aDictionaryWithArrayOfObjects.Value!.ToArray();
         var b = a[1].Value!.ToArray();
 
         //Assert
-        Assert.IsTrue(testDto!.aDictionaryWithArrayofObjects.IsSpecified);
-        Assert.IsFalse(testDto.aDictionaryWithArrayofObjects.IsNull);
+        Assert.IsTrue(testDto!.aDictionaryWithArrayOfObjects.IsSpecified);
+        Assert.IsFalse(testDto.aDictionaryWithArrayOfObjects.IsNull);
         Assert.AreEqual("a", a[0].Key);
         Assert.AreEqual("b", a[1].Key);
         Assert.IsNull(a[0].Value);

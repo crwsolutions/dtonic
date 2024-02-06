@@ -7,17 +7,17 @@ using System.Text.Json;
 namespace Dtonic.Dto;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public sealed record DtoDictionaryWithArrayofNumbers : DtoValueBase<IDictionary<string, IEnumerable<decimal?>?>>
+public sealed record DtoDictionaryWithArrayOfNumbers : DtoValueBase<IDictionary<string, IEnumerable<decimal?>?>>
 {
-    private DtoDictionaryWithArrayofNumbers() { }
+    private DtoDictionaryWithArrayOfNumbers() { }
 
-    public DtoDictionaryWithArrayofNumbers(IDictionary<string, IEnumerable<decimal?>?>? value) : base(value)
+    public DtoDictionaryWithArrayOfNumbers(IDictionary<string, IEnumerable<decimal?>?>? value) : base(value)
     {
     }
 
-    public static DtoDictionaryWithArrayofNumbers Unspecified => new();
+    public static DtoDictionaryWithArrayOfNumbers Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithArrayofNumbers));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithArrayOfNumbers));
 
     public override string Stringify()
     {
@@ -97,5 +97,5 @@ public sealed record DtoDictionaryWithArrayofNumbers : DtoValueBase<IDictionary<
         Value = dictionary;
     }
 
-    public static implicit operator DtoDictionaryWithArrayofNumbers(Dictionary<string, IEnumerable<decimal?>?>? items) => new((IDictionary<string, IEnumerable<decimal?>?>?)items);
+    public static implicit operator DtoDictionaryWithArrayOfNumbers(Dictionary<string, IEnumerable<decimal?>?>? items) => new((IDictionary<string, IEnumerable<decimal?>?>?)items);
 }

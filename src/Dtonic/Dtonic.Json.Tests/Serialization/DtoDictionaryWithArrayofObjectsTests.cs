@@ -5,13 +5,13 @@ using TestClasses;
 namespace Serialization;
 
 [TestClass]
-public class DtoDictionaryWithArrayofObjectsTests
+public class DtoDictionaryWithArrayOfObjectsTests
 {
     [TestMethod]
     public void Unspecified_should_return_empty_string()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithArrayofObjects<TestDto>.Unspecified;
+        var dtoDictionary = DtoDictionaryWithArrayOfObjects<TestDto>.Unspecified;
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -24,7 +24,7 @@ public class DtoDictionaryWithArrayofObjectsTests
     public void Null_should_return_null_value()
     {
         //Arrange
-        var dtoDictionary = new DtoDictionaryWithArrayofObjects<TestDto>(null);
+        var dtoDictionary = new DtoDictionaryWithArrayOfObjects<TestDto>(null);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -45,7 +45,7 @@ public class DtoDictionaryWithArrayofObjectsTests
                       new TestDto() { aBoolean = false }] }
         };
 
-        var dtoDictionary = new DtoDictionaryWithArrayofObjects<TestDto>(dict);
+        var dtoDictionary = new DtoDictionaryWithArrayOfObjects<TestDto>(dict);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -59,7 +59,7 @@ public class DtoDictionaryWithArrayofObjectsTests
     {
         //Arrange
         var dict = new Dictionary<string, IEnumerable<TestDto?>?>() { { "one", [new TestDto() { aBoolean = true }] }, { "two", null } };
-        var dtoDictionary = new DtoDictionaryWithArrayofObjects<TestDto>(dict);
+        var dtoDictionary = new DtoDictionaryWithArrayOfObjects<TestDto>(dict);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();

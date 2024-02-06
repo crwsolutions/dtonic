@@ -23,10 +23,10 @@ public class TestDto : IDtonic
     public DtoDictionaryWithBooleans aDictionaryWithBooleans { get; set; } = DtoDictionaryWithBooleans.Unspecified;
     public DtoDictionaryWithObjects<TestDto> aDictionaryWithObjects { get; set; } = DtoDictionaryWithObjects<TestDto>.Unspecified;
 
-    public DtoDictionaryWithArrayofBooleans aDictionaryWithArrayofBooleans { get; set; } = DtoDictionaryWithArrayofBooleans.Unspecified;
-    public DtoDictionaryWithArrayofStrings aDictionaryWithArrayofStrings { get; set; } = DtoDictionaryWithArrayofStrings.Unspecified;
-    public DtoDictionaryWithArrayofNumbers aDictionaryWithArrayofNumbers { get; set; } = DtoDictionaryWithArrayofNumbers.Unspecified;
-    public DtoDictionaryWithArrayofObjects<TestDto> aDictionaryWithArrayofObjects { get; set; } = DtoDictionaryWithArrayofObjects<TestDto>.Unspecified;
+    public DtoDictionaryWithArrayOfBooleans aDictionaryWithArrayOfBooleans { get; set; } = DtoDictionaryWithArrayOfBooleans.Unspecified;
+    public DtoDictionaryWithArrayOfStrings aDictionaryWithArrayOfStrings { get; set; } = DtoDictionaryWithArrayOfStrings.Unspecified;
+    public DtoDictionaryWithArrayOfNumbers aDictionaryWithArrayOfNumbers { get; set; } = DtoDictionaryWithArrayOfNumbers.Unspecified;
+    public DtoDictionaryWithArrayOfObjects<TestDto> aDictionaryWithArrayOfObjects { get; set; } = DtoDictionaryWithArrayOfObjects<TestDto>.Unspecified;
 
     public string Stringify()
     {
@@ -44,10 +44,10 @@ public class TestDto : IDtonic
             aDictionaryWithNumbers,
             aDictionaryWithBooleans,
             aDictionaryWithObjects,
-            aDictionaryWithArrayofBooleans,
-            aDictionaryWithArrayofStrings,
-            aDictionaryWithArrayofNumbers,
-            aDictionaryWithArrayofObjects,
+            aDictionaryWithArrayOfBooleans,
+            aDictionaryWithArrayOfStrings,
+            aDictionaryWithArrayOfNumbers,
+            aDictionaryWithArrayOfObjects,
 
         }
         .ToString();
@@ -97,17 +97,17 @@ public class TestDto : IDtonic
                     case nameof(aDictionaryWithBooleans):
                         aDictionaryWithBooleans.Parse(ref jsonReader);
                         break;
-                    case nameof(aDictionaryWithArrayofBooleans):
-                        aDictionaryWithArrayofBooleans.Parse(ref jsonReader);
+                    case nameof(aDictionaryWithArrayOfBooleans):
+                        aDictionaryWithArrayOfBooleans.Parse(ref jsonReader);
                         break;
-                    case nameof(aDictionaryWithArrayofNumbers):
-                        aDictionaryWithArrayofNumbers.Parse(ref jsonReader);
+                    case nameof(aDictionaryWithArrayOfNumbers):
+                        aDictionaryWithArrayOfNumbers.Parse(ref jsonReader);
                         break;
-                    case nameof(aDictionaryWithArrayofStrings):
-                        aDictionaryWithArrayofStrings.Parse(ref jsonReader);
+                    case nameof(aDictionaryWithArrayOfStrings):
+                        aDictionaryWithArrayOfStrings.Parse(ref jsonReader);
                         break;
-                    case nameof(aDictionaryWithArrayofObjects):
-                        aDictionaryWithArrayofObjects.Parse(ref jsonReader);
+                    case nameof(aDictionaryWithArrayOfObjects):
+                        aDictionaryWithArrayOfObjects.Parse(ref jsonReader);
                         break;
                     default:
                         break;

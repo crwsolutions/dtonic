@@ -4,13 +4,13 @@ using Dtonic.Dto.Extensions;
 namespace Serialization;
 
 [TestClass]
-public class DtoDictionaryWithArrayofBooleansTests
+public class DtoDictionaryWithArrayOfBooleansTests
 {
     [TestMethod]
     public void Unspecified_should_return_empty_string()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithArrayofBooleans.Unspecified;
+        var dtoDictionary = DtoDictionaryWithArrayOfBooleans.Unspecified;
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -23,7 +23,7 @@ public class DtoDictionaryWithArrayofBooleansTests
     public void Null_should_return_null_value()
     {
         //Arrange
-        var dtoDictionary = new DtoDictionaryWithArrayofBooleans(null);
+        var dtoDictionary = new DtoDictionaryWithArrayOfBooleans(null);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -37,7 +37,7 @@ public class DtoDictionaryWithArrayofBooleansTests
     {
         //Arrange
         var dict = new Dictionary<string, IEnumerable<bool?>?>() { { "one", [true] }, { "two", [false, null, true] } };
-        var dtoDictionary = new DtoDictionaryWithArrayofBooleans(dict);
+        var dtoDictionary = new DtoDictionaryWithArrayOfBooleans(dict);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -51,7 +51,7 @@ public class DtoDictionaryWithArrayofBooleansTests
     {
         //Arrange
         var dict = new Dictionary<string, IEnumerable<bool?>?>() { { "one", [true] }, { "two", null } };
-        var dtoDictionary = new DtoDictionaryWithArrayofBooleans(dict);
+        var dtoDictionary = new DtoDictionaryWithArrayOfBooleans(dict);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();

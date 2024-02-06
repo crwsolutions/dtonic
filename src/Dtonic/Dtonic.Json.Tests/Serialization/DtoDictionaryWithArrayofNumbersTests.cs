@@ -4,13 +4,13 @@ using Dtonic.Dto.Extensions;
 namespace Serialization;
 
 [TestClass]
-public class DtoDictionaryWithArrayofNumbersTests
+public class DtoDictionaryWithArrayOfNumbersTests
 {
     [TestMethod]
     public void Unspecified_should_return_empty_string()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithArrayofNumbers.Unspecified;
+        var dtoDictionary = DtoDictionaryWithArrayOfNumbers.Unspecified;
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -23,7 +23,7 @@ public class DtoDictionaryWithArrayofNumbersTests
     public void Null_should_return_null_value()
     {
         //Arrange
-        var dtoDictionary = new DtoDictionaryWithArrayofNumbers(null);
+        var dtoDictionary = new DtoDictionaryWithArrayOfNumbers(null);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -37,7 +37,7 @@ public class DtoDictionaryWithArrayofNumbersTests
     {
         //Arrange
         var dict = new Dictionary<string, IEnumerable<decimal?>?>() { { "one", [1] }, { "two", [1, null, 2] } };
-        var dtoDictionary = new DtoDictionaryWithArrayofNumbers(dict);
+        var dtoDictionary = new DtoDictionaryWithArrayOfNumbers(dict);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();
@@ -51,7 +51,7 @@ public class DtoDictionaryWithArrayofNumbersTests
     {
         //Arrange
         var dict = new Dictionary<string, IEnumerable<decimal?>?>() { { "one", [1] }, { "two", null } };
-        var dtoDictionary = new DtoDictionaryWithArrayofNumbers(dict);
+        var dtoDictionary = new DtoDictionaryWithArrayOfNumbers(dict);
 
         //Act
         var s = dtoDictionary.StringifyWithKey();

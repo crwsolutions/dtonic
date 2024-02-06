@@ -4,13 +4,13 @@ using Dtonic.Dto.Exceptions;
 namespace Unspecified;
 
 [TestClass]
-public class DtoDictionaryWithArrayofNumbersTests
+public class DtoDictionaryWithArrayOfNumbersTests
 {
     [TestMethod]
     public void Unspecified_should_have_no_value()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithArrayofNumbers.Unspecified;
+        var dtoDictionary = DtoDictionaryWithArrayOfNumbers.Unspecified;
 
         //Act
 
@@ -23,7 +23,7 @@ public class DtoDictionaryWithArrayofNumbersTests
     public void Checking_the_value_of_an_unspecified_should_throw_exception()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithArrayofNumbers.Unspecified;
+        var dtoDictionary = DtoDictionaryWithArrayOfNumbers.Unspecified;
 
         //Act
         var x = dtoDictionary.Value;

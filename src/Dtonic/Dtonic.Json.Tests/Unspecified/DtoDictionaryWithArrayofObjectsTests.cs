@@ -5,13 +5,13 @@ using TestClasses;
 namespace Unspecified;
 
 [TestClass]
-public class DtoDictionaryWithArrayofObjectsTests
+public class DtoDictionaryWithArrayOfObjectsTests
 {
     [TestMethod]
     public void Unspecified_should_have_no_value()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithArrayofObjects<TestDto>.Unspecified;
+        var dtoDictionary = DtoDictionaryWithArrayOfObjects<TestDto>.Unspecified;
 
         //Act
 
@@ -24,7 +24,7 @@ public class DtoDictionaryWithArrayofObjectsTests
     public void Checking_the_value_of_an_unspecified_should_throw_exception()
     {
         //Arrange
-        var dtoDictionary = DtoDictionaryWithArrayofObjects<TestDto>.Unspecified;
+        var dtoDictionary = DtoDictionaryWithArrayOfObjects<TestDto>.Unspecified;
 
         //Act
         var x = dtoDictionary.Value;

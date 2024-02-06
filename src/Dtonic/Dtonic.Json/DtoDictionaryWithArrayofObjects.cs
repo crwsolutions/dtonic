@@ -6,17 +6,17 @@ using System.Text.Json;
 namespace Dtonic.Dto;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public sealed record DtoDictionaryWithArrayofObjects<T> : DtoValueBase<IDictionary<string, IEnumerable<T?>?>> where T : IDtonic, new()
+public sealed record DtoDictionaryWithArrayOfObjects<T> : DtoValueBase<IDictionary<string, IEnumerable<T?>?>> where T : IDtonic, new()
 {
-    private DtoDictionaryWithArrayofObjects() { }
+    private DtoDictionaryWithArrayOfObjects() { }
 
-    public DtoDictionaryWithArrayofObjects(IDictionary<string, IEnumerable<T?>?>? value) : base(value)
+    public DtoDictionaryWithArrayOfObjects(IDictionary<string, IEnumerable<T?>?>? value) : base(value)
     {
     }
 
-    public static DtoDictionaryWithArrayofObjects<T> Unspecified => new();
+    public static DtoDictionaryWithArrayOfObjects<T> Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithArrayofObjects<T>));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithArrayOfObjects<T>));
 
     public override string Stringify()
     {
@@ -98,5 +98,5 @@ public sealed record DtoDictionaryWithArrayofObjects<T> : DtoValueBase<IDictiona
         Value = dictionary;
     }
 
-    public static implicit operator DtoDictionaryWithArrayofObjects<T>(Dictionary<string, IEnumerable<T?>?>? items) => new((IDictionary<string, IEnumerable<T?>?>?)items);
+    public static implicit operator DtoDictionaryWithArrayOfObjects<T>(Dictionary<string, IEnumerable<T?>?>? items) => new((IDictionary<string, IEnumerable<T?>?>?)items);
 }

@@ -6,17 +6,17 @@ using System.Text.Json;
 namespace Dtonic.Dto;
 
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public sealed record DtoDictionaryWithArrayofBooleans : DtoValueBase<IDictionary<string, IEnumerable<bool?>?>>
+public sealed record DtoDictionaryWithArrayOfBooleans : DtoValueBase<IDictionary<string, IEnumerable<bool?>?>>
 {
-    private DtoDictionaryWithArrayofBooleans() { }
+    private DtoDictionaryWithArrayOfBooleans() { }
 
-    public DtoDictionaryWithArrayofBooleans(IDictionary<string, IEnumerable<bool?>?>? value) : base(value)
+    public DtoDictionaryWithArrayOfBooleans(IDictionary<string, IEnumerable<bool?>?>? value) : base(value)
     {
     }
 
-    public static DtoDictionaryWithArrayofBooleans Unspecified => new();
+    public static DtoDictionaryWithArrayOfBooleans Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithArrayofBooleans));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithArrayOfBooleans));
 
     public override string Stringify()
     {
@@ -100,5 +100,5 @@ public sealed record DtoDictionaryWithArrayofBooleans : DtoValueBase<IDictionary
         Value = dictionary;
     }
 
-    public static implicit operator DtoDictionaryWithArrayofBooleans(Dictionary<string, IEnumerable<bool?>?>? items) => new((IDictionary<string, IEnumerable<bool?>?>?)items);
+    public static implicit operator DtoDictionaryWithArrayOfBooleans(Dictionary<string, IEnumerable<bool?>?>? items) => new((IDictionary<string, IEnumerable<bool?>?>?)items);
 }
