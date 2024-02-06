@@ -59,6 +59,17 @@ public class ExampleController : ControllerBase
             { "d", null },
         };
 
+        var aDictionaryWithArrayofNumbers = new Dictionary<string, IEnumerable<decimal?>?>()
+        {
+            { "a", [1, null, 2] },
+            { "c", [1, 3.5m] },
+            { "d", null },
+        };
+        var aDictionaryWithArrayofStrings = new Dictionary<string, IEnumerable<string?>?>()
+        {
+            { "a", ["a", null, "b"] },
+            { "d", null },
+        };
         var person = new ExampleDto
         {
             aString = "Robert",
@@ -74,6 +85,8 @@ public class ExampleController : ControllerBase
             aDictionaryWithBooleans = aDictionaryWithBooleans,
             aDictionaryWithObjects = aDictionaryWithObjects,
             aDictionaryWithArrayofBooleans = aDictionaryWithArrayofBooleans,
+            aDictionaryWithArrayofNumbers = aDictionaryWithArrayofNumbers,
+            aDictionaryWithArrayofStrings = aDictionaryWithArrayofStrings,
         };
         return Content(person.Stringify(), MediaTypeNames.Application.Json);
     }

@@ -24,7 +24,9 @@ public class TestDto : IDtonic
     public DtoDictionaryWithObjects<TestDto> aDictionaryWithObjects { get; set; } = DtoDictionaryWithObjects<TestDto>.Unspecified;
 
     public DtoDictionaryWithArrayofBooleans aDictionaryWithArrayofBooleans { get; set; } = DtoDictionaryWithArrayofBooleans.Unspecified;
-
+    public DtoDictionaryWithArrayofStrings aDictionaryWithArrayofStrings { get; set; } = DtoDictionaryWithArrayofStrings.Unspecified;
+    public DtoDictionaryWithArrayofNumbers aDictionaryWithArrayofNumbers { get; set; } = DtoDictionaryWithArrayofNumbers.Unspecified;
+    
     public string Stringify()
     {
         return new StringifyObjectBuilder
@@ -41,6 +43,9 @@ public class TestDto : IDtonic
             aDictionaryWithNumbers,
             aDictionaryWithBooleans,
             aDictionaryWithObjects,
+            aDictionaryWithArrayofBooleans,
+            aDictionaryWithArrayofStrings,
+            aDictionaryWithArrayofNumbers
 
         }
         .ToString();
@@ -92,6 +97,12 @@ public class TestDto : IDtonic
                         break;
                     case nameof(aDictionaryWithArrayofBooleans):
                         aDictionaryWithArrayofBooleans.Parse(ref jsonReader);
+                        break;
+                    case nameof(aDictionaryWithArrayofNumbers):
+                        aDictionaryWithArrayofNumbers.Parse(ref jsonReader);
+                        break;
+                    case nameof(aDictionaryWithArrayofStrings):
+                        aDictionaryWithArrayofStrings.Parse(ref jsonReader);
                         break;
                     default:
                         break;
