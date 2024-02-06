@@ -1,5 +1,6 @@
 ﻿using Dtonic.Dto.Base;
 using Dtonic.Dto.Exceptions;
+using Dtonic.Dto.Utils;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
@@ -27,34 +28,12 @@ public sealed record DtoArrayOfObjects<T> : DtoValueBase<IEnumerable<T?>?> where
         {
             return "null";
         }
-        var first = true;
-        var bob = new StringBuilder();
-        bob.Append('[');
+
+        var bob = new StringifyArrayBuilder();
         foreach (var item in Value)
         {
-            if (first)
-            {
-                first = false;
-            }
-            else
-            {
-                bob.Append(',');
-            }
-            if (item == null)
-            {
-                bob.Append("null");
-            }
-            else if (item is IDtonic dto)
-            {
-                bob.Append(dto.Stringify());
-            }
-            else
-            {
-                throw DtoDoesNotImplementIDtoSerializableException.Create("?", Value.GetType());
-            }
+            bob.Add(item == null ? "null" : item.Stringify());
         }
-
-        bob.Append(']');
 
         return bob.ToString();
     }

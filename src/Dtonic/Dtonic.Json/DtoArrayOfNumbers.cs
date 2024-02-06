@@ -1,7 +1,7 @@
 ﻿using Dtonic.Dto.Base;
+using Dtonic.Dto.Utils;
 using System.Diagnostics;
 using System.Globalization;
-using System.Text;
 using System.Text.Json;
 
 namespace Dtonic.Dto;
@@ -26,30 +26,12 @@ public sealed record DtoArrayOfNumbers : DtoValueBase<IEnumerable<decimal?>?>
             return "null";
         }
 
-        var first = true;
-        var bob = new StringBuilder();
-        bob.Append('[');
+        var bob = new StringifyArrayBuilder();
         foreach (var item in Value)
         {
-            if (first)
-            {
-                first = false;
-            }
-            else
-            {
-                bob.Append(',');
-            }
-            if (item is null)
-            {
-                bob.Append("null");
-            }
-            else
-            {
-                bob.Append(item.Value.ToString(CultureInfo.InvariantCulture));
-            }
+            bob.Add(item is null ? "null" : item.Value.ToString(CultureInfo.InvariantCulture));
         }
 
-        bob.Append(']');
         return bob.ToString();
     }
     public override void Parse(ref Utf8JsonReader jsonReader)

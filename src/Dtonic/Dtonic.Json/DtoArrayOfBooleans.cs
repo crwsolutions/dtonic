@@ -1,6 +1,6 @@
 ﻿using Dtonic.Dto.Base;
+using Dtonic.Dto.Utils;
 using System.Diagnostics;
-using System.Text;
 using System.Text.Json;
 
 namespace Dtonic.Dto;
@@ -23,30 +23,12 @@ public sealed record DtoArrayOfBooleans : DtoValueBase<IEnumerable<bool?>?>
         {
             return "null";
         }
-        var first = true;
-        var bob = new StringBuilder();
-        bob.Append('[');
+
+        var bob = new StringifyArrayBuilder();
         foreach (var item in Value)
         {
-            if (first)
-            {
-                first = false;
-            }
-            else
-            {
-                bob.Append(',');
-            }
-            if (item is null)
-            {
-                bob.Append("null");
-            }
-            else
-            {
-                bob.Append(item.Value.ToString().ToLower());
-            }
+            bob.Add(item is null ? "null" : item.Value.ToString().ToLower());
         }
-
-        bob.Append(']');
 
         return bob.ToString();
     }
