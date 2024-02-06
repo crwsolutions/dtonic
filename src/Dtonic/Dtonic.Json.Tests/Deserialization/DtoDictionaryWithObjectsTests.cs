@@ -22,7 +22,7 @@ public class DtoDictionaryWithObjectsTests
     }
 
     [TestMethod]
-    public void Empty_array_should_give_the_zero_number_of_items()
+    public void Empty_dictionary_should_give_the_zero_number_of_items()
     {
         //Arrange
         var dto = "{\"aDictionaryWithObjects\":{}}";
@@ -71,7 +71,7 @@ public class DtoDictionaryWithObjectsTests
     }
 
     [TestMethod]
-    public void Filled_string_array_should_give_back_that_array_value()
+    public void Filled_string_dictionary_should_give_back_that_dictionary_value()
     {
         //Arrange
         var dto = "{\"aDictionaryWithObjects\":[{\"a\":null},{\"b\":{\"aString\":\"bob\"}}]}";

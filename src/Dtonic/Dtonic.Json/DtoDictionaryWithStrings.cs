@@ -32,7 +32,33 @@ public sealed record DtoDictionaryWithStrings : DtoValueBase<IDictionary<string,
         return bob.ToString();
     }
 
-    public override void Parse(ref Utf8JsonReader jsonReader) => throw new NotImplementedException();
-
+    public override void Parse(ref Utf8JsonReader jsonReader)
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            Value = null;
+            return;
+        }
+        var dictionary = new Dictionary<string, string?>();
+        if (jsonReader.TokenType == JsonTokenType.StartArray)
+        {
+            while (jsonReader.Read())
+            {
+                if (jsonReader.TokenType == JsonTokenType.EndArray)
+                {
+                    break;
+                }
+                if (jsonReader.TokenType == JsonTokenType.PropertyName)
+                {
+                    var key = jsonReader.GetString()!;
+                    jsonReader.Read();
+                    string? value = jsonReader.TokenType == JsonTokenType.Null ? null : jsonReader.GetString();
+                    dictionary.Add(key, value);
+                }
+            }
+        }
+        Value = dictionary;
+    }
     public static implicit operator DtoDictionaryWithStrings(Dictionary<string, string?>? items) => new((IDictionary<string, string?>?)items);
 }

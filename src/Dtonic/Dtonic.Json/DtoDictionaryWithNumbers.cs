@@ -33,7 +33,34 @@ public sealed record DtoDictionaryWithNumbers : DtoValueBase<IDictionary<string,
         return bob.ToString();
     }
 
-    public override void Parse(ref Utf8JsonReader jsonReader) => throw new NotImplementedException();
+    public override void Parse(ref Utf8JsonReader jsonReader)
+    {
+        jsonReader.Read();
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            Value = null;
+            return;
+        }
+        var dictionary = new Dictionary<string, decimal?>();
+        if (jsonReader.TokenType == JsonTokenType.StartArray)
+        {
+            while (jsonReader.Read())
+            {
+                if (jsonReader.TokenType == JsonTokenType.EndArray)
+                {
+                    break;
+                }
+                if (jsonReader.TokenType == JsonTokenType.PropertyName)
+                {
+                    var key = jsonReader.GetString()!;
+                    jsonReader.Read();
+                    decimal? value = jsonReader.TokenType == JsonTokenType.Null ? null : jsonReader.GetDecimal();
+                    dictionary.Add(key, value);
+                }
+            }
+        }
+        Value = dictionary;
+    }
 
     public static implicit operator DtoDictionaryWithNumbers(Dictionary<string, decimal?>? items) => new((IDictionary<string, decimal?>?)items);
 }
