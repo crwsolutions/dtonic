@@ -1,5 +1,6 @@
 using Dtonic.Dto;
 using Dtonic.Dto.Example.Web.Dto;
+using Dtonic.Json.Example.Web.DocumentFilters;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,17 +12,35 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.DocumentFilter<ChildDtoDocumentFilter>();
     c.MapType<DtoString>(() => new OpenApiSchema { Type = "string" });
     c.MapType<DtoNumber>(() => new OpenApiSchema { Type = "number" });
     c.MapType<DtoBoolean>(() => new OpenApiSchema { Type = "boolean" });
-    c.MapType<DtoObject<ChildDto>>(() => new OpenApiSchema { Type = "object" });
+    c.MapType<DtoObject<ChildDto>>(() => new OpenApiSchema { Type = "object", Reference = new OpenApiReference()
+    {
+        Type = ReferenceType.Schema,
+        Id = nameof(ChildDto)
+    }
+    });
 
-    c.MapType<DtoArrayOfObjects<ChildDto>>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "object" } });
+    c.MapType<DtoArrayOfObjects<ChildDto>>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "object",
+        Reference = new OpenApiReference()
+        {
+            Type = ReferenceType.Schema,
+            Id = nameof(ChildDto)
+        }
+    } });
     c.MapType<DtoArrayOfNumbers>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "number" } });
     c.MapType<DtoArrayOfStrings>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "string" } });
     c.MapType<DtoArrayOfBooleans>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "boolean" } });
 
-    c.MapType<DtoDictionaryWithObjects<ChildDto>>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "object" } });
+    c.MapType<DtoDictionaryWithObjects<ChildDto>>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "object",
+        Reference = new OpenApiReference()
+        {
+            Type = ReferenceType.Schema,
+            Id = nameof(ChildDto)
+        }
+    } });
     c.MapType<DtoDictionaryWithNumbers>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "number" } });
 });
 
