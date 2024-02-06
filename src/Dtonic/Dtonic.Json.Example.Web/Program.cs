@@ -48,6 +48,13 @@ builder.Services.AddSwaggerGen(c =>
     c.MapType<DtoDictionaryWithArrayofBooleans>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "boolean" } } });
     c.MapType<DtoDictionaryWithArrayofNumbers>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "number" } } });
     c.MapType<DtoDictionaryWithArrayofStrings>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "string" } } });
+    c.MapType<DtoDictionaryWithArrayofObjects<ChildDto>>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "object",
+        Reference = new OpenApiReference()
+        {
+            Type = ReferenceType.Schema,
+            Id = nameof(ChildDto)
+        }
+    } } });
 });
 
 var app = builder.Build();

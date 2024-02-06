@@ -29,21 +29,18 @@ public class ExampleController : ControllerBase
             { "b", child2 },
             { "c", null }
         };
-
         var aDictionaryWithNumbers = new Dictionary<string, decimal?>()
         {
             { "a", 1 },
             { "b", null },
             { "c", 22.20m }
         };
-
         var aDictionaryWithBooleans = new Dictionary<string, bool?>()
         {
             { "a", true },
             { "b", null },
             { "c", false },
         };
-
         var aDictionaryWithStrings = new Dictionary<string, string?>()
         {
             { "a", "Hello" },
@@ -58,7 +55,6 @@ public class ExampleController : ControllerBase
             { "c", [true, true] },
             { "d", null },
         };
-
         var aDictionaryWithArrayofNumbers = new Dictionary<string, IEnumerable<decimal?>?>()
         {
             { "a", [1, null, 2] },
@@ -70,6 +66,12 @@ public class ExampleController : ControllerBase
             { "a", ["a", null, "b"] },
             { "d", null },
         };
+        var aDictionaryWithArrayofObjects = new Dictionary<string, IEnumerable<ChildDto?>?>()
+        {
+            { "a", [new ChildDto { aNumber = 12 }, null, new ChildDto { aString = "Hello" }] },
+            { "d", null },
+        };
+
         var person = new ExampleDto
         {
             aString = "Robert",
@@ -87,6 +89,7 @@ public class ExampleController : ControllerBase
             aDictionaryWithArrayofBooleans = aDictionaryWithArrayofBooleans,
             aDictionaryWithArrayofNumbers = aDictionaryWithArrayofNumbers,
             aDictionaryWithArrayofStrings = aDictionaryWithArrayofStrings,
+            aDictionaryWithArrayofObjects = aDictionaryWithArrayofObjects
         };
         return Content(person.Stringify(), MediaTypeNames.Application.Json);
     }

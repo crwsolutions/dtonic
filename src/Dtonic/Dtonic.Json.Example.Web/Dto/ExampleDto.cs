@@ -24,6 +24,7 @@ public class ExampleDto : IDtonic
     public DtoDictionaryWithArrayofBooleans aDictionaryWithArrayofBooleans { get; init; } = DtoDictionaryWithArrayofBooleans.Unspecified;
     public DtoDictionaryWithArrayofStrings aDictionaryWithArrayofStrings { get; init; } = DtoDictionaryWithArrayofStrings.Unspecified;
     public DtoDictionaryWithArrayofNumbers aDictionaryWithArrayofNumbers { get; init; } = DtoDictionaryWithArrayofNumbers.Unspecified;
+    public DtoDictionaryWithArrayofObjects<ChildDto> aDictionaryWithArrayofObjects { get; init; } = DtoDictionaryWithArrayofObjects<ChildDto>.Unspecified;
 
     [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IDtoValue> Elements => [aString, aNumber, aBoolean, aChild, anArrayOfNumbers];
@@ -52,6 +53,7 @@ public class ExampleDto : IDtonic
             aDictionaryWithArrayofBooleans,
             aDictionaryWithArrayofNumbers,
             aDictionaryWithArrayofStrings,
+            aDictionaryWithArrayofObjects,
         }
         .ToString();
     }
