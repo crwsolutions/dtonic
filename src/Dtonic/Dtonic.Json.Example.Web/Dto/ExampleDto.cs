@@ -11,13 +11,15 @@ public class ExampleDto : IDtonic
     public DtoBoolean aBoolean { get; init; } = DtoBoolean.Unspecified;
     public DtoObject<ChildDto> aChild { get; init; } = DtoObject<ChildDto>.Unspecified;
 
+    public DtoArrayOfStrings anArrayOfStrings { get; init; } = DtoArrayOfStrings.Unspecified;
     public DtoArrayOfNumbers anArrayOfNumbers { get; init; } = DtoArrayOfNumbers.Unspecified;
     public DtoArrayOfBooleans anArrayOfBooleans { get; init; } = DtoArrayOfBooleans.Unspecified;
-    public DtoArrayOfStrings anArrayOfStrings { get; init; } = DtoArrayOfStrings.Unspecified;
     public DtoArrayOfObjects<ChildDto> anArrayOfObjects { get; init; } = DtoArrayOfObjects<ChildDto>.Unspecified;
 
-    public DtoDictionaryWithNumbers aDictionaryOfNumbers{ get; init; } = DtoDictionaryWithNumbers.Unspecified;
-    public DtoDictionaryWithObjects<ChildDto> aDictionaryOfObjects { get; init; } = DtoDictionaryWithObjects<ChildDto>.Unspecified;
+    public DtoDictionaryWithStrings aDictionaryWithStrings { get; init; } = DtoDictionaryWithStrings.Unspecified;
+    public DtoDictionaryWithNumbers aDictionaryWithNumbers { get; init; } = DtoDictionaryWithNumbers.Unspecified;
+    public DtoDictionaryWithBooleans aDictionaryWithBooleans{ get; init; } = DtoDictionaryWithBooleans.Unspecified;
+    public DtoDictionaryWithObjects<ChildDto> aDictionaryWithObjects { get; init; } = DtoDictionaryWithObjects<ChildDto>.Unspecified;
 
     [System.Text.Json.Serialization.JsonIgnore]
     public IEnumerable<IDtoValue> Elements => [aString, aNumber, aBoolean, aChild, anArrayOfNumbers];
@@ -32,12 +34,14 @@ public class ExampleDto : IDtonic
             aNumber,
             aBoolean,
             aChild,
-            anArrayOfNumbers,
             anArrayOfStrings,
+            anArrayOfNumbers,
             anArrayOfBooleans,
             anArrayOfObjects,
-            aDictionaryOfNumbers,
-            aDictionaryOfObjects,
+            aDictionaryWithStrings,
+            aDictionaryWithNumbers,
+            aDictionaryWithBooleans,
+            aDictionaryWithObjects,
         }
         .ToString();
     }

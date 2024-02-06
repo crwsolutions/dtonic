@@ -40,7 +40,11 @@ public sealed record DtoArrayOfObjects<T> : DtoValueBase<IEnumerable<T>?> where 
             {
                 bob.Append(',');
             }
-            if (Value is IDtonic dto)
+            if (item == null)
+            {
+                bob.Append("null");
+            }
+            else if (item is IDtonic dto)
             {
                 bob.Append(dto.Stringify());
             }

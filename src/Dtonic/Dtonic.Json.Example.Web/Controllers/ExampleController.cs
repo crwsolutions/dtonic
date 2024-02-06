@@ -23,17 +23,34 @@ public class ExampleController : ControllerBase
             aString = "Invoicestreet"
         };
 
-        var aDictionaryOfObjects = new Dictionary<string, ChildDto>()
+        var aDictionaryWithObjects = new Dictionary<string, ChildDto>()
         {
-            { "home", child1 },
-            { "invoice", child2 }
+            { "a", child1 },
+            { "b", child2 },
+            { "c", null }
         };
 
-        var aDictionaryOfNumbers = new Dictionary<string, decimal?>()
+        var aDictionaryWithNumbers = new Dictionary<string, decimal?>()
         {
             { "a", 1 },
-            { "b", 22.20m }
+            { "b", null },
+            { "c", 22.20m }
         };
+
+        var aDictionaryWithBooleans = new Dictionary<string, bool?>()
+        {
+            { "a", true },
+            { "b", null },
+            { "c", false },
+        };
+
+        var aDictionaryWithStrings = new Dictionary<string, string?>()
+        {
+            { "a", "Hello" },
+            { "b", null },
+            { "c", "World" }
+        };
+
         var person = new ExampleDto
         {
             aString = "Robert",
@@ -43,8 +60,11 @@ public class ExampleController : ControllerBase
             anArrayOfNumbers = (decimal[])[1, 2, 3, 4],
             anArrayOfStrings = (string[])["a", "b", "c"],
             anArrayOfBooleans = (bool[])[true, false, true, false],
-            aDictionaryOfObjects = aDictionaryOfObjects,
-            aDictionaryOfNumbers = aDictionaryOfNumbers
+            anArrayOfObjects = (ChildDto[])[child1, null, child2],
+            aDictionaryWithStrings = aDictionaryWithStrings,
+            aDictionaryWithNumbers = aDictionaryWithNumbers,
+            aDictionaryWithBooleans = aDictionaryWithBooleans,
+            aDictionaryWithObjects = aDictionaryWithObjects,
         };
         return Content(person.Stringify(), MediaTypeNames.Application.Json);
     }
