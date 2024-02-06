@@ -21,6 +21,7 @@ public sealed record DtoString : DtoValueBase<string?>
     }
 
     public override string Stringify() => IsNull ? NULL : $"\"{Value}\"";
+
     public override void Parse(ref Utf8JsonReader jsonReader)
     {
         jsonReader.Read();
@@ -38,5 +39,5 @@ public sealed record DtoString : DtoValueBase<string?>
         throw new Exception("Unknown type");
     }
 
-    public static implicit operator DtoString(string value) => new(value);
+    public static implicit operator DtoString(string? value) => new(value);
 }

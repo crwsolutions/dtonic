@@ -36,7 +36,7 @@ public sealed record DtoObject<T> : DtoValueBase<T?> where T : class, IDtonic, n
         jsonReader.Read();
         if (jsonReader.TokenType == JsonTokenType.Null)
         {
-            Value = null;
+            Value = default;
             return;
         }
         if (jsonReader.TokenType == JsonTokenType.StartObject)
@@ -49,8 +49,5 @@ public sealed record DtoObject<T> : DtoValueBase<T?> where T : class, IDtonic, n
         throw new Exception("Unknown type");
     }
 
-    public static implicit operator DtoObject<T>(T value)
-    {
-        return new(value);
-    }
+    public static implicit operator DtoObject<T>(T? value) => new(value);
 }

@@ -40,8 +40,6 @@ public sealed record DtoBoolean : DtoValueBase<bool?>
         throw new Exception("Unknown type");
     }
 
-    public static implicit operator DtoBoolean(bool value)
-    {
-        return new(value);
-    }
+    public static implicit operator DtoBoolean(bool value) => new(value);
+    public static implicit operator DtoBoolean(bool? value) => new(value);
 }
