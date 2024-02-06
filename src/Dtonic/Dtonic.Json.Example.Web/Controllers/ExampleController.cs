@@ -23,7 +23,7 @@ public class ExampleController : ControllerBase
             aString = "Invoicestreet"
         };
 
-        var aDictionaryWithObjects = new Dictionary<string, ChildDto>()
+        var aDictionaryWithObjects = new Dictionary<string, ChildDto?>()
         {
             { "a", child1 },
             { "b", child2 },
@@ -79,7 +79,7 @@ public class ExampleController : ControllerBase
             anArrayOfNumbers = (decimal[])[1, 2, 3, 4],
             anArrayOfStrings = (string[])["a", "b", "c"],
             anArrayOfBooleans = (bool[])[true, false, true, false],
-            anArrayOfObjects = (ChildDto[])[child1, null, child2],
+            anArrayOfObjects = (ChildDto?[])[child1, null, child2],
             aDictionaryWithStrings = aDictionaryWithStrings,
             aDictionaryWithNumbers = aDictionaryWithNumbers,
             aDictionaryWithBooleans = aDictionaryWithBooleans,

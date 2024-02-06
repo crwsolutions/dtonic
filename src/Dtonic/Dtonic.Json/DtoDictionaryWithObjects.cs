@@ -69,5 +69,5 @@ public sealed record DtoDictionaryWithObjects<T> : DtoValueBase<IDictionary<stri
         Value = dictionary;
     }
 
-    public static implicit operator DtoDictionaryWithObjects<T>(Dictionary<string, T>? items) => new((IDictionary<string, T?>?)items);
+    public static implicit operator DtoDictionaryWithObjects<T>(Dictionary<string, T?>? items) => new((IDictionary<string, T?>?)items);
 }
