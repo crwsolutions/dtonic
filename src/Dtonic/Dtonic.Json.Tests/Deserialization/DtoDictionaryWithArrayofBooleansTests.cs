@@ -47,7 +47,7 @@ public class DtoDictionaryWithArrayofBooleansTests
         //Assert
         Assert.IsTrue(testDto!.aDictionaryWithArrayofBooleans.IsSpecified);
         Assert.IsFalse(testDto.aDictionaryWithArrayofBooleans.IsNull);
-        Assert.AreEqual(0, testDto.aDictionaryWithArrayofBooleans.Value!.Count());
+        Assert.AreEqual(0, testDto.aDictionaryWithArrayofBooleans.Value!.Count);
     }
 
     [TestMethod]

@@ -47,7 +47,7 @@ public class DtoDictionaryWithArrayofStringsTests
         //Assert
         Assert.IsTrue(testDto!.aDictionaryWithArrayofStrings.IsSpecified);
         Assert.IsFalse(testDto.aDictionaryWithArrayofStrings.IsNull);
-        Assert.AreEqual(0, testDto.aDictionaryWithArrayofStrings.Value!.Count());
+        Assert.AreEqual(0, testDto.aDictionaryWithArrayofStrings.Value!.Count);
     }
 
     [TestMethod]

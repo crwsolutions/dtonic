@@ -62,7 +62,7 @@ public class DtoArrayOfObjectsTests
         //Assert
         Assert.IsTrue(testDto!.anArrayOfObjects.IsSpecified);
         Assert.IsFalse(testDto.anArrayOfObjects.IsNull);
-        Assert.AreEqual(" wallstreet ", a[0].aString.Value);
+        Assert.AreEqual(" wallstreet ", a[0]!.aString.Value);
         Assert.IsNull(a[1]);
         Assert.AreEqual(12, a[2]!.aNumber.Value);
         Assert.AreEqual(3, a.Length);
