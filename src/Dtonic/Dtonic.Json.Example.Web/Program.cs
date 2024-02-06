@@ -23,6 +23,9 @@ builder.Services.AddSwaggerGen(c =>
     }
     });
 
+    c.MapType<DtoArrayOfStrings>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "string" } });
+    c.MapType<DtoArrayOfNumbers>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "number" } });
+    c.MapType<DtoArrayOfBooleans>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "boolean" } });
     c.MapType<DtoArrayOfObjects<ChildDto>>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "object",
         Reference = new OpenApiReference()
         {
@@ -30,10 +33,10 @@ builder.Services.AddSwaggerGen(c =>
             Id = nameof(ChildDto)
         }
     } });
-    c.MapType<DtoArrayOfNumbers>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "number" } });
-    c.MapType<DtoArrayOfStrings>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "string" } });
-    c.MapType<DtoArrayOfBooleans>(() => new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "boolean" } });
 
+    c.MapType<DtoDictionaryWithStrings>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "string" } });
+    c.MapType<DtoDictionaryWithNumbers>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "number" } });
+    c.MapType<DtoDictionaryWithBooleans>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "boolean" } });
     c.MapType<DtoDictionaryWithObjects<ChildDto>>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "object",
         Reference = new OpenApiReference()
         {
@@ -41,7 +44,8 @@ builder.Services.AddSwaggerGen(c =>
             Id = nameof(ChildDto)
         }
     } });
-    c.MapType<DtoDictionaryWithNumbers>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "number" } });
+
+    c.MapType<DtoDictionaryWithArrayofBooleans>(() => new OpenApiSchema { Type = "object", AdditionalProperties = new OpenApiSchema { Type = "array", Items = new OpenApiSchema { Type = "boolean" } } });
 });
 
 var app = builder.Build();
