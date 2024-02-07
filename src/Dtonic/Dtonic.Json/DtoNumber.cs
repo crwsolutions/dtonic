@@ -40,19 +40,30 @@ public sealed record DtoNumber : DtoValueBase<decimal?>
 
     //numeric_type
     public static implicit operator DtoNumber(decimal value) => new(value);
+    public static implicit operator DtoNumber(decimal? value) => new(value);
 
     //integral_type
     public static implicit operator DtoNumber(sbyte value) => new(value);
+    public static implicit operator DtoNumber(sbyte? value) => new(value);
     public static implicit operator DtoNumber(byte value) => new(value);
+    public static implicit operator DtoNumber(byte? value) => new(value);
     public static implicit operator DtoNumber(short value) => new(value);
+    public static implicit operator DtoNumber(short? value) => new(value);
     public static implicit operator DtoNumber(ushort value) => new(value);
+    public static implicit operator DtoNumber(ushort? value) => new(value);
     public static implicit operator DtoNumber(int value) => new(value);
+    public static implicit operator DtoNumber(int? value) => new(value);
     public static implicit operator DtoNumber(uint value) => new(value);
+    public static implicit operator DtoNumber(uint? value) => new(value);
     public static implicit operator DtoNumber(long value) => new(value);
+    public static implicit operator DtoNumber(long? value) => new(value);
     public static implicit operator DtoNumber(ulong value) => new(value);
-    public static implicit operator DtoNumber(char value) => new(value);
+    public static implicit operator DtoNumber(ulong? value) => new(value);
+
 
     //floating_point_type
-    public static implicit operator DtoNumber(float value) => new(value);
-    public static implicit operator DtoNumber(double value) => new(value);
+    public static implicit operator DtoNumber(float value) => new((decimal)value);
+    public static implicit operator DtoNumber(float? value) => new((decimal?)value);
+    public static implicit operator DtoNumber(double value) => new((decimal)value);
+    public static implicit operator DtoNumber(double? value) => new((decimal?)value);
 }
