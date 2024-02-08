@@ -1,5 +1,6 @@
 ﻿using Dtonic.Dto.Base;
 using Dtonic.Dto.Utils;
+using Dtonic.Json.Extensions;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -27,7 +28,7 @@ public sealed record DtoArrayOfStrings : DtoValueBase<IEnumerable<string?>?>
         var bob = new StringifyArrayBuilder();
         foreach (var item in Value)
         {
-            bob.Add(item is null ? NULL : $"\"{item}\"");
+            bob.Add(item is null ? NULL : item.JsonEscape());
         }
 
         return bob.ToString();

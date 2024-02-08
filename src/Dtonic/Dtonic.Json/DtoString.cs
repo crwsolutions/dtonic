@@ -1,4 +1,5 @@
 ﻿using Dtonic.Dto.Base;
+using Dtonic.Json.Extensions;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -20,7 +21,7 @@ public sealed record DtoString : DtoValueBase<string?>
         return GetDebuggerDisplay(nameof(DtoString));
     }
 
-    public override string Stringify() => IsNull ? NULL : $"\"{Value}\"";
+    public override string Stringify() => IsNull ? NULL : Value.JsonEscape();
 
     public override void Parse(ref Utf8JsonReader jsonReader)
     {
