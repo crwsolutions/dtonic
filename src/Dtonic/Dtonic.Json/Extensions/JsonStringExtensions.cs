@@ -5,17 +5,11 @@ internal static class JsonStringExtensions
 {
     public static string JsonEscape(this string s)
     {
-        if (s.Length == 0)
-        {
-            return "\"\"";
-        }
-
-        var sb = new StringBuilder(s.Length + 4);
-
         var chars = s.AsSpan();
 
+        var sb = new StringBuilder(chars.Length + 4);
         sb.Append('"');
-        for (int i = 0; i < s.Length; i += 1)
+        for (int i = 0; i < chars.Length; i++)
         {
             var c = chars[i];
             switch (c)
@@ -47,8 +41,7 @@ internal static class JsonStringExtensions
                 default:
                     if (c < ' ')
                     {
-                        var t = "000" + Convert.ToHexString(new byte[] { (byte)c });
-                        sb.Append("\\u" + t.Substring(t.Length - 4));
+                        sb.Append($"\\u{Convert.ToHexString(new byte[] { (byte)c }).PadLeft(4, '0')}");
                     }
                     else
                     {
