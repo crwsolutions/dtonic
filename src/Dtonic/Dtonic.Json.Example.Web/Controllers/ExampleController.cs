@@ -1,4 +1,5 @@
 ﻿using Dtonic.Dto.Example.Web.Dto;
+using Dtonic.Json.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -79,7 +80,7 @@ public class ExampleController : ControllerBase
             aBoolean = true,
             aChild = child1,
             anArrayOfNumbers = (decimal[])[1, 2, 3, 4],
-            anArrayOfStrings = (string[])["a", "b", "c"],
+            anArrayOfStrings = (string[])["{a}", "\\b", "c[]\""],
             anArrayOfBooleans = (bool[])[true, false, true, false],
             anArrayOfObjects = (ChildDto?[])[child1, null, child2],
             aDictionaryWithStrings = aDictionaryWithStrings,
@@ -91,6 +92,8 @@ public class ExampleController : ControllerBase
             aDictionaryWithArrayOfStrings = aDictionaryWithArrayOfStrings,
             aDictionaryWithArrayOfObjects = aDictionaryWithArrayOfObjects
         };
-        return Content(person.Stringify(), MediaTypeNames.Application.Json);
+        var jsonFormatter = new JsonFormatter(person.Stringify());
+        var formattedJson = jsonFormatter.Format();
+        return Content(formattedJson, MediaTypeNames.Application.Json);
     }
 }
