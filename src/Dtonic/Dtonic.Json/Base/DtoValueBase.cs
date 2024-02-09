@@ -10,6 +10,7 @@ public abstract record DtoValueBase<T> : IDtoValue
 {
     protected const string NULL = "null";
 
+    [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
     protected T? _value;
 
     protected DtoValueBase()
@@ -72,6 +73,14 @@ public abstract record DtoValueBase<T> : IDtoValue
     protected string GetDebuggerDisplay(string className)
     {
         return IsSpecified ? $"{className}: '{_value}'" : $"{className}: - not set -";
+    }
+
+    protected string GetDebuggerDisplay<T>(string className, IEnumerable<T?>? ienumerable)
+    {
+        return !IsSpecified ?
+        $"{className}: - not set -" :
+        IsNull ? $"{className}: 'null'" :
+        $"{className}: {ienumerable!.Count()} items";
     }
 
     public void Deconstruct(out bool isSpecified, out bool isNull, out T? value)

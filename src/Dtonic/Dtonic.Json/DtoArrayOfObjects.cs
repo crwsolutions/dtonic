@@ -21,7 +21,7 @@ public sealed record DtoArrayOfObjects<T> : DtoValueBase<IEnumerable<T?>?> where
 
     public static DtoArrayOfObjects<T> Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoArrayOfObjects<T>));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoArrayOfObjects<T>), _value);
     public override string Stringify()
     {
         if (IsNull)

@@ -17,7 +17,7 @@ public sealed record DtoArrayOfNumbers : DtoValueBase<IEnumerable<decimal?>?>
 
     public static DtoArrayOfNumbers Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoArrayOfNumbers));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoArrayOfNumbers), _value);
 
     public override string Stringify()
     {

@@ -17,7 +17,8 @@ public sealed record DtoArrayOfStrings : DtoValueBase<IEnumerable<string?>?>
 
     public static DtoArrayOfStrings Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoArrayOfStrings));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoArrayOfStrings), _value);
+
     public override string Stringify()
     {
         if (IsNull)

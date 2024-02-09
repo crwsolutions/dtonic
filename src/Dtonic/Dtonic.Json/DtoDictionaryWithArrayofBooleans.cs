@@ -16,7 +16,7 @@ public sealed record DtoDictionaryWithArrayOfBooleans : DtoValueBase<IDictionary
 
     public static DtoDictionaryWithArrayOfBooleans Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithArrayOfBooleans));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoDictionaryWithArrayOfBooleans), _value);
 
     public override string Stringify()
     {

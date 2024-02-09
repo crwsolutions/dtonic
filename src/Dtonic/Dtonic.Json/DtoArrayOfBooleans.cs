@@ -16,7 +16,7 @@ public sealed record DtoArrayOfBooleans : DtoValueBase<IEnumerable<bool?>?>
 
     public static DtoArrayOfBooleans Unspecified => new();
 
-    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoArrayOfBooleans));
+    private string GetDebuggerDisplay() => GetDebuggerDisplay(nameof(DtoArrayOfBooleans), _value);
     public override string Stringify()
     {
         if (IsNull)
