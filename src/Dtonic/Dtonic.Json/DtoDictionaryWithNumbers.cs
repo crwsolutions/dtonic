@@ -42,11 +42,11 @@ public sealed record DtoDictionaryWithNumbers : DtoValueBase<IDictionary<string,
             return;
         }
         var dictionary = new Dictionary<string, decimal?>();
-        if (jsonReader.TokenType == JsonTokenType.StartArray)
+        if (jsonReader.TokenType == JsonTokenType.StartObject)
         {
             while (jsonReader.Read())
             {
-                if (jsonReader.TokenType == JsonTokenType.EndArray)
+                if (jsonReader.TokenType == JsonTokenType.EndObject)
                 {
                     break;
                 }

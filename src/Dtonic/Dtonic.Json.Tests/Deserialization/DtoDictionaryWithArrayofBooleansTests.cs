@@ -54,7 +54,7 @@ public class DtoDictionaryWithArrayOfBooleansTests
     public void Filled_object_dictionary_with_null_value()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithArrayOfBooleans\":[{\"a\":null}]}";
+        var dto = "{\"aDictionaryWithArrayOfBooleans\":{\"a\":null}}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
@@ -71,7 +71,7 @@ public class DtoDictionaryWithArrayOfBooleansTests
     public void Filled_object_dictionary_with_empty_value()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithArrayOfBooleans\":[{\"a\":[]}]}";
+        var dto = "{\"aDictionaryWithArrayOfBooleans\":{\"a\":[]}}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
@@ -88,7 +88,7 @@ public class DtoDictionaryWithArrayOfBooleansTests
     public void Filled_dictionary_should_give_back_that_dictionary_value()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithArrayOfBooleans\":[{\"a\":null},{\"b\":[false,true,false,null]}]}";
+        var dto = "{\"aDictionaryWithArrayOfBooleans\":{\"a\":null,\"b\":[false,true,false,null]}}";
 
         //Act
         var testDto = dto.Parse<TestDto>();

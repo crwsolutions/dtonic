@@ -55,11 +55,11 @@ public sealed record DtoDictionaryWithArrayOfStrings : DtoValueBase<IDictionary<
             return;
         }
         var dictionary = new Dictionary<string, IEnumerable<string?>?>();
-        if (jsonReader.TokenType == JsonTokenType.StartArray)
+        if (jsonReader.TokenType == JsonTokenType.StartObject)
         {
             while (jsonReader.Read())
             {
-                if (jsonReader.TokenType == JsonTokenType.EndArray)
+                if (jsonReader.TokenType == JsonTokenType.EndObject)
                 {
                     break;
                 }

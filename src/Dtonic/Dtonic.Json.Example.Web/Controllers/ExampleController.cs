@@ -1,6 +1,8 @@
 ﻿using Dtonic.Dto.Example.Web.Dto;
+using Dtonic.Dto.Extensions;
 using Dtonic.Json.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Net.Mime;
 
 namespace Dtonic.Dto.Example.Web.Controllers;
@@ -78,7 +80,7 @@ public class ExampleController : ControllerBase
             aString = "Robert",
             aNumber = 11,
             aBoolean = true,
-            aChild = child1,
+            anObject = child1,
             anArrayOfNumbers = (decimal[])[1, 2, 3, 4],
             anArrayOfStrings = (string[])["{a}", "\\b", "c[]\""],
             anArrayOfBooleans = (bool[])[true, false, true, false],
@@ -95,5 +97,15 @@ public class ExampleController : ControllerBase
         var jsonFormatter = new JsonFormatter(person.Stringify());
         var formattedJson = jsonFormatter.Format();
         return Content(formattedJson, MediaTypeNames.Application.Json);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> Post([BindNever] ExampleDto? dummy)
+    {
+        dummy = await Request.Body.ParseAsync<ExampleDto>();
+
+        return new OkResult();   
     }
 }

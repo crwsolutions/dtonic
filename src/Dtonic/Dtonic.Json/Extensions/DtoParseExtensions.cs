@@ -5,6 +5,12 @@ using System.Text.Json;
 namespace Dtonic.Dto.Extensions;
 public static class DtoParseExtensions
 {
+    public static async Task<T?> ParseAsync<T>(this Stream stream) where T : IDtonic, new()
+    {
+        var s = await new StreamReader(stream).ReadToEndAsync();
+        return Parse<T>(s);
+    }
+
     public static T? Parse<T>(this string s) where T : IDtonic, new()
     {
         var options = new JsonReaderOptions

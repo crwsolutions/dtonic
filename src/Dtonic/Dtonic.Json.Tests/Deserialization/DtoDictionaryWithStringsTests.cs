@@ -54,7 +54,7 @@ public class DtoDictionaryWithStringsTests
     public void Filled_object_dictionary_with_null_value()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithStrings\":[{\"a\":null}]}";
+        var dto = "{\"aDictionaryWithStrings\":{\"a\":null}}";
 
         //Act
         var testDto = dto.Parse<TestDto>();
@@ -71,7 +71,7 @@ public class DtoDictionaryWithStringsTests
     public void Filled_dictionary_should_give_back_that_dictionary_value()
     {
         //Arrange
-        var dto = "{\"aDictionaryWithStrings\":[{\"a\":null},{\"b\":\"bob\"}]}";
+        var dto = "{\"aDictionaryWithStrings\":{\"a\":null,\"b\":\"bob\"}}";
 
         //Act
         var testDto = dto.Parse<TestDto>();

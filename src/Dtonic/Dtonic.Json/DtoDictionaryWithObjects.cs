@@ -41,11 +41,11 @@ public sealed record DtoDictionaryWithObjects<T> : DtoValueBase<IDictionary<stri
             return;
         }
         var dictionary = new Dictionary<string, T?>();
-        if (jsonReader.TokenType == JsonTokenType.StartArray)
+        if (jsonReader.TokenType == JsonTokenType.StartObject)
         {
             while (jsonReader.Read())
             {
-                if (jsonReader.TokenType == JsonTokenType.EndArray)
+                if (jsonReader.TokenType == JsonTokenType.EndObject)
                 {
                     break;
                 }
