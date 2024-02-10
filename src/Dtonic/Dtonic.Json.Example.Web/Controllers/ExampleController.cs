@@ -101,11 +101,10 @@ public class ExampleController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> Post([BindNever] ExampleDto? dummy)
+    public async Task<ActionResult> Post(ExampleDto? example)
     {
-        dummy = await Request.Body.ParseAsync<ExampleDto>();
-
         return new OkResult();   
     }
 }

@@ -1,11 +1,25 @@
 using Dtonic.Dto;
+using Dtonic.Dto.Base;
 using Dtonic.Dto.Example.Web.Dto;
 using Dtonic.Json.Example.Web.DocumentFilters;
+using Dtonic.Json.Example.Web.ModelBinder;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.OpenApi.Models;
+using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllers(options =>
+{
+    options.ModelBinderProviders.Insert(0, new DtonicBinderProvider());
+    options.ModelMetadataDetailsProviders.Add(
+                new SuppressChildValidationMetadataProvider(
+                    typeof(IDtonic)
+                )
+            );
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

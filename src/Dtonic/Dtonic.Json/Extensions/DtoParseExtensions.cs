@@ -1,40 +1,49 @@
 ﻿using Dtonic.Dto.Base;
+using Dtonic.Json.Exceptions;
 using System.Text;
 using System.Text.Json;
 
 namespace Dtonic.Dto.Extensions;
 public static class DtoParseExtensions
 {
-    public static async Task<T?> ParseAsync<T>(this Stream stream) where T : IDtonic, new()
+    private static readonly JsonReaderOptions _jsonReaderOptions = new JsonReaderOptions
+    {
+        AllowTrailingCommas = true,
+        CommentHandling = JsonCommentHandling.Skip
+    };
+
+    public static T? Parse<T>(this string body) where T : IDtonic, new()
+    {
+        var dto = new T();
+        return (T?)ProvisionFromString(dto, body);
+    }
+
+    public static async Task<IDtonic?> Parse(this IDtonic dto, Stream stream)
     {
         var s = await new StreamReader(stream).ReadToEndAsync();
-        return Parse<T>(s);
+        return ProvisionFromString(dto, s);
     }
 
-    public static T? Parse<T>(this string s) where T : IDtonic, new()
+    private static IDtonic? ProvisionFromString(IDtonic dto, string? value)
     {
-        var options = new JsonReaderOptions
+        if (string.IsNullOrWhiteSpace(value))
         {
-            AllowTrailingCommas = true,
-            CommentHandling = JsonCommentHandling.Skip
-        };
-        var jsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(s), options);
-        return jsonReader.ParseDtoDeserializable<T>();
-    }
-
-    public static T? ParseDtoDeserializable<T>(this ref Utf8JsonReader jsonReader) where T : IDtonic, new()
-    {
-        jsonReader.Read();
-        if (jsonReader.TokenType == JsonTokenType.Null)
-        {
-            return default;
+            return null;
         }
+
+        var jsonReader = new Utf8JsonReader(Encoding.UTF8.GetBytes(value), _jsonReaderOptions);
+        jsonReader.Read();
         if (jsonReader.TokenType == JsonTokenType.StartObject)
         {
-            var t = new T();
-            t.Parse(ref jsonReader);
-            return t;
+            dto.Parse(ref jsonReader);
+            return dto;
         }
-        throw new Exception("Unknown type");
+
+        if (jsonReader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
+        throw new JsonStartsWithUnexpectedToken($"Json starts with unexpected token :{jsonReader.TokenType}");
     }
 }
