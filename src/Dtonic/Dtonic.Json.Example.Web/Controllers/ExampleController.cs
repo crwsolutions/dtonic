@@ -1,6 +1,7 @@
 ﻿using Dtonic.Dto.Example.Web.Dto;
 using Dtonic.Dto.Extensions;
 using Dtonic.Json.Utils;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Net.Mime;
@@ -12,7 +13,7 @@ public class ExampleController : ControllerBase
 {
     [HttpGet(Name = "GetExample")]
     [ProducesResponseType<ExampleDto>(StatusCodes.Status200OK)]
-    public ActionResult Get()
+    public IActionResult Get()
     {
         var child1 = new ChildDto
         {
@@ -75,7 +76,7 @@ public class ExampleController : ControllerBase
             { "d", null },
         };
 
-        var person = new ExampleDto
+        var example = new ExampleDto
         {
             aString = "Robert",
             aNumber = 11,
@@ -94,16 +95,14 @@ public class ExampleController : ControllerBase
             aDictionaryWithArrayOfStrings = aDictionaryWithArrayOfStrings,
             aDictionaryWithArrayOfObjects = aDictionaryWithArrayOfObjects
         };
-        var jsonFormatter = new JsonFormatter(person.Stringify());
-        var formattedJson = jsonFormatter.Format();
-        return Content(formattedJson, MediaTypeNames.Application.Json);
+        return Ok(example);
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> Post(ExampleDto? example)
+    public ActionResult Post(ExampleDto? example)
     {
         return new OkResult();   
     }
